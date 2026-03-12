@@ -67,7 +67,7 @@ describe("loadSettings default gateway URL derivation", () => {
     vi.resetModules();
     vi.stubGlobal("localStorage", createStorageMock());
     vi.stubGlobal("sessionStorage", createStorageMock());
-    vi.stubGlobal("navigator", { language: "en-US" } as Navigator);
+    vi.stubGlobal("navigator", { language: "ko" } as Navigator);
     localStorage.clear();
     sessionStorage.clear();
     setControlUiBasePath(undefined);
