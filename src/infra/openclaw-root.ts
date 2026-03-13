@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const CORE_PACKAGE_NAMES = new Set(["openclaw"]);
+const CORE_PACKAGE_NAMES = new Set(["@iubns/openclaw"]);
 
 async function readPackageName(dir: string): Promise<string | null> {
   try {
@@ -38,6 +38,7 @@ async function findPackageRoot(startDir: string, maxDepth = 12): Promise<string 
 function findPackageRootSync(startDir: string, maxDepth = 12): string | null {
   for (const current of iterAncestorDirs(startDir, maxDepth)) {
     const name = readPackageNameSync(current);
+    console.log(`Checking ${current} for package.json with name in CORE_PACKAGE_NAMES:`, name);
     if (name && CORE_PACKAGE_NAMES.has(name)) {
       return current;
     }
@@ -102,6 +103,7 @@ export function resolveOpenClawPackageRootSync(opts: {
   argv1?: string;
   moduleUrl?: string;
 }): string | null {
+  console.info("buildCandidates(opts)", buildCandidates(opts));
   for (const candidate of buildCandidates(opts)) {
     const found = findPackageRootSync(candidate);
     if (found) {
