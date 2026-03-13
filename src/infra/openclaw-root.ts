@@ -38,7 +38,6 @@ async function findPackageRoot(startDir: string, maxDepth = 12): Promise<string 
 function findPackageRootSync(startDir: string, maxDepth = 12): string | null {
   for (const current of iterAncestorDirs(startDir, maxDepth)) {
     const name = readPackageNameSync(current);
-    console.log(`Checking ${current} for package.json with name in CORE_PACKAGE_NAMES:`, name);
     if (name && CORE_PACKAGE_NAMES.has(name)) {
       return current;
     }
@@ -76,7 +75,7 @@ function candidateDirsFromArgv1(argv1: string): string[] {
   const parts = normalized.split(path.sep);
   const binIndex = parts.lastIndexOf(".bin");
   if (binIndex > 0 && parts[binIndex - 1] === "node_modules") {
-    const binName = path.basename(normalized);
+    const binName = "@iubns/" + path.basename(normalized);
     const nodeModulesDir = parts.slice(0, binIndex).join(path.sep);
     candidates.push(path.join(nodeModulesDir, binName));
   }
@@ -103,7 +102,6 @@ export function resolveOpenClawPackageRootSync(opts: {
   argv1?: string;
   moduleUrl?: string;
 }): string | null {
-  console.info("buildCandidates(opts)", buildCandidates(opts));
   for (const candidate of buildCandidates(opts)) {
     const found = findPackageRootSync(candidate);
     if (found) {
