@@ -145,7 +145,7 @@ describe("resolveOpenClawPackageRoot", () => {
     const wrongPkgRoot = fx("moduleurl-fallthrough", "wrong");
     const cwdPkgRoot = fx("moduleurl-fallthrough", "cwd");
     setFile(path.join(wrongPkgRoot, "package.json"), JSON.stringify({ name: "not-openclaw" }));
-    setFile(path.join(cwdPkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    setFile(path.join(cwdPkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
     const moduleUrl = pathToFileURL(path.join(wrongPkgRoot, "dist", "index.js")).toString();
 
     expect(resolveOpenClawPackageRootSync({ moduleUrl, cwd: cwdPkgRoot })).toBe(cwdPkgRoot);
@@ -175,10 +175,13 @@ describe("resolveOpenClawPackageRoot", () => {
 
   it("falls back from a symlinked argv1 to the node_modules package root", () => {
     const project = fx("symlink-node-modules-fallback");
-    const argv1 = path.join(project, "node_modules", ".bin", "openclaw");
-    state.realpaths.set(abs(argv1), abs(path.join(project, "versions", "current", "openclaw.mjs")));
-    const pkgRoot = path.join(project, "node_modules", "openclaw");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    const argv1 = path.join(project, "node_modules", ".bin", "@iubns/openclaw");
+    state.realpaths.set(
+      abs(argv1),
+      abs(path.join(project, "versions", "current", "@iubns/openclaw.mjs")),
+    );
+    const pkgRoot = path.join(project, "node_modules", "@iubns/openclaw");
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     expect(resolveOpenClawPackageRootSync({ argv1 })).toBe(pkgRoot);
   });
