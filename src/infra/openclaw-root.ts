@@ -3,13 +3,16 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const CORE_PACKAGE_NAMES = new Set(["openclaw"]);
+const CORE_PACKAGE_NAMES = new Set(["@iubns/openclaw"]);
+
+function parsePackageName(raw: string): string | null {
+  const parsed = JSON.parse(raw) as { name?: unknown };
+  return typeof parsed.name === "string" ? parsed.name : null;
+}
 
 async function readPackageName(dir: string): Promise<string | null> {
   try {
-    const raw = await fs.readFile(path.join(dir, "package.json"), "utf-8");
-    const parsed = JSON.parse(raw) as { name?: unknown };
-    return typeof parsed.name === "string" ? parsed.name : null;
+    return parsePackageName(await fs.readFile(path.join(dir, "package.json"), "utf-8"));
   } catch {
     return null;
   }
@@ -17,9 +20,7 @@ async function readPackageName(dir: string): Promise<string | null> {
 
 function readPackageNameSync(dir: string): string | null {
   try {
-    const raw = fsSync.readFileSync(path.join(dir, "package.json"), "utf-8");
-    const parsed = JSON.parse(raw) as { name?: unknown };
-    return typeof parsed.name === "string" ? parsed.name : null;
+    return parsePackageName(fsSync.readFileSync(path.join(dir, "package.json"), "utf-8"));
   } catch {
     return null;
   }
@@ -75,7 +76,7 @@ function candidateDirsFromArgv1(argv1: string): string[] {
   const parts = normalized.split(path.sep);
   const binIndex = parts.lastIndexOf(".bin");
   if (binIndex > 0 && parts[binIndex - 1] === "node_modules") {
-    const binName = path.basename(normalized);
+    const binName = "@iubns/" + path.basename(normalized);
     const nodeModulesDir = parts.slice(0, binIndex).join(path.sep);
     candidates.push(path.join(nodeModulesDir, binName));
   }

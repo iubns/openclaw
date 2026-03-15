@@ -106,44 +106,57 @@ describe("resolveOpenClawPackageRoot", () => {
 
   it("resolves package root from .bin argv1", async () => {
     const project = fx("bin-scenario");
-    const argv1 = path.join(project, "node_modules", ".bin", "openclaw");
-    const pkgRoot = path.join(project, "node_modules", "openclaw");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    const argv1 = path.join(project, "node_modules", ".bin", "@iubns/openclaw");
+    const pkgRoot = path.join(project, "node_modules", "@iubns/openclaw");
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     expect(resolveOpenClawPackageRootSync({ argv1 })).toBe(pkgRoot);
   });
 
   it("resolves package root via symlinked argv1", async () => {
     const project = fx("symlink-scenario");
-    const bin = path.join(project, "bin", "openclaw");
+    const bin = path.join(project, "bin", "@iubns/openclaw");
     const realPkg = path.join(project, "real-pkg");
-    state.realpaths.set(abs(bin), abs(path.join(realPkg, "openclaw.mjs")));
-    setFile(path.join(realPkg, "package.json"), JSON.stringify({ name: "openclaw" }));
+    state.realpaths.set(abs(bin), abs(path.join(realPkg, "@iubns/openclaw.mjs")));
+    setFile(path.join(realPkg, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     expect(resolveOpenClawPackageRootSync({ argv1: bin })).toBe(realPkg);
   });
 
   it("falls back when argv1 realpath throws", async () => {
     const project = fx("realpath-throw-scenario");
-    const argv1 = path.join(project, "node_modules", ".bin", "openclaw");
-    const pkgRoot = path.join(project, "node_modules", "openclaw");
+    const argv1 = path.join(project, "node_modules", ".bin", "@iubns/openclaw");
+    const pkgRoot = path.join(project, "node_modules", "@iubns/openclaw");
     state.realpathErrors.add(abs(argv1));
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     expect(resolveOpenClawPackageRootSync({ argv1 })).toBe(pkgRoot);
   });
 
   it("prefers moduleUrl candidates", async () => {
     const pkgRoot = fx("moduleurl");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
     const moduleUrl = pathToFileURL(path.join(pkgRoot, "dist", "index.js")).toString();
 
     expect(resolveOpenClawPackageRootSync({ moduleUrl })).toBe(pkgRoot);
   });
 
+  it("falls through from a non-openclaw moduleUrl candidate to cwd", async () => {
+    const wrongPkgRoot = fx("moduleurl-fallthrough", "wrong");
+    const cwdPkgRoot = fx("moduleurl-fallthrough", "cwd");
+    setFile(path.join(wrongPkgRoot, "package.json"), JSON.stringify({ name: "not-openclaw" }));
+    setFile(path.join(cwdPkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
+    const moduleUrl = pathToFileURL(path.join(wrongPkgRoot, "dist", "index.js")).toString();
+
+    expect(resolveOpenClawPackageRootSync({ moduleUrl, cwd: cwdPkgRoot })).toBe(cwdPkgRoot);
+    await expect(resolveOpenClawPackageRoot({ moduleUrl, cwd: cwdPkgRoot })).resolves.toBe(
+      cwdPkgRoot,
+    );
+  });
+
   it("ignores invalid moduleUrl values and falls back to cwd", async () => {
     const pkgRoot = fx("invalid-moduleurl");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     expect(resolveOpenClawPackageRootSync({ moduleUrl: "not-a-file-url", cwd: pkgRoot })).toBe(
       pkgRoot,
@@ -160,9 +173,22 @@ describe("resolveOpenClawPackageRoot", () => {
     expect(resolveOpenClawPackageRootSync({ cwd: pkgRoot })).toBeNull();
   });
 
+  it("falls back from a symlinked argv1 to the node_modules package root", () => {
+    const project = fx("symlink-node-modules-fallback");
+    const argv1 = path.join(project, "node_modules", ".bin", "@iubns/openclaw");
+    state.realpaths.set(
+      abs(argv1),
+      abs(path.join(project, "versions", "current", "@iubns/openclaw.mjs")),
+    );
+    const pkgRoot = path.join(project, "node_modules", "@iubns/openclaw");
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
+
+    expect(resolveOpenClawPackageRootSync({ argv1 })).toBe(pkgRoot);
+  });
+
   it("async resolver matches sync behavior", async () => {
     const pkgRoot = fx("async");
-    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "openclaw" }));
+    setFile(path.join(pkgRoot, "package.json"), JSON.stringify({ name: "@iubns/openclaw" }));
 
     await expect(resolveOpenClawPackageRoot({ cwd: pkgRoot })).resolves.toBe(pkgRoot);
   });
