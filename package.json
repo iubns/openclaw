@@ -1,6 +1,6 @@
 {
   "name": "@iubns/openclaw",
-  "version": "2026.3.14",
+  "version": "2026.3.15-alpha1",
   "description": "Multi-channel AI gateway with extensible messaging integrations",
   "keywords": [],
   "homepage": "https://github.com/iubns/openclaw#readme",
