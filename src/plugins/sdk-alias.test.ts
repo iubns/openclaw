@@ -79,7 +79,7 @@ function createPluginSdkAliasFixture(params?: {
     params?.trustedRootIndicatorMode ??
     (params?.trustedRootIndicators === false ? "none" : "bin+marker");
   const packageJson: Record<string, unknown> = {
-    name: params?.packageName ?? "openclaw",
+    name: params?.packageName ?? "@iubns/openclaw",
     type: "module",
   };
   if (trustedRootIndicatorMode === "bin+marker") {
@@ -115,7 +115,7 @@ function createExtensionApiAliasFixture(params?: { srcBody?: string; distBody?: 
   mkdirSafe(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "@iubns/openclaw", type: "module" }, null, 2),
     "utf-8",
   );
   fs.writeFileSync(path.join(root, "openclaw.mjs"), "export {};\n", "utf-8");
@@ -132,7 +132,7 @@ function createPluginRuntimeAliasFixture(params?: { srcBody?: string; distBody?:
   mkdirSafe(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "@iubns/openclaw", type: "module" }, null, 2),
     "utf-8",
   );
   fs.writeFileSync(
