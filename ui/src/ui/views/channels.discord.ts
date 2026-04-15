@@ -4,9 +4,7 @@ import { formatRelativeTimestamp } from "../format.ts";
 import type { DiscordStatus } from "../types.ts";
 import { renderChannelConfigSection } from "./channels.config.ts";
 import {
-  formatBoolean,
   formatNullableBoolean,
-  formatProbeStatus,
   renderSingleAccountChannelCard,
   resolveChannelConfigured,
 } from "./channels.shared.ts";
@@ -22,32 +20,30 @@ export function renderDiscordCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Discord",
-    subtitle: t("channels.subtitles.discord"),
+    subtitle: "Bot status and channel configuration.",
     accountCountLabel,
     statusRows: [
-      { label: t("channels.labels.configured"), value: formatNullableBoolean(configured) },
-      { label: t("channels.labels.running"), value: formatBoolean(Boolean(discord?.running)) },
+      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      { label: t("common.running"), value: discord?.running ? t("common.yes") : t("common.no") },
       {
-        label: t("channels.labels.lastStart"),
+        label: t("common.lastStart"),
         value: discord?.lastStartAt ? formatRelativeTimestamp(discord.lastStartAt) : t("common.na"),
       },
       {
-        label: t("channels.labels.lastProbe"),
+        label: t("common.lastProbe"),
         value: discord?.lastProbeAt ? formatRelativeTimestamp(discord.lastProbeAt) : t("common.na"),
       },
     ],
     lastError: discord?.lastError,
     secondaryCallout: discord?.probe
       ? html`<div class="callout" style="margin-top: 12px;">
-          ${t("channels.probe.label")} ${formatProbeStatus(discord.probe.ok)} ·
+          ${discord.probe.ok ? t("common.probeOk") : t("common.probeFailed")} ·
           ${discord.probe.status ?? ""} ${discord.probe.error ?? ""}
         </div>`
       : nothing,
     configSection: renderChannelConfigSection({ channelId: "discord", props }),
     footer: html`<div class="row" style="margin-top: 12px;">
-      <button class="btn" @click=${() => props.onRefresh(true)}>
-        ${t("channels.actions.probe")}
-      </button>
+      <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
     </div>`,
   });
 }

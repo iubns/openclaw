@@ -8,7 +8,6 @@ import {
   type NostrProfileFormState,
   type NostrProfileFormCallbacks,
 } from "./channels.nostr-profile-form.ts";
-import { formatBoolean } from "./channels.shared.ts";
 import type { ChannelsProps } from "./channels.types.ts";
 
 /**
@@ -68,19 +67,19 @@ export function renderNostrCard(params: {
         </div>
         <div class="status-list account-card-status">
           <div>
-            <span class="label">${t("channels.labels.running")}</span>
-            <span>${formatBoolean(Boolean(account.running))}</span>
+            <span class="label">${t("common.running")}</span>
+            <span>${account.running ? t("common.yes") : t("common.no")}</span>
           </div>
           <div>
-            <span class="label">${t("channels.labels.configured")}</span>
-            <span>${formatBoolean(Boolean(account.configured))}</span>
+            <span class="label">${t("common.configured")}</span>
+            <span>${account.configured ? t("common.yes") : t("common.no")}</span>
           </div>
           <div>
-            <span class="label">${t("channels.labels.publicKey")}</span>
+            <span class="label">${t("common.publicKey")}</span>
             <span class="monospace" title="${publicKey ?? ""}">${truncatePubkey(publicKey)}</span>
           </div>
           <div>
-            <span class="label">${t("channels.labels.lastInbound")}</span>
+            <span class="label">${t("common.lastInbound")}</span>
             <span
               >${account.lastInboundAt
                 ? formatRelativeTimestamp(account.lastInboundAt)
@@ -150,7 +149,7 @@ export function renderNostrCard(params: {
                       <div style="margin-bottom: 8px;">
                         <img
                           src=${picture}
-                          alt=${t("channels.nostr.profilePictureAlt")}
+                          alt=${t("channels.nostr.profilePicture")}
                           style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color);"
                           @error=${(e: Event) => {
                             (e.target as HTMLImageElement).style.display = "none";
@@ -179,15 +178,13 @@ export function renderNostrCard(params: {
                     </div>`
                   : nothing}
                 ${nip05
-                  ? html`<div>
-                      <span class="label">${t("channels.nostr.nip05")}</span><span>${nip05}</span>
-                    </div>`
+                  ? html`<div><span class="label">NIP-05</span><span>${nip05}</span></div>`
                   : nothing}
               </div>
             `
           : html`
               <div style="color: var(--text-muted); font-size: 13px">
-                ${t("channels.nostr.noProfile")}
+                ${t("channels.nostr.noProfile")} ${t("channels.nostr.noProfileHint")}
               </div>
             `}
       </div>
@@ -197,7 +194,7 @@ export function renderNostrCard(params: {
   return html`
     <div class="card">
       <div class="card-title">Nostr</div>
-      <div class="card-sub">${t("channels.subtitles.nostr")}</div>
+      <div class="card-sub">Decentralized DMs via Nostr relays (NIP-04).</div>
       ${accountCountLabel}
       ${hasMultipleAccounts
         ? html`
@@ -208,26 +205,26 @@ export function renderNostrCard(params: {
         : html`
             <div class="status-list" style="margin-top: 16px;">
               <div>
-                <span class="label">${t("channels.labels.configured")}</span>
-                <span>${formatBoolean(summaryConfigured)}</span>
+                <span class="label">${t("common.configured")}</span>
+                <span>${summaryConfigured ? t("common.yes") : t("common.no")}</span>
               </div>
               <div>
-                <span class="label">${t("channels.labels.running")}</span>
-                <span>${formatBoolean(summaryRunning)}</span>
+                <span class="label">${t("common.running")}</span>
+                <span>${summaryRunning ? t("common.yes") : t("common.no")}</span>
               </div>
               <div>
-                <span class="label">${t("channels.labels.publicKey")}</span>
+                <span class="label">${t("common.publicKey")}</span>
                 <span class="monospace" title="${summaryPublicKey ?? ""}"
                   >${truncatePubkey(summaryPublicKey)}</span
                 >
               </div>
               <div>
-                <span class="label">${t("channels.labels.lastStart")}</span>
-                <span
-                  >${summaryLastStartAt
+                <span class="label">${t("common.lastStart")}</span>
+                <span>
+                  ${summaryLastStartAt
                     ? formatRelativeTimestamp(summaryLastStartAt)
-                    : t("common.na")}</span
-                >
+                    : t("common.na")}
+                </span>
               </div>
             </div>
           `}
@@ -237,9 +234,7 @@ export function renderNostrCard(params: {
       ${renderProfileSection()} ${renderChannelConfigSection({ channelId: "nostr", props })}
 
       <div class="row" style="margin-top: 12px;">
-        <button class="btn" @click=${() => props.onRefresh(false)}>
-          ${t("channels.actions.refresh")}
-        </button>
+        <button class="btn" @click=${() => props.onRefresh(false)}>${t("common.refresh")}</button>
       </div>
     </div>
   `;

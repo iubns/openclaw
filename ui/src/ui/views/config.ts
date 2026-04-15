@@ -422,7 +422,7 @@ const SECTION_CATEGORIES: SectionCategory[] = [
   },
   {
     id: "appearance",
-    label: "Appearance",
+    label: t("tabs.appearance"),
     sections: [
       { key: "__appearance__", label: "Theme" },
       { key: "ui", label: "UI" },
@@ -493,58 +493,12 @@ function resolveSectionMeta(
 } {
   const meta = SECTION_META[key];
   if (meta) {
-    return {
-      label: resolveAiAgentsSectionLabel(key, meta.label),
-      description: resolveAiAgentsSectionDescription(key, meta.description ?? ""),
-    };
+    return meta;
   }
   return {
-    label: resolveAiAgentsSectionLabel(key, schema?.title ?? humanize(key)),
-    description: resolveAiAgentsSectionDescription(key, schema?.description ?? ""),
+    label: schema?.title ?? humanize(key),
+    description: schema?.description ?? "",
   };
-}
-
-function translateOrFallback(key: string, fallback: string): string {
-  const translated = t(key);
-  return translated === key ? fallback : translated;
-}
-
-function resolveAiAgentsSectionLabel(key: string, fallback: string): string {
-  switch (key) {
-    case "agents":
-      return translateOrFallback("config.aiAgents.sections.agents", fallback);
-    case "models":
-      return translateOrFallback("config.aiAgents.sections.models", fallback);
-    case "skills":
-      return translateOrFallback("config.aiAgents.sections.skills", fallback);
-    case "tools":
-      return translateOrFallback("config.aiAgents.sections.tools", fallback);
-    case "memory":
-      return translateOrFallback("config.aiAgents.sections.memory", fallback);
-    case "session":
-      return translateOrFallback("config.aiAgents.sections.session", fallback);
-    default:
-      return fallback;
-  }
-}
-
-function resolveAiAgentsSectionDescription(key: string, fallback: string): string {
-  switch (key) {
-    case "agents":
-      return translateOrFallback("config.aiAgents.descriptions.agents", fallback);
-    case "models":
-      return translateOrFallback("config.aiAgents.descriptions.models", fallback);
-    case "skills":
-      return translateOrFallback("config.aiAgents.descriptions.skills", fallback);
-    case "tools":
-      return translateOrFallback("config.aiAgents.descriptions.tools", fallback);
-    case "memory":
-      return translateOrFallback("config.aiAgents.descriptions.memory", fallback);
-    case "session":
-      return translateOrFallback("config.aiAgents.descriptions.session", fallback);
-    default:
-      return fallback;
-  }
 }
 
 function computeDiff(
@@ -689,7 +643,7 @@ function renderAppearanceSection(props: ConfigProps) {
               <span
                 class="settings-status-dot ${props.connected ? "settings-status-dot--ok" : ""}"
               ></span>
-              ${props.connected ? "Connected" : "Offline"}
+              ${props.connected ? t("common.connected") : t("common.offline")}
             </span>
           </div>
           ${props.assistantName
@@ -800,12 +754,9 @@ export function renderConfig(props: ConfigProps) {
   const effectiveSubsection = null;
 
   const topTabs = [
-    { key: null as string | null, label: props.navRootLabel ?? t("config.aiAgents.rootFallback") },
+    { key: null as string | null, label: props.navRootLabel ?? "Settings" },
     ...[...visibleCategories, ...(otherCategory ? [otherCategory] : [])].flatMap((cat) =>
-      cat.sections.map((s) => ({
-        key: s.key,
-        label: resolveAiAgentsSectionLabel(s.key, s.label),
-      })),
+      cat.sections.map((s) => ({ key: s.key, label: s.label })),
     ),
   ];
 
@@ -844,20 +795,20 @@ export function renderConfig(props: ConfigProps) {
                     <button
                       class="config-mode-toggle__btn ${formMode === "form" ? "active" : ""}"
                       ?disabled=${props.schemaLoading || !props.schema}
-                      title=${formUnsafe ? t("config.ui.formUnsafe") : ""}
+                      title=${formUnsafe ? "Form view can't safely edit some fields" : ""}
                       @click=${() => props.onFormModeChange("form")}
                     >
-                      ${t("config.ui.form")}
+                      Form
                     </button>
                     <button
                       class="config-mode-toggle__btn ${formMode === "raw" ? "active" : ""}"
                       ?disabled=${!rawAvailable}
                       title=${rawAvailable
-                        ? t("config.ui.rawEditHint")
-                        : t("config.ui.rawUnavailable")}
+                        ? "Edit raw JSON/JSON5 config"
+                        : "Raw mode unavailable for this snapshot"}
                       @click=${() => props.onFormModeChange("raw")}
                     >
-                      ${t("config.ui.raw")}
+                      Raw
                     </button>
                   </div>
                 `
@@ -866,42 +817,42 @@ export function renderConfig(props: ConfigProps) {
               ? html`
                   <span class="config-changes-badge"
                     >${formMode === "raw"
-                      ? t("config.ui.unsavedChanges")
-                      : t("config.ui.unsavedChangesCount", { count: String(diff.length) })}</span
+                      ? "Unsaved changes"
+                      : `${diff.length} unsaved change${diff.length !== 1 ? "s" : ""}`}</span
                   >
                 `
-              : html` <span class="config-status muted">${t("config.ui.noChanges")}</span> `}
+              : html` <span class="config-status muted">No changes</span> `}
           </div>
           <div class="config-actions__right">
             ${!rawAvailable
               ? html`
-                  <span class="config-status muted">${t("config.ui.rawModeDisabledHint")}</span>
+                  <span class="config-status muted"
+                    >Raw mode disabled (snapshot cannot safely round-trip raw text).</span
+                  >
                 `
               : nothing}
             ${props.onOpenFile
               ? html`
                   <button
                     class="btn btn--sm"
-                    title=${props.configPath
-                      ? t("config.ui.openPath", { path: props.configPath })
-                      : t("config.ui.openConfigFile")}
+                    title=${props.configPath ? `Open ${props.configPath}` : "Open config file"}
                     @click=${props.onOpenFile}
                   >
-                    ${icons.fileText} ${t("config.ui.open")}
+                    ${icons.fileText} Open
                   </button>
                 `
               : nothing}
             <button class="btn btn--sm" ?disabled=${props.loading} @click=${props.onReload}>
-              ${props.loading ? t("config.ui.loading") : t("config.ui.reload")}
+              ${props.loading ? t("common.loading") : t("common.reload")}
             </button>
             <button class="btn btn--sm primary" ?disabled=${!canSave} @click=${props.onSave}>
-              ${props.saving ? t("config.ui.saving") : t("config.ui.save")}
+              ${props.saving ? "Saving…" : "Save"}
             </button>
             <button class="btn btn--sm" ?disabled=${!canApply} @click=${props.onApply}>
-              ${props.applying ? t("config.ui.applying") : t("config.ui.apply")}
+              ${props.applying ? "Applying…" : "Apply"}
             </button>
             <button class="btn btn--sm" ?disabled=${!canUpdate} @click=${props.onUpdate}>
-              ${props.updating ? t("config.ui.updating") : t("config.ui.update")}
+              ${props.updating ? "Updating…" : "Update"}
             </button>
           </div>
         </div>
@@ -924,8 +875,8 @@ export function renderConfig(props: ConfigProps) {
                     <input
                       type="text"
                       class="config-search__input"
-                      placeholder=${t("config.ui.searchPlaceholder")}
-                      aria-label=${t("config.ui.searchSettings")}
+                      placeholder="Search settings..."
+                      aria-label="Search settings"
                       .value=${props.searchQuery}
                       @input=${(e: Event) =>
                         props.onSearchChange((e.target as HTMLInputElement).value)}
@@ -934,7 +885,7 @@ export function renderConfig(props: ConfigProps) {
                       ? html`
                           <button
                             class="config-search__clear"
-                            aria-label=${t("config.ui.clearSearch")}
+                            aria-label="Clear search"
                             @click=${() => props.onSearchChange("")}
                           >
                             ×
@@ -949,7 +900,7 @@ export function renderConfig(props: ConfigProps) {
           <div
             class="config-top-tabs__scroller"
             role="tablist"
-            aria-label=${t("config.ui.settingsSections")}
+            aria-label="${t("common.settingsSections")}"
           >
             ${topTabs.map(
               (tab) => html`
@@ -988,7 +939,7 @@ export function renderConfig(props: ConfigProps) {
                   <line x1="12" y1="17" x2="12.01" y2="17"></line>
                 </svg>
                 <span class="config-validity-warning__text"
-                  >${t("config.ui.invalidConfigWarning")}</span
+                  >Your configuration is invalid. Some settings may not work as expected.</span
                 >
                 <button
                   class="btn btn--sm"
@@ -997,7 +948,7 @@ export function renderConfig(props: ConfigProps) {
                     requestUpdate();
                   }}
                 >
-                  ${t("config.ui.dontRemindAgain")}
+                  Don't remind again
                 </button>
               </div>
             `
@@ -1008,7 +959,7 @@ export function renderConfig(props: ConfigProps) {
           ? html`
               <details class="config-diff">
                 <summary class="config-diff__summary">
-                  <span>${t("config.ui.viewPendingChanges", { count: String(diff.length) })}</span>
+                  <span>View ${diff.length} pending change${diff.length !== 1 ? "s" : ""}</span>
                   <svg
                     class="config-diff__chevron"
                     viewBox="0 0 24 24"
@@ -1060,9 +1011,7 @@ export function renderConfig(props: ConfigProps) {
                         class="config-env-peek-btn ${envSensitiveVisible
                           ? "config-env-peek-btn--active"
                           : ""}"
-                        title=${envSensitiveVisible
-                          ? t("config.ui.hideEnvValues")
-                          : t("config.ui.revealEnvValues")}
+                        title=${envSensitiveVisible ? "Hide env values" : "Reveal env values"}
                         @click=${() => {
                           cvs.envRevealed = !cvs.envRevealed;
                           requestUpdate();
@@ -1081,7 +1030,7 @@ export function renderConfig(props: ConfigProps) {
                           <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                           <circle cx="12" cy="12" r="3"></circle>
                         </svg>
-                        ${t("config.ui.peek")}
+                        Peek
                       </button>
                     `
                   : nothing}
@@ -1101,7 +1050,7 @@ export function renderConfig(props: ConfigProps) {
                     ? html`
                         <div class="config-loading">
                           <div class="config-loading__spinner"></div>
-                          <span>${t("config.ui.loadingSchema")}</span>
+                          <span>Loading schema…</span>
                         </div>
                       `
                     : renderConfigForm({
@@ -1135,25 +1084,26 @@ export function renderConfig(props: ConfigProps) {
                     ${formUnsafe
                       ? html`
                           <div class="callout info" style="margin-bottom: 12px">
-                            ${t("config.ui.formUnsafeCallout")}
+                            Your config contains fields the form editor can't safely represent. Use
+                            Raw mode to edit those entries.
                           </div>
                         `
                       : nothing}
                     <div class="field config-raw-field">
                       <span style="display:flex;align-items:center;gap:8px;">
-                        ${t("config.ui.rawConfig")}
+                        Raw config (JSON/JSON5)
                         ${sensitiveCount > 0
                           ? html`
                               <span class="pill pill--sm"
-                                >${t("config.ui.sensitiveCount", { count: String(sensitiveCount) })}
-                                ${blurred ? t("config.ui.redacted") : t("config.ui.visible")}</span
+                                >${sensitiveCount} secret${sensitiveCount === 1 ? "" : "s"}
+                                ${blurred ? "redacted" : "visible"}</span
                               >
                               <button
                                 class="btn btn--icon config-raw-toggle ${blurred ? "" : "active"}"
                                 title=${blurred
-                                  ? t("config.ui.revealSensitiveValues")
-                                  : t("config.ui.hideSensitiveValues")}
-                                aria-label=${t("config.ui.toggleRawRedaction")}
+                                  ? "Reveal sensitive values"
+                                  : "Hide sensitive values"}
+                                aria-label="Toggle raw config redaction"
                                 aria-pressed=${!blurred}
                                 @click=${() => {
                                   cvs.rawRevealed = !cvs.rawRevealed;
@@ -1168,14 +1118,13 @@ export function renderConfig(props: ConfigProps) {
                       ${blurred
                         ? html`
                             <div class="callout info" style="margin-top: 12px">
-                              ${t("config.ui.sensitiveHiddenMessage", {
-                                count: String(sensitiveCount),
-                              })}
+                              ${sensitiveCount} sensitive value${sensitiveCount === 1 ? "" : "s"}
+                              hidden. Use the reveal button above to edit the raw config.
                             </div>
                           `
                         : html`
                             <textarea
-                              placeholder=${t("config.ui.rawConfig")}
+                              placeholder="Raw config (JSON/JSON5)"
                               .value=${props.raw}
                               @input=${(e: Event) => {
                                 props.onRawChange((e.target as HTMLTextAreaElement).value);

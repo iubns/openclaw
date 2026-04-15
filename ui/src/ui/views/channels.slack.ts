@@ -4,9 +4,7 @@ import { formatRelativeTimestamp } from "../format.ts";
 import type { SlackStatus } from "../types.ts";
 import { renderChannelConfigSection } from "./channels.config.ts";
 import {
-  formatBoolean,
   formatNullableBoolean,
-  formatProbeStatus,
   renderSingleAccountChannelCard,
   resolveChannelConfigured,
 } from "./channels.shared.ts";
@@ -22,32 +20,30 @@ export function renderSlackCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Slack",
-    subtitle: t("channels.subtitles.slack"),
+    subtitle: "Socket mode status and channel configuration.",
     accountCountLabel,
     statusRows: [
-      { label: t("channels.labels.configured"), value: formatNullableBoolean(configured) },
-      { label: t("channels.labels.running"), value: formatBoolean(Boolean(slack?.running)) },
+      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      { label: t("common.running"), value: slack?.running ? t("common.yes") : t("common.no") },
       {
-        label: t("channels.labels.lastStart"),
+        label: t("common.lastStart"),
         value: slack?.lastStartAt ? formatRelativeTimestamp(slack.lastStartAt) : t("common.na"),
       },
       {
-        label: t("channels.labels.lastProbe"),
+        label: t("common.lastProbe"),
         value: slack?.lastProbeAt ? formatRelativeTimestamp(slack.lastProbeAt) : t("common.na"),
       },
     ],
     lastError: slack?.lastError,
     secondaryCallout: slack?.probe
       ? html`<div class="callout" style="margin-top: 12px;">
-          ${t("channels.probe.label")} ${formatProbeStatus(slack.probe.ok)} ·
+          ${slack.probe.ok ? t("common.probeOk") : t("common.probeFailed")} ·
           ${slack.probe.status ?? ""} ${slack.probe.error ?? ""}
         </div>`
       : nothing,
     configSection: renderChannelConfigSection({ channelId: "slack", props }),
     footer: html`<div class="row" style="margin-top: 12px;">
-      <button class="btn" @click=${() => props.onRefresh(true)}>
-        ${t("channels.actions.probe")}
-      </button>
+      <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
     </div>`,
   });
 }

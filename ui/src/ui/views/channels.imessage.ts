@@ -4,9 +4,7 @@ import { formatRelativeTimestamp } from "../format.ts";
 import type { IMessageStatus } from "../types.ts";
 import { renderChannelConfigSection } from "./channels.config.ts";
 import {
-  formatBoolean,
   formatNullableBoolean,
-  formatProbeStatus,
   renderSingleAccountChannelCard,
   resolveChannelConfigured,
 } from "./channels.shared.ts";
@@ -22,19 +20,19 @@ export function renderIMessageCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "iMessage",
-    subtitle: t("channels.subtitles.imessage"),
+    subtitle: "macOS bridge status and channel configuration.",
     accountCountLabel,
     statusRows: [
-      { label: t("channels.labels.configured"), value: formatNullableBoolean(configured) },
-      { label: t("channels.labels.running"), value: formatBoolean(Boolean(imessage?.running)) },
+      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      { label: t("common.running"), value: imessage?.running ? t("common.yes") : t("common.no") },
       {
-        label: t("channels.labels.lastStart"),
+        label: t("common.lastStart"),
         value: imessage?.lastStartAt
           ? formatRelativeTimestamp(imessage.lastStartAt)
           : t("common.na"),
       },
       {
-        label: t("channels.labels.lastProbe"),
+        label: t("common.lastProbe"),
         value: imessage?.lastProbeAt
           ? formatRelativeTimestamp(imessage.lastProbeAt)
           : t("common.na"),
@@ -43,15 +41,13 @@ export function renderIMessageCard(params: {
     lastError: imessage?.lastError,
     secondaryCallout: imessage?.probe
       ? html`<div class="callout" style="margin-top: 12px;">
-          ${t("channels.probe.label")} ${formatProbeStatus(imessage.probe.ok)} ·
+          ${imessage.probe.ok ? t("common.probeOk") : t("common.probeFailed")} ·
           ${imessage.probe.error ?? ""}
         </div>`
       : nothing,
     configSection: renderChannelConfigSection({ channelId: "imessage", props }),
     footer: html`<div class="row" style="margin-top: 12px;">
-      <button class="btn" @click=${() => props.onRefresh(true)}>
-        ${t("channels.actions.probe")}
-      </button>
+      <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
     </div>`,
   });
 }

@@ -4,7 +4,6 @@ import { formatRelativeTimestamp, formatDurationHuman } from "../format.ts";
 import type { WhatsAppStatus } from "../types.ts";
 import { renderChannelConfigSection } from "./channels.config.ts";
 import {
-  formatBoolean,
   formatNullableBoolean,
   renderSingleAccountChannelCard,
   resolveChannelConfigured,
@@ -21,27 +20,30 @@ export function renderWhatsAppCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "WhatsApp",
-    subtitle: t("channels.subtitles.whatsapp"),
+    subtitle: "Link WhatsApp Web and monitor connection health.",
     accountCountLabel,
     statusRows: [
-      { label: t("channels.labels.configured"), value: formatNullableBoolean(configured) },
-      { label: t("channels.labels.linked"), value: formatBoolean(Boolean(whatsapp?.linked)) },
-      { label: t("channels.labels.running"), value: formatBoolean(Boolean(whatsapp?.running)) },
-      { label: t("channels.labels.connected"), value: formatBoolean(Boolean(whatsapp?.connected)) },
+      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      { label: t("common.linked"), value: whatsapp?.linked ? t("common.yes") : t("common.no") },
+      { label: t("common.running"), value: whatsapp?.running ? t("common.yes") : t("common.no") },
       {
-        label: t("channels.labels.lastConnect"),
+        label: t("common.connected"),
+        value: whatsapp?.connected ? t("common.yes") : t("common.no"),
+      },
+      {
+        label: t("common.lastConnect"),
         value: whatsapp?.lastConnectedAt
           ? formatRelativeTimestamp(whatsapp.lastConnectedAt)
           : t("common.na"),
       },
       {
-        label: t("channels.labels.lastMessage"),
+        label: t("common.lastMessage"),
         value: whatsapp?.lastMessageAt
           ? formatRelativeTimestamp(whatsapp.lastMessageAt)
           : t("common.na"),
       },
       {
-        label: t("channels.labels.authAge"),
+        label: t("common.authAge"),
         value:
           whatsapp?.authAgeMs != null ? formatDurationHuman(whatsapp.authAgeMs) : t("common.na"),
       },
@@ -53,7 +55,7 @@ export function renderWhatsAppCard(params: {
         : nothing}
       ${props.whatsappQrDataUrl
         ? html`<div class="qr-wrap">
-            <img src=${props.whatsappQrDataUrl} alt=${t("channels.whatsapp.qrAlt")} />
+            <img src=${props.whatsappQrDataUrl} alt="WhatsApp QR" />
           </div>`
         : nothing}
     `,
@@ -64,28 +66,26 @@ export function renderWhatsAppCard(params: {
         ?disabled=${props.whatsappBusy}
         @click=${() => props.onWhatsAppStart(false)}
       >
-        ${props.whatsappBusy ? t("channels.actions.working") : t("channels.actions.showQr")}
+        ${props.whatsappBusy ? t("common.working") : t("common.showQr")}
       </button>
       <button
         class="btn"
         ?disabled=${props.whatsappBusy}
         @click=${() => props.onWhatsAppStart(true)}
       >
-        ${t("channels.actions.relink")}
+        ${t("common.relink")}
       </button>
       <button class="btn" ?disabled=${props.whatsappBusy} @click=${() => props.onWhatsAppWait()}>
-        ${t("channels.actions.waitForScan")}
+        ${t("common.waitForScan")}
       </button>
       <button
         class="btn danger"
         ?disabled=${props.whatsappBusy}
         @click=${() => props.onWhatsAppLogout()}
       >
-        ${t("channels.actions.logout")}
+        ${t("common.logout")}
       </button>
-      <button class="btn" @click=${() => props.onRefresh(true)}>
-        ${t("channels.actions.refresh")}
-      </button>
+      <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.refresh")}</button>
     </div>`,
   });
 }

@@ -4,9 +4,7 @@ import { formatRelativeTimestamp } from "../format.ts";
 import type { ChannelAccountSnapshot, TelegramStatus } from "../types.ts";
 import { renderChannelConfigSection } from "./channels.config.ts";
 import {
-  formatBoolean,
   formatNullableBoolean,
-  formatProbeStatus,
   renderSingleAccountChannelCard,
   resolveChannelConfigured,
 } from "./channels.shared.ts";
@@ -34,15 +32,15 @@ export function renderTelegramCard(params: {
         </div>
         <div class="status-list account-card-status">
           <div>
-            <span class="label">${t("channels.labels.running")}</span>
-            <span>${formatBoolean(Boolean(account.running))}</span>
+            <span class="label">${t("common.running")}</span>
+            <span>${account.running ? t("common.yes") : t("common.no")}</span>
           </div>
           <div>
-            <span class="label">${t("channels.labels.configured")}</span>
-            <span>${formatBoolean(Boolean(account.configured))}</span>
+            <span class="label">${t("common.configured")}</span>
+            <span>${account.configured ? t("common.yes") : t("common.no")}</span>
           </div>
           <div>
-            <span class="label">${t("channels.labels.lastInbound")}</span>
+            <span class="label">${t("common.lastInbound")}</span>
             <span
               >${account.lastInboundAt
                 ? formatRelativeTimestamp(account.lastInboundAt)
@@ -61,7 +59,7 @@ export function renderTelegramCard(params: {
     return html`
       <div class="card">
         <div class="card-title">Telegram</div>
-        <div class="card-sub">${t("channels.subtitles.telegram")}</div>
+        <div class="card-sub">Bot status and channel configuration.</div>
         ${accountCountLabel}
 
         <div class="account-card-list">
@@ -73,16 +71,14 @@ export function renderTelegramCard(params: {
           : nothing}
         ${telegram?.probe
           ? html`<div class="callout" style="margin-top: 12px;">
-              ${t("channels.probe.label")} ${formatProbeStatus(telegram.probe.ok)} ·
+              ${telegram.probe.ok ? t("common.probeOk") : t("common.probeFailed")} ·
               ${telegram.probe.status ?? ""} ${telegram.probe.error ?? ""}
             </div>`
           : nothing}
         ${renderChannelConfigSection({ channelId: "telegram", props })}
 
         <div class="row" style="margin-top: 12px;">
-          <button class="btn" @click=${() => props.onRefresh(true)}>
-            ${t("channels.actions.probe")}
-          </button>
+          <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
         </div>
       </div>
     `;
@@ -90,20 +86,20 @@ export function renderTelegramCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Telegram",
-    subtitle: t("channels.subtitles.telegram"),
+    subtitle: "Bot status and channel configuration.",
     accountCountLabel,
     statusRows: [
-      { label: t("channels.labels.configured"), value: formatNullableBoolean(configured) },
-      { label: t("channels.labels.running"), value: formatBoolean(Boolean(telegram?.running)) },
-      { label: t("channels.labels.mode"), value: telegram?.mode ?? t("common.na") },
+      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      { label: t("common.running"), value: telegram?.running ? t("common.yes") : t("common.no") },
+      { label: t("common.mode"), value: telegram?.mode ?? t("common.na") },
       {
-        label: t("channels.labels.lastStart"),
+        label: t("common.lastStart"),
         value: telegram?.lastStartAt
           ? formatRelativeTimestamp(telegram.lastStartAt)
           : t("common.na"),
       },
       {
-        label: t("channels.labels.lastProbe"),
+        label: t("common.lastProbe"),
         value: telegram?.lastProbeAt
           ? formatRelativeTimestamp(telegram.lastProbeAt)
           : t("common.na"),
@@ -112,15 +108,13 @@ export function renderTelegramCard(params: {
     lastError: telegram?.lastError,
     secondaryCallout: telegram?.probe
       ? html`<div class="callout" style="margin-top: 12px;">
-          ${t("channels.probe.label")} ${formatProbeStatus(telegram.probe.ok)} ·
+          ${telegram.probe.ok ? t("common.probeOk") : t("common.probeFailed")} ·
           ${telegram.probe.status ?? ""} ${telegram.probe.error ?? ""}
         </div>`
       : nothing,
     configSection: renderChannelConfigSection({ channelId: "telegram", props }),
     footer: html`<div class="row" style="margin-top: 12px;">
-      <button class="btn" @click=${() => props.onRefresh(true)}>
-        ${t("channels.actions.probe")}
-      </button>
+      <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
     </div>`,
   });
 }

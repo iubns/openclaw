@@ -90,15 +90,7 @@ export function formatNullableBoolean(value: boolean | null): string {
   if (value == null) {
     return t("common.na");
   }
-  return value ? t("channels.common.yes") : t("channels.common.no");
-}
-
-export function formatBoolean(value: boolean): string {
-  return value ? t("channels.common.yes") : t("channels.common.no");
-}
-
-export function formatProbeStatus(ok: boolean): string {
-  return ok ? t("channels.probe.ok") : t("channels.probe.failed");
+  return value ? t("common.yes") : t("common.no");
 }
 
 export function renderSingleAccountChannelCard(params: {
@@ -153,7 +145,5 @@ export function renderChannelAccountCount(
   if (count < 2) {
     return nothing;
   }
-  return html`<div class="account-count">
-    ${t("channels.common.accounts", { count: String(count) })}
-  </div>`;
+  return html`<div class="account-count">Accounts (${count})</div>`;
 }

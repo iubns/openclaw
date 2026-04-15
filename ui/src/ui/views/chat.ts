@@ -1,7 +1,8 @@
 import { html, nothing, type TemplateResult } from "lit";
 import { ref } from "lit/directives/ref.js";
 import { repeat } from "lit/directives/repeat.js";
-import { t } from "../../i18n/index.ts";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import type { CompactionStatus, FallbackStatus } from "../app-tool-stream.ts";
 import {
   CHAT_ATTACHMENT_ACCEPT,
   isSupportedChatAttachmentMimeType,
@@ -14,11 +15,17 @@ import {
   renderStreamingGroup,
 } from "../chat/grouped-render.ts";
 import { InputHistory } from "../chat/input-history.ts";
-import { normalizeMessage, normalizeRoleForGrouping } from "../chat/message-normalizer.ts";
+import { extractTextCached } from "../chat/message-extract.ts";
+import {
+  isToolResultMessage,
+  normalizeMessage,
+  normalizeRoleForGrouping,
+} from "../chat/message-normalizer.ts";
 import { PinnedMessages } from "../chat/pinned-messages.ts";
 import { getPinnedMessageSummary } from "../chat/pinned-summary.ts";
 import { messageMatchesSearchQuery } from "../chat/search-match.ts";
 import { getOrCreateSessionCacheValue } from "../chat/session-cache.ts";
+import type { ChatSideResult } from "../chat/side-result.ts";
 import {
   CATEGORY_LABELS,
   SLASH_COMMANDS,
@@ -27,30 +34,18 @@ import {
   type SlashCommandDef,
 } from "../chat/slash-commands.ts";
 import { isSttSupported, startStt, stopStt } from "../chat/speech.ts";
+import { buildSidebarContent, extractToolCards, extractToolPreview } from "../chat/tool-cards.ts";
+import type { EmbedSandboxMode } from "../embed-sandbox.ts";
 import { icons } from "../icons.ts";
+import { toSanitizedMarkdownHtml } from "../markdown.ts";
+import type { SidebarContent } from "../sidebar-content.ts";
 import { detectTextDirection } from "../text-direction.ts";
 import type { GatewaySessionRow, SessionsListResult } from "../types.ts";
-import type { ChatItem, MessageGroup } from "../types/chat-types.ts";
+import type { ChatItem, MessageGroup, ToolCard } from "../types/chat-types.ts";
 import type { ChatAttachment, ChatQueueItem } from "../ui-types.ts";
 import { agentLogoUrl, resolveAgentAvatarUrl } from "./agents-utils.ts";
 import { renderMarkdownSidebar } from "./markdown-sidebar.ts";
 import "../components/resizable-divider.ts";
-
-export type CompactionIndicatorStatus = {
-  active: boolean;
-  startedAt: number | null;
-  completedAt: number | null;
-};
-
-export type FallbackIndicatorStatus = {
-  phase?: "active" | "cleared";
-  selected: string;
-  active: string;
-  previous?: string;
-  reason?: string;
-  attempts: string[];
-  occurredAt: number;
-};
 
 export type ChatProps = {
   sessionKey: string;
@@ -61,9 +56,10 @@ export type ChatProps = {
   loading: boolean;
   sending: boolean;
   canAbort?: boolean;
-  compactionStatus?: CompactionIndicatorStatus | null;
-  fallbackStatus?: FallbackIndicatorStatus | null;
+  compactionStatus?: CompactionStatus | null;
+  fallbackStatus?: FallbackStatus | null;
   messages: unknown[];
+  sideResult?: ChatSideResult | null;
   toolMessages: unknown[];
   streamSegments: Array<{ text: string; ts: number }>;
   stream: string | null;
@@ -78,11 +74,17 @@ export type ChatProps = {
   sessions: SessionsListResult | null;
   focusMode: boolean;
   sidebarOpen?: boolean;
-  sidebarContent?: string | null;
+  sidebarContent?: SidebarContent | null;
   sidebarError?: string | null;
   splitRatio?: number;
+  canvasHostUrl?: string | null;
+  embedSandboxMode?: EmbedSandboxMode;
+  allowExternalEmbedUrls?: boolean;
   assistantName: string;
   assistantAvatar: string | null;
+  localMediaPreviewRoots?: string[];
+  assistantAttachmentAuthToken?: string | null;
+  autoExpandToolCalls?: boolean;
   attachments?: ChatAttachment[];
   onAttachmentsChange?: (attachments: ChatAttachment[]) => void;
   showNewMessages?: boolean;
@@ -95,6 +97,7 @@ export type ChatProps = {
   onSend: () => void;
   onAbort?: () => void;
   onQueueRemove: (id: string) => void;
+  onDismissSideResult?: () => void;
   onNewSession: () => void;
   onClearHistory?: () => void;
   agentsList: {
@@ -105,7 +108,7 @@ export type ChatProps = {
   onAgentChange: (agentId: string) => void;
   onNavigateToAgent?: () => void;
   onSessionSelect?: (sessionKey: string) => void;
-  onOpenSidebar?: (content: string) => void;
+  onOpenSidebar?: (content: SidebarContent) => void;
   onCloseSidebar?: () => void;
   onSplitRatioChange?: (ratio: number) => void;
   onChatScroll?: (event: Event) => void;
@@ -119,6 +122,9 @@ const FALLBACK_TOAST_DURATION_MS = 8000;
 const inputHistories = new Map<string, InputHistory>();
 const pinnedMessagesMap = new Map<string, PinnedMessages>();
 const deletedMessagesMap = new Map<string, DeletedMessages>();
+const expandedToolCardsBySession = new Map<string, Map<string, boolean>>();
+const initializedToolCardsBySession = new Map<string, Set<string>>();
+const lastAutoExpandPrefBySession = new Map<string, boolean>();
 
 function getInputHistory(sessionKey: string): InputHistory {
   return getOrCreateSessionCacheValue(inputHistories, sessionKey, () => new InputHistory());
@@ -138,6 +144,143 @@ function getDeletedMessages(sessionKey: string): DeletedMessages {
     sessionKey,
     () => new DeletedMessages(sessionKey),
   );
+}
+
+function getExpandedToolCards(sessionKey: string): Map<string, boolean> {
+  return getOrCreateSessionCacheValue(expandedToolCardsBySession, sessionKey, () => new Map());
+}
+
+function getInitializedToolCards(sessionKey: string): Set<string> {
+  return getOrCreateSessionCacheValue(initializedToolCardsBySession, sessionKey, () => new Set());
+}
+
+function appendCanvasBlockToAssistantMessage(
+  message: unknown,
+  preview: Extract<NonNullable<ToolCard["preview"]>, { kind: "canvas" }>,
+  rawText: string | null,
+) {
+  const raw = message as Record<string, unknown>;
+  const existingContent = Array.isArray(raw.content)
+    ? [...raw.content]
+    : typeof raw.content === "string"
+      ? [{ type: "text", text: raw.content }]
+      : typeof raw.text === "string"
+        ? [{ type: "text", text: raw.text }]
+        : [];
+  const alreadyHasArtifact = existingContent.some((block) => {
+    if (!block || typeof block !== "object") {
+      return false;
+    }
+    const typed = block as {
+      type?: unknown;
+      preview?: { kind?: unknown; viewId?: unknown; url?: unknown };
+    };
+    return (
+      typed.type === "canvas" &&
+      typed.preview?.kind === "canvas" &&
+      ((preview.viewId && typed.preview.viewId === preview.viewId) ||
+        (preview.url && typed.preview.url === preview.url))
+    );
+  });
+  if (alreadyHasArtifact) {
+    return message;
+  }
+  return {
+    ...raw,
+    content: [
+      ...existingContent,
+      {
+        type: "canvas",
+        preview,
+        ...(rawText ? { rawText } : {}),
+      },
+    ],
+  };
+}
+
+function extractChatMessagePreview(toolMessage: unknown): {
+  preview: Extract<NonNullable<ToolCard["preview"]>, { kind: "canvas" }>;
+  text: string | null;
+  timestamp: number | null;
+} | null {
+  const normalized = normalizeMessage(toolMessage);
+  const cards = extractToolCards(toolMessage, "preview");
+  for (let index = cards.length - 1; index >= 0; index--) {
+    const card = cards[index];
+    if (card?.preview?.kind === "canvas") {
+      return {
+        preview: card.preview,
+        text: card.outputText ?? null,
+        timestamp: normalized.timestamp ?? null,
+      };
+    }
+  }
+  const text = extractTextCached(toolMessage) ?? undefined;
+  const toolRecord = toolMessage as Record<string, unknown>;
+  const toolName =
+    typeof toolRecord.toolName === "string"
+      ? toolRecord.toolName
+      : typeof toolRecord.tool_name === "string"
+        ? toolRecord.tool_name
+        : undefined;
+  const preview = extractToolPreview(text, toolName);
+  if (preview?.kind !== "canvas") {
+    return null;
+  }
+  return { preview, text: text ?? null, timestamp: normalized.timestamp ?? null };
+}
+
+function findNearestAssistantMessageIndex(
+  items: ChatItem[],
+  toolTimestamp: number | null,
+): number | null {
+  const assistantEntries = items
+    .map((item, index) => {
+      if (item.kind !== "message") {
+        return null;
+      }
+      const message = item.message as Record<string, unknown>;
+      const role = typeof message.role === "string" ? message.role.toLowerCase() : "";
+      if (role !== "assistant") {
+        return null;
+      }
+      return {
+        index,
+        timestamp: normalizeMessage(item.message).timestamp ?? null,
+      };
+    })
+    .filter(Boolean) as Array<{ index: number; timestamp: number | null }>;
+  if (assistantEntries.length === 0) {
+    return null;
+  }
+  if (toolTimestamp == null) {
+    return assistantEntries[assistantEntries.length - 1]?.index ?? null;
+  }
+  let previous: { index: number; timestamp: number } | null = null;
+  let next: { index: number; timestamp: number } | null = null;
+  for (const entry of assistantEntries) {
+    if (entry.timestamp == null) {
+      continue;
+    }
+    if (entry.timestamp <= toolTimestamp) {
+      previous = { index: entry.index, timestamp: entry.timestamp };
+      continue;
+    }
+    next = { index: entry.index, timestamp: entry.timestamp };
+    break;
+  }
+  if (previous && next) {
+    const previousDelta = toolTimestamp - previous.timestamp;
+    const nextDelta = next.timestamp - toolTimestamp;
+    return nextDelta < previousDelta ? next.index : previous.index;
+  }
+  if (previous) {
+    return previous.index;
+  }
+  if (next) {
+    return next.index;
+  }
+  return assistantEntries[assistantEntries.length - 1]?.index ?? null;
 }
 
 interface ChatEphemeralState {
@@ -190,18 +333,72 @@ function adjustTextareaHeight(el: HTMLTextAreaElement) {
   el.style.height = `${Math.min(el.scrollHeight, 150)}px`;
 }
 
-function renderCompactionIndicator(status: CompactionIndicatorStatus | null | undefined) {
+function syncToolCardExpansionState(
+  sessionKey: string,
+  items: Array<ChatItem | MessageGroup>,
+  autoExpandToolCalls: boolean,
+) {
+  const expanded = getExpandedToolCards(sessionKey);
+  const initialized = getInitializedToolCards(sessionKey);
+  const previousAutoExpand = lastAutoExpandPrefBySession.get(sessionKey) ?? false;
+  const currentToolCardIds = new Set<string>();
+  for (const item of items) {
+    if (item.kind !== "group") {
+      continue;
+    }
+    for (const entry of item.messages) {
+      const cards = extractToolCards(entry.message, entry.key);
+      for (let cardIndex = 0; cardIndex < cards.length; cardIndex++) {
+        const disclosureId = `${entry.key}:toolcard:${cardIndex}`;
+        currentToolCardIds.add(disclosureId);
+        if (initialized.has(disclosureId)) {
+          continue;
+        }
+        expanded.set(disclosureId, autoExpandToolCalls);
+        initialized.add(disclosureId);
+      }
+      const messageRecord = entry.message as Record<string, unknown>;
+      const role = typeof messageRecord.role === "string" ? messageRecord.role : "unknown";
+      const normalizedRole = normalizeRoleForGrouping(role);
+      const isToolMessage =
+        isToolResultMessage(entry.message) ||
+        normalizedRole === "tool" ||
+        role.toLowerCase() === "toolresult" ||
+        role.toLowerCase() === "tool_result" ||
+        typeof messageRecord.toolCallId === "string" ||
+        typeof messageRecord.tool_call_id === "string";
+      if (!isToolMessage) {
+        continue;
+      }
+      const disclosureId = `toolmsg:${entry.key}`;
+      currentToolCardIds.add(disclosureId);
+      if (initialized.has(disclosureId)) {
+        continue;
+      }
+      expanded.set(disclosureId, autoExpandToolCalls);
+      initialized.add(disclosureId);
+    }
+  }
+  if (autoExpandToolCalls && !previousAutoExpand) {
+    for (const toolCardId of currentToolCardIds) {
+      expanded.set(toolCardId, true);
+    }
+  }
+  lastAutoExpandPrefBySession.set(sessionKey, autoExpandToolCalls);
+}
+
+function renderCompactionIndicator(status: CompactionStatus | null | undefined) {
   if (!status) {
     return nothing;
   }
-  if (status.active) {
+  if (status.phase === "active" || status.phase === "retrying") {
     return html`
       <div
         class="compaction-indicator compaction-indicator--active"
         role="status"
         aria-live="polite"
       >
-        ${icons.loader} ${t("chat.ui.compacting")}
+        ${icons.loader} Compacting context...
       </div>
     `;
   }
@@ -214,7 +411,7 @@ function renderCompactionIndicator(status: CompactionIndicatorStatus | null | un
           role="status"
           aria-live="polite"
         >
-          ${icons.check} ${t("chat.ui.compacted")}
+          ${icons.check} Context compacted
         </div>
       `;
     }
@@ -222,7 +419,7 @@ function renderCompactionIndicator(status: CompactionIndicatorStatus | null | un
   return nothing;
 }
 
-function renderFallbackIndicator(status: FallbackIndicatorStatus | null | undefined) {
+function renderFallbackIndicator(status: FallbackStatus | null | undefined) {
   if (!status) {
     return nothing;
   }
@@ -232,24 +429,18 @@ function renderFallbackIndicator(status: FallbackIndicatorStatus | null | undefi
     return nothing;
   }
   const details = [
-    `${t("chat.ui.fallbackSelected")}: ${status.selected}`,
-    phase === "cleared"
-      ? `${t("chat.ui.fallbackActive")}: ${status.selected}`
-      : `${t("chat.ui.fallbackActive")}: ${status.active}`,
-    phase === "cleared" && status.previous
-      ? `${t("chat.ui.fallbackPrevious")}: ${status.previous}`
-      : null,
-    status.reason ? `${t("chat.ui.fallbackReason")}: ${status.reason}` : null,
-    status.attempts.length > 0
-      ? `${t("chat.ui.fallbackAttempts")}: ${status.attempts.slice(0, 3).join(" | ")}`
-      : null,
+    `Selected: ${status.selected}`,
+    phase === "cleared" ? `Active: ${status.selected}` : `Active: ${status.active}`,
+    phase === "cleared" && status.previous ? `Previous fallback: ${status.previous}` : null,
+    status.reason ? `Reason: ${status.reason}` : null,
+    status.attempts.length > 0 ? `Attempts: ${status.attempts.slice(0, 3).join(" | ")}` : null,
   ]
     .filter(Boolean)
     .join(" • ");
   const message =
     phase === "cleared"
-      ? `${t("chat.ui.fallbackCleared")}: ${status.selected}`
-      : `${t("chat.ui.fallbackNowActive")}: ${status.active}`;
+      ? `Fallback cleared: ${status.selected}`
+      : `Fallback active: ${status.active}`;
   const className =
     phase === "cleared"
       ? "compaction-indicator compaction-indicator--fallback-cleared"
@@ -259,6 +450,43 @@ function renderFallbackIndicator(status: FallbackIndicatorStatus | null | undefi
     <div class=${className} role="status" aria-live="polite" title=${details}>
       ${icon} ${message}
     </div>
+  `;
+}
+
+function renderSideResult(
+  sideResult: ChatSideResult | null | undefined,
+  onDismiss?: () => void,
+): TemplateResult | typeof nothing {
+  if (!sideResult) {
+    return nothing;
+  }
+  return html`
+    <section
+      class=${`chat-side-result ${sideResult.isError ? "chat-side-result--error" : ""}`}
+      role="status"
+      aria-live="polite"
+      aria-label="BTW side result"
+    >
+      <div class="chat-side-result__header">
+        <div class="chat-side-result__label-row">
+          <span class="chat-side-result__label">BTW</span>
+          <span class="chat-side-result__meta">Not saved to chat history</span>
+        </div>
+        <button
+          class="btn chat-side-result__dismiss"
+          type="button"
+          aria-label="Dismiss BTW result"
+          title="Dismiss"
+          @click=${() => onDismiss?.()}
+        >
+          ${icons.x}
+        </button>
+      </div>
+      <div class="chat-side-result__question">${sideResult.question}</div>
+      <div class="chat-side-result__body" dir=${detectTextDirection(sideResult.text)}>
+        ${unsafeHTML(toSanitizedMarkdownHtml(sideResult.text))}
+      </div>
+    </section>
   `;
 }
 
@@ -320,19 +548,19 @@ function renderContextNotice(
   const [wr, wg, wb] = warnRgb;
   const [dr, dg, db] = dangerRgb;
   // Blend from --warn at 85% usage to --danger at 95%+ usage
-  const blendFactor = Math.min(Math.max((ratio - 0.85) / 0.1, 0), 1);
-  const r = Math.round(wr + (dr - wr) * blendFactor);
-  const g = Math.round(wg + (dg - wg) * blendFactor);
-  const b = Math.round(wb + (db - wb) * blendFactor);
+  const t = Math.min(Math.max((ratio - 0.85) / 0.1, 0), 1);
+  const r = Math.round(wr + (dr - wr) * t);
+  const g = Math.round(wg + (dg - wg) * t);
+  const b = Math.round(wb + (db - wb) * t);
   const color = `rgb(${r}, ${g}, ${b})`;
-  const bgOpacity = 0.08 + 0.08 * blendFactor;
+  const bgOpacity = 0.08 + 0.08 * t;
   const bg = `rgba(${r}, ${g}, ${b}, ${bgOpacity})`;
   return html`
     <div class="context-notice" role="status" style="--ctx-color:${color};--ctx-bg:${bg}">
       <svg
         class="context-notice__icon"
-        width="24"
-        height="24"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -344,7 +572,7 @@ function renderContextNotice(
         <line x1="12" y1="9" x2="12" y2="13" />
         <line x1="12" y1="17" x2="12.01" y2="17" />
       </svg>
-      <span>${t("chat.ui.contextUsed", { percent: String(pct) })}</span>
+      <span>${pct}% context used</span>
       <span class="context-notice__detail"
         >${formatTokensCompact(used)} / ${formatTokensCompact(limit)}</span
       >
@@ -473,11 +701,11 @@ function renderAttachmentPreview(props: ChatProps): TemplateResult | typeof noth
       ${attachments.map(
         (att) => html`
           <div class="chat-attachment-thumb">
-            <img src=${att.dataUrl} alt=${t("chat.ui.attachmentPreview")} />
+            <img src=${att.dataUrl} alt="Attachment preview" />
             <button
               class="chat-attachment-remove"
               type="button"
-              aria-label=${t("chat.ui.removeAttachment")}
+              aria-label="Remove attachment"
               @click=${() => {
                 const next = (props.attachments ?? []).filter((a) => a.id !== att.id);
                 props.onAttachmentsChange?.(next);
@@ -619,7 +847,7 @@ function tokenEstimate(draft: string): string | null {
   if (draft.length < 100) {
     return null;
   }
-  return t("chat.ui.tokenEstimate", { count: String(Math.ceil(draft.length / 4)) });
+  return `~${Math.ceil(draft.length / 4)} tokens`;
 }
 
 /**
@@ -630,14 +858,14 @@ function exportMarkdown(props: ChatProps): void {
 }
 
 const WELCOME_SUGGESTIONS = [
-  t("chat.ui.suggestionWhatCanYouDo"),
-  t("chat.ui.suggestionSummarizeSessions"),
-  t("chat.ui.suggestionConfigureChannel"),
-  t("chat.ui.suggestionCheckHealth"),
+  "What can you do?",
+  "Summarize my recent sessions",
+  "Help me configure a channel",
+  "Check system health",
 ];
 
 function renderWelcomeState(props: ChatProps): TemplateResult {
-  const name = props.assistantName || t("chat.ui.assistant");
+  const name = props.assistantName || "Assistant";
   const avatar = resolveAgentAvatarUrl({
     identity: {
       avatar: props.assistantAvatar ?? undefined,
@@ -660,13 +888,9 @@ function renderWelcomeState(props: ChatProps): TemplateResult {
           </div>`}
       <h2>${name}</h2>
       <div class="agent-chat__badges">
-        <span class="agent-chat__badge"
-          ><img src=${logoUrl} alt="" /> ${t("chat.ui.readyToChat")}</span
-        >
+        <span class="agent-chat__badge"><img src=${logoUrl} alt="" /> Ready to chat</span>
       </div>
-      <p class="agent-chat__hint">
-        ${t("chat.ui.welcomeHint")} &middot; <kbd>/</kbd> ${t("chat.ui.welcomeForCommands")}
-      </p>
+      <p class="agent-chat__hint">Type a message below &middot; <kbd>/</kbd> for commands</p>
       <div class="agent-chat__suggestions">
         ${WELCOME_SUGGESTIONS.map(
           (text) => html`
@@ -696,8 +920,8 @@ function renderSearchBar(requestUpdate: () => void): TemplateResult | typeof not
       ${icons.search}
       <input
         type="text"
-        placeholder=${t("chat.ui.searchPlaceholder")}
-        aria-label=${t("chat.ui.searchAria")}
+        placeholder="Search messages..."
+        aria-label="Search messages"
         .value=${vs.searchQuery}
         @input=${(e: Event) => {
           vs.searchQuery = (e.target as HTMLInputElement).value;
@@ -706,7 +930,7 @@ function renderSearchBar(requestUpdate: () => void): TemplateResult | typeof not
       />
       <button
         class="btn btn--ghost"
-        aria-label=${t("chat.ui.closeSearch")}
+        aria-label="Close search"
         @click=${() => {
           vs.searchOpen = false;
           vs.searchQuery = "";
@@ -747,7 +971,7 @@ function renderPinnedSection(
           requestUpdate();
         }}
       >
-        ${icons.bookmark} ${t("chat.ui.pinnedCount", { count: String(entries.length) })}
+        ${icons.bookmark} ${entries.length} pinned
         <span class="collapse-chevron ${vs.pinnedExpanded ? "" : "collapse-chevron--collapsed"}"
           >${icons.chevronDown}</span
         >
@@ -759,7 +983,7 @@ function renderPinnedSection(
                 ({ index, text, role }) => html`
                   <div class="agent-chat__pinned-item">
                     <span class="agent-chat__pinned-role"
-                      >${role === "user" ? t("chat.ui.you") : t("chat.ui.assistant")}</span
+                      >${role === "user" ? "You" : "Assistant"}</span
                     >
                     <span class="agent-chat__pinned-text"
                       >${text.slice(0, 100)}${text.length > 100 ? "..." : ""}</span
@@ -770,7 +994,7 @@ function renderPinnedSection(
                         pinned.unpin(index);
                         requestUpdate();
                       }}
-                      title=${t("chat.ui.unpin")}
+                      title="Unpin"
                     >
                       ${icons.x}
                     </button>
@@ -795,7 +1019,7 @@ function renderSlashMenu(
   // Arg-picker mode: show options for the selected command
   if (vs.slashMenuMode === "args" && vs.slashMenuCommand && vs.slashMenuArgItems.length > 0) {
     return html`
-      <div class="slash-menu" role="listbox" aria-label=${t("chat.ui.commandArguments")}>
+      <div class="slash-menu" role="listbox" aria-label="Command arguments">
         <div class="slash-menu-group">
           <div class="slash-menu-group__label">
             /${vs.slashMenuCommand.name} ${vs.slashMenuCommand.description}
@@ -822,8 +1046,7 @@ function renderSlashMenu(
           )}
         </div>
         <div class="slash-menu-footer">
-          <kbd>↑↓</kbd> ${t("chat.ui.navigate")} <kbd>Tab</kbd> ${t("chat.ui.fill")}
-          <kbd>Enter</kbd> ${t("chat.ui.run")} <kbd>Esc</kbd> ${t("chat.ui.close")}
+          <kbd>↑↓</kbd> navigate <kbd>Tab</kbd> fill <kbd>Enter</kbd> run <kbd>Esc</kbd> close
         </div>
       </div>
     `;
@@ -873,11 +1096,9 @@ function renderSlashMenu(
               ${cmd.args ? html`<span class="slash-menu-args">${cmd.args}</span>` : nothing}
               <span class="slash-menu-desc">${cmd.description}</span>
               ${cmd.argOptions?.length
-                ? html`<span class="slash-menu-badge"
-                    >${t("chat.ui.optionsCount", { count: String(cmd.argOptions.length) })}</span
-                  >`
+                ? html`<span class="slash-menu-badge">${cmd.argOptions.length} options</span>`
                 : cmd.executeLocal && !cmd.args
-                  ? html` <span class="slash-menu-badge">${t("chat.ui.instant")}</span> `
+                  ? html` <span class="slash-menu-badge">instant</span> `
                   : nothing}
             </div>
           `,
@@ -887,11 +1108,10 @@ function renderSlashMenu(
   }
 
   return html`
-    <div class="slash-menu" role="listbox" aria-label=${t("chat.ui.slashCommands")}>
+    <div class="slash-menu" role="listbox" aria-label="Slash commands">
       ${sections}
       <div class="slash-menu-footer">
-        <kbd>↑↓</kbd> ${t("chat.ui.navigate")} <kbd>Tab</kbd> ${t("chat.ui.fill")}
-        <kbd>Enter</kbd> ${t("chat.ui.select")} <kbd>Esc</kbd> ${t("chat.ui.close")}
+        <kbd>↑↓</kbd> navigate <kbd>Tab</kbd> fill <kbd>Enter</kbd> select <kbd>Esc</kbd> close
       </div>
     </div>
   `;
@@ -922,9 +1142,9 @@ export function renderChat(props: ChatProps) {
 
   const placeholder = props.connected
     ? hasAttachments
-      ? t("chat.ui.placeholderWithAttachments")
-      : t("chat.ui.placeholderMessage", { assistant: props.assistantName || t("chat.ui.agent") })
-    : t("chat.ui.placeholderDisconnected");
+      ? "Add a message or paste more images..."
+      : `Message ${props.assistantName || "agent"} (Enter to send)`
+    : "Connect to the gateway to start chatting...";
 
   const requestUpdate = props.onRequestUpdate ?? (() => {});
   const getDraft = props.getDraft ?? (() => props.draft);
@@ -948,6 +1168,12 @@ export function renderChat(props: ChatProps) {
   };
 
   const chatItems = buildChatItems(props);
+  syncToolCardExpansionState(props.sessionKey, chatItems, Boolean(props.autoExpandToolCalls));
+  const expandedToolCards = getExpandedToolCards(props.sessionKey);
+  const toggleToolCardExpanded = (toolCardId: string) => {
+    expandedToolCards.set(toolCardId, !expandedToolCards.get(toolCardId));
+    requestUpdate();
+  };
   const isEmpty = chatItems.length === 0 && !props.loading;
 
   const thread = html`
@@ -961,7 +1187,7 @@ export function renderChat(props: ChatProps) {
       <div class="chat-thread-inner">
         ${props.loading
           ? html`
-              <div class="chat-loading-skeleton" aria-label=${t("chat.ui.loadingChat")}>
+              <div class="chat-loading-skeleton" aria-label="Loading chat">
                 <div class="chat-line assistant">
                   <div class="chat-msg">
                     <div class="chat-bubble">
@@ -1000,7 +1226,7 @@ export function renderChat(props: ChatProps) {
           : nothing}
         ${isEmpty && !vs.searchOpen ? renderWelcomeState(props) : nothing}
         ${isEmpty && vs.searchOpen
-          ? html` <div class="agent-chat__empty">${t("chat.ui.noMatchingMessages")}</div> `
+          ? html` <div class="agent-chat__empty">No matching messages</div> `
           : nothing}
         ${repeat(
           chatItems,
@@ -1035,9 +1261,24 @@ export function renderChat(props: ChatProps) {
                 onOpenSidebar: props.onOpenSidebar,
                 showReasoning,
                 showToolCalls: props.showToolCalls,
+                autoExpandToolCalls: Boolean(props.autoExpandToolCalls),
+                isToolMessageExpanded: (messageId: string) =>
+                  expandedToolCards.get(messageId) ?? false,
+                onToggleToolMessageExpanded: (messageId: string) => {
+                  expandedToolCards.set(messageId, !expandedToolCards.get(messageId));
+                  requestUpdate();
+                },
+                isToolExpanded: (toolCardId: string) => expandedToolCards.get(toolCardId) ?? false,
+                onToggleToolExpanded: toggleToolCardExpanded,
+                onRequestUpdate: requestUpdate,
                 assistantName: props.assistantName,
                 assistantAvatar: assistantIdentity.avatar,
                 basePath: props.basePath,
+                localMediaPreviewRoots: props.localMediaPreviewRoots ?? [],
+                assistantAttachmentAuthToken: props.assistantAttachmentAuthToken ?? null,
+                canvasHostUrl: props.canvasHostUrl,
+                embedSandboxMode: props.embedSandboxMode ?? "scripts",
+                allowExternalEmbedUrls: props.allowExternalEmbedUrls ?? false,
                 contextWindow:
                   activeSession?.contextTokens ?? props.sessions?.defaults?.contextTokens ?? null,
                 onDelete: () => {
@@ -1116,6 +1357,12 @@ export function renderChat(props: ChatProps) {
       }
     }
 
+    if (e.key === "Escape" && props.sideResult && !vs.searchOpen) {
+      e.preventDefault();
+      props.onDismissSideResult?.();
+      return;
+    }
+
     // Input history (only when input is empty)
     if (!props.draft.trim()) {
       if (e.key === "ArrowUp") {
@@ -1185,8 +1432,8 @@ export function renderChat(props: ChatProps) {
               class="chat-focus-exit"
               type="button"
               @click=${props.onToggleFocusMode}
-              aria-label=${t("chat.ui.exitFocusMode")}
-              title=${t("chat.ui.exitFocusMode")}
+              aria-label="Exit focus mode"
+              title="Exit focus mode"
             >
               ${icons.x}
             </button>
@@ -1212,12 +1459,25 @@ export function renderChat(props: ChatProps) {
                 ${renderMarkdownSidebar({
                   content: props.sidebarContent ?? null,
                   error: props.sidebarError ?? null,
+                  canvasHostUrl: props.canvasHostUrl,
+                  embedSandboxMode: props.embedSandboxMode ?? "scripts",
+                  allowExternalEmbedUrls: props.allowExternalEmbedUrls ?? false,
                   onClose: props.onCloseSidebar!,
                   onViewRawText: () => {
                     if (!props.sidebarContent || !props.onOpenSidebar) {
                       return;
                     }
-                    props.onOpenSidebar(`\`\`\`\n${props.sidebarContent}\n\`\`\``);
+                    if (props.sidebarContent.kind === "markdown") {
+                      props.onOpenSidebar(
+                        buildSidebarContent(`\`\`\`\n${props.sidebarContent.content}\n\`\`\``),
+                      );
+                      return;
+                    }
+                    if (props.sidebarContent.rawText?.trim()) {
+                      props.onOpenSidebar(
+                        buildSidebarContent(`\`\`\`json\n${props.sidebarContent.rawText}\n\`\`\``),
+                      );
+                    }
                   },
                 })}
               </div>
@@ -1228,23 +1488,19 @@ export function renderChat(props: ChatProps) {
       ${props.queue.length
         ? html`
             <div class="chat-queue" role="status" aria-live="polite">
-              <div class="chat-queue__title">
-                ${t("chat.ui.queuedCount", { count: String(props.queue.length) })}
-              </div>
+              <div class="chat-queue__title">Queued (${props.queue.length})</div>
               <div class="chat-queue__list">
                 ${props.queue.map(
                   (item) => html`
                     <div class="chat-queue__item">
                       <div class="chat-queue__text">
                         ${item.text ||
-                        (item.attachments?.length
-                          ? t("chat.ui.imageCount", { count: String(item.attachments.length) })
-                          : "")}
+                        (item.attachments?.length ? `Image (${item.attachments.length})` : "")}
                       </div>
                       <button
                         class="btn chat-queue__remove"
                         type="button"
-                        aria-label=${t("chat.ui.removeQueuedMessage")}
+                        aria-label="Remove queued message"
                         @click=${() => props.onQueueRemove(item.id)}
                       >
                         ${icons.x}
@@ -1256,13 +1512,14 @@ export function renderChat(props: ChatProps) {
             </div>
           `
         : nothing}
+      ${renderSideResult(props.sideResult, props.onDismissSideResult)}
       ${renderFallbackIndicator(props.fallbackStatus)}
       ${renderCompactionIndicator(props.compactionStatus)}
       ${renderContextNotice(activeSession, props.sessions?.defaults?.contextTokens ?? null)}
       ${props.showNewMessages
         ? html`
             <button class="chat-new-messages" type="button" @click=${props.onScrollToBottom}>
-              ${icons.arrowDown} ${t("chat.ui.newMessages")}
+              ${icons.arrowDown} New messages
             </button>
           `
         : nothing}
@@ -1291,7 +1548,7 @@ export function renderChat(props: ChatProps) {
           @keydown=${handleKeyDown}
           @input=${handleInput}
           @paste=${(e: ClipboardEvent) => handlePaste(e, props)}
-          placeholder=${vs.sttRecording ? t("chat.ui.listening") : placeholder}
+          placeholder=${vs.sttRecording ? "Listening..." : placeholder}
           rows="1"
         ></textarea>
 
@@ -1302,8 +1559,8 @@ export function renderChat(props: ChatProps) {
               @click=${() => {
                 document.querySelector<HTMLInputElement>(".agent-chat__file-input")?.click();
               }}
-              title=${t("chat.ui.attachFile")}
-              aria-label=${t("chat.ui.attachFile")}
+              title="Attach file"
+              aria-label="Attach file"
               ?disabled=${!props.connected}
             >
               ${icons.paperclip}
@@ -1355,7 +1612,7 @@ export function renderChat(props: ChatProps) {
                         }
                       }
                     }}
-                    title=${vs.sttRecording ? t("chat.ui.stopRecording") : t("chat.ui.voiceInput")}
+                    title=${vs.sttRecording ? "Stop recording" : "Voice input"}
                     ?disabled=${!props.connected}
                   >
                     ${vs.sttRecording ? icons.micOff : icons.mic}
@@ -1373,8 +1630,8 @@ export function renderChat(props: ChatProps) {
                   <button
                     class="btn btn--ghost"
                     @click=${props.onNewSession}
-                    title=${t("chat.ui.newSession")}
-                    aria-label=${t("chat.ui.newSession")}
+                    title="New session"
+                    aria-label="New session"
                   >
                     ${icons.plus}
                   </button>
@@ -1382,20 +1639,20 @@ export function renderChat(props: ChatProps) {
             <button
               class="btn btn--ghost"
               @click=${() => exportMarkdown(props)}
-              title=${t("chat.ui.export")}
-              aria-label=${t("chat.ui.exportChat")}
+              title="Export"
+              aria-label="Export chat"
               ?disabled=${props.messages.length === 0}
             >
               ${icons.download}
             </button>
 
-            ${canAbort && (isBusy || props.sending)
+            ${canAbort
               ? html`
                   <button
                     class="chat-send-btn chat-send-btn--stop"
                     @click=${props.onAbort}
-                    title=${t("chat.ui.stop")}
-                    aria-label=${t("chat.ui.stopGenerating")}
+                    title="Stop"
+                    aria-label="Stop generating"
                   >
                     ${icons.stop}
                   </button>
@@ -1410,8 +1667,8 @@ export function renderChat(props: ChatProps) {
                       props.onSend();
                     }}
                     ?disabled=${!props.connected || props.sending}
-                    title=${isBusy ? t("chat.ui.queue") : t("chat.ui.send")}
-                    aria-label=${isBusy ? t("chat.ui.queueMessage") : t("chat.ui.sendMessage")}
+                    title=${isBusy ? "Queue" : "Send"}
+                    aria-label=${isBusy ? "Queue message" : "Send message"}
                   >
                     ${icons.send}
                   </button>
@@ -1521,6 +1778,31 @@ function buildChatItems(props: ChatProps): Array<ChatItem | MessageGroup> {
       message: msg,
     });
   }
+  const liftedCanvasSources = tools
+    .map((tool) => extractChatMessagePreview(tool))
+    .filter((entry) => Boolean(entry)) as Array<{
+    preview: Extract<NonNullable<ToolCard["preview"]>, { kind: "canvas" }>;
+    text: string | null;
+    timestamp: number | null;
+  }>;
+  for (const liftedCanvasSource of liftedCanvasSources) {
+    const assistantIndex = findNearestAssistantMessageIndex(items, liftedCanvasSource.timestamp);
+    if (assistantIndex == null) {
+      continue;
+    }
+    const item = items[assistantIndex];
+    if (!item || item.kind !== "message") {
+      continue;
+    }
+    items[assistantIndex] = {
+      ...item,
+      message: appendCanvasBlockToAssistantMessage(
+        item.message as Record<string, unknown>,
+        liftedCanvasSource.preview,
+        liftedCanvasSource.text,
+      ),
+    };
+  }
   // Interleave stream segments and tool cards in order. Each segment
   // contains text that was streaming before the corresponding tool started.
   // This ensures correct visual ordering: text → tool → text → tool → ...
@@ -1565,7 +1847,20 @@ function messageKey(message: unknown, index: number): string {
   const m = message as Record<string, unknown>;
   const toolCallId = typeof m.toolCallId === "string" ? m.toolCallId : "";
   if (toolCallId) {
-    return `tool:${toolCallId}`;
+    const role = typeof m.role === "string" ? m.role : "unknown";
+    const id = typeof m.id === "string" ? m.id : "";
+    if (id) {
+      return `tool:${role}:${toolCallId}:${id}`;
+    }
+    const messageId = typeof m.messageId === "string" ? m.messageId : "";
+    if (messageId) {
+      return `tool:${role}:${toolCallId}:${messageId}`;
+    }
+    const timestamp = typeof m.timestamp === "number" ? m.timestamp : null;
+    if (timestamp != null) {
+      return `tool:${role}:${toolCallId}:${timestamp}:${index}`;
+    }
+    return `tool:${role}:${toolCallId}:${index}`;
   }
   const id = typeof m.id === "string" ? m.id : "";
   if (id) {
