@@ -23,7 +23,7 @@ export class DashboardHeader extends LitElement {
                 new CustomEvent("navigate", { detail: "overview", bubbles: true, composed: true }),
               )}
           >
-            OpenClaw
+            시냅시온 에이전트
           </span>
           <span class="dashboard-header__breadcrumb-sep">›</span>
           <span class="dashboard-header__breadcrumb-current">${label}</span>

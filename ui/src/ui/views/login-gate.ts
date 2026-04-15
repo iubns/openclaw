@@ -14,7 +14,7 @@ export function renderLoginGate(state: AppViewState) {
     <div class="login-gate">
       <div class="login-gate__card">
         <div class="login-gate__header">
-          <img class="login-gate__logo" src=${faviconSrc} alt="OpenClaw" />
+          <img class="login-gate__logo" src=${faviconSrc} alt="시냅시온 에이전트" />
           <div class="login-gate__title">시냅시온 에이전트</div>
           <div class="login-gate__sub">${t("login.subtitle")}</div>
         </div>
