@@ -1930,7 +1930,7 @@ export function renderApp(state: AppViewState) {
               assistantName: state.assistantName,
               configPath: state.configSnapshot?.path ?? null,
               rawAvailable: typeof state.configSnapshot?.raw === "string",
-              navRootLabel: "AI & Agents",
+              navRootLabel: t("tabs.aiAgents"),
               includeSections: [...AI_AGENTS_SECTION_KEYS],
               includeVirtualSections: false,
             })
