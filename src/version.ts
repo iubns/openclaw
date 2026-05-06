@@ -2,7 +2,7 @@ import { createRequire } from "node:module";
 import { normalizeOptionalString } from "./shared/string-coerce.js";
 
 declare const __OPENCLAW_VERSION__: string | undefined;
-const CORE_PACKAGE_NAME = "openclaw";
+const CORE_PACKAGE_NAME = "synapsion/openclaw";
 
 const PACKAGE_JSON_CANDIDATES = [
   "../package.json",
@@ -26,7 +26,10 @@ function readVersionFromJsonCandidates(
     const require = createRequire(moduleUrl);
     for (const candidate of candidates) {
       try {
-        const parsed = require(candidate) as { name?: string; version?: string };
+        const parsed = require(candidate) as {
+          name?: string;
+          version?: string;
+        };
         const version = normalizeOptionalString(parsed.version);
         if (!version) {
           continue;
