@@ -273,7 +273,7 @@ function buildTraceToolSummary(params: {
  * The return value is normalized: whitespace-only inputs collapse to undefined, and
  * successful resolution returns a trimmed session key. This is a read-only lookup
  * with no side effects.
- * See: https://github.com/openclaw/openclaw/issues/60552
+ * See: https://github.com/synapsion/openclaw/issues/60552
  */
 function backfillSessionKey(params: {
   config: RunEmbeddedPiAgentParams["config"];
@@ -1111,7 +1111,9 @@ export async function runEmbeddedPiAgent(
           if (parentAbortSignal?.aborted) {
             relayParentAbort();
           } else {
-            parentAbortSignal?.addEventListener("abort", relayParentAbort, { once: true });
+            parentAbortSignal?.addEventListener("abort", relayParentAbort, {
+              once: true,
+            });
           }
           const rawAttempt = await runEmbeddedAttemptWithBackend({
             sessionId: activeSessionId,
@@ -2747,7 +2749,9 @@ export async function runEmbeddedPiAgent(
           return {
             payloads: terminalPayloads?.length ? terminalPayloads : undefined,
             ...(attempt.diagnosticTrace
-              ? { diagnosticTrace: freezeDiagnosticTraceContext(attempt.diagnosticTrace) }
+              ? {
+                  diagnosticTrace: freezeDiagnosticTraceContext(attempt.diagnosticTrace),
+                }
               : {}),
             meta: {
               durationMs: Date.now() - started,

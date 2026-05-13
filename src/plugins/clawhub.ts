@@ -186,8 +186,8 @@ function isTrustedSourceLinkedOfficialPackage(pkg: NonNullable<ClawHubPackageDet
     pkg.isOfficial &&
     pkg.verification?.tier === "source-linked" &&
     (sourceRepo === "openclaw/openclaw" ||
-      sourceRepo === "github.com/openclaw/openclaw" ||
-      sourceRepo === "https://github.com/openclaw/openclaw")
+      sourceRepo === "github.com/synapsion/openclaw" ||
+      sourceRepo === "https://github.com/synapsion/openclaw")
   );
 }
 

@@ -398,9 +398,9 @@
 <li>Security/dotenv: block <code>COMSPEC</code> in workspace <code>.env</code> so a malicious repo cannot redirect Windows <code>cmd.exe</code> resolution, and lock in case-insensitive workspace-<code>.env</code> regression coverage for the full Windows shell trust-root family (<code>COMSPEC</code>, <code>PROGRAMFILES</code>, <code>PROGRAMW6432</code>, <code>SYSTEMROOT</code>, <code>WINDIR</code>). (#74460) Thanks @mmaps.</li>
 <li>Gateway/install: drop stale version-manager and package-manager PATH entries preserved from old service files during <code>gateway install --force</code> and doctor repair, so the repair path no longer recreates <code>gateway-path-nonminimal</code> warnings. Fixes #75220. (#75440) Thanks @leonaIee, @renaudcerrato, and @aaajiao.</li>
 </ul>
-<p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
+<p><a href="https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.5.2/OpenClaw-2026.5.2.zip" length="51078259" type="application/octet-stream" sparkle:edSignature="NwoecacHxJOYpltNmB/y7LV5I8ZIh5pENWSydbOM1vsfgSrcb7pRP+Zm2nih1IAq7hh1tOmQ0XWnsohic7U4DA=="/>
+            <enclosure url="https://github.com/synapsion/openclaw/releases/download/v2026.5.2/OpenClaw-2026.5.2.zip" length="51078259" type="application/octet-stream" sparkle:edSignature="NwoecacHxJOYpltNmB/y7LV5I8ZIh5pENWSydbOM1vsfgSrcb7pRP+Zm2nih1IAq7hh1tOmQ0XWnsohic7U4DA=="/>
         </item>
         <item>
             <title>2026.4.29</title>
@@ -761,9 +761,9 @@
 <li>Gateway/plugins: enable the native <code>require()</code> fast path on Windows for bundled plugin modules so plugin loading uses <code>require()</code> instead of Jiti's transform pipeline, reducing startup from ~39s to ~2s on typical 6-plugin setups. Fixes #68656. (#74173) Thanks @galiniliev.</li>
 <li>macOS app: detect stale Gateway TLS certificate pins, automatically repair trusted Tailscale Serve rotations, and surface paired-but-disconnected Mac companion nodes so partial Gateway connections no longer look healthy. Thanks @guti.</li>
 </ul>
-<p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
+<p><a href="https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.4.29/OpenClaw-2026.4.29.zip" length="50896802" type="application/octet-stream" sparkle:edSignature="YfQ25zMGgDv8XvHbdlL/s0SMJXyu763l5ppnfjiKOjSyxZY9sfoLaoXthcctFQDXA8isR1EEb/EEausu+XkFCA=="/>
+            <enclosure url="https://github.com/synapsion/openclaw/releases/download/v2026.4.29/OpenClaw-2026.4.29.zip" length="50896802" type="application/octet-stream" sparkle:edSignature="YfQ25zMGgDv8XvHbdlL/s0SMJXyu763l5ppnfjiKOjSyxZY9sfoLaoXthcctFQDXA8isR1EEb/EEausu+XkFCA=="/>
         </item>
         <item>
             <title>2026.4.27</title>
@@ -1053,9 +1053,9 @@
 <li>TTS/BlueBubbles: pre-transcode synthesized MP3 audio to opus-in-CAF (mono, 24 kHz — validated against macOS 15.x Messages.app's native voice-memo CAF descriptor) on macOS hosts before handing the file to BlueBubbles, so iMessage renders the result as a native voice-memo bubble with proper duration and waveform UI instead of a plain file attachment. Adds an opt-in <code>tts.voice.preferAudioFileFormat</code> channel capability and a magic-byte sniff for the CAF container so the host-local-media validator (which uses <code>file-type</code> and didn't recognize CAF natively) can verify the pre-transcoded buffer. Channels that don't opt in are unaffected. (#72586) Fixes #72506. Thanks @omarshahine.</li>
 <li>Feishu: retry WebSocket startup failures with monitor-owned backoff while preserving SDK-local heartbeat defaults, so persistent-connection startup failures no longer leave the monitor hung. Fixes #68766; related #42354 and #55532. Thanks @alex-xuweilong, @120106835, @sirfengyu, and @tianhaocui.</li>
 </ul>
-<p><a href="https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
+<p><a href="https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md">View full changelog</a></p>
 ]]></description>
-            <enclosure url="https://github.com/openclaw/openclaw/releases/download/v2026.4.27/OpenClaw-2026.4.27.zip" length="50595360" type="application/octet-stream" sparkle:edSignature="X8DQNQNWVcvtpYLkhZcsKNpnA78ycyzgGlZaG0XBY1GIph3oZNUIpAszGGocJVqTK7+F89Au5ZPb60mOqJQ6DQ=="/>
+            <enclosure url="https://github.com/synapsion/openclaw/releases/download/v2026.4.27/OpenClaw-2026.4.27.zip" length="50595360" type="application/octet-stream" sparkle:edSignature="X8DQNQNWVcvtpYLkhZcsKNpnA78ycyzgGlZaG0XBY1GIph3oZNUIpAszGGocJVqTK7+F89Au5ZPb60mOqJQ6DQ=="/>
         </item>
     </channel>
 </rss>

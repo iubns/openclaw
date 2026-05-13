@@ -38,8 +38,16 @@ function makeStore(usageStats: AuthProfileStore["usageStats"]): AuthProfileStore
   return {
     version: 1,
     profiles: {
-      "anthropic:default": { type: "api_key", provider: "anthropic", key: "sk-test" },
-      "openai:default": { type: "api_key", provider: "openai", key: "sk-test-2" },
+      "anthropic:default": {
+        type: "api_key",
+        provider: "anthropic",
+        key: "sk-test",
+      },
+      "openai:default": {
+        type: "api_key",
+        provider: "openai",
+        key: "sk-test-2",
+      },
       "openai-codex:default": {
         type: "oauth",
         provider: "openai-codex",
@@ -48,8 +56,16 @@ function makeStore(usageStats: AuthProfileStore["usageStats"]): AuthProfileStore
         expires: 4_102_444_800_000,
         accountId: "acct_test_123",
       },
-      "openrouter:default": { type: "api_key", provider: "openrouter", key: "sk-or-test" },
-      "kilocode:default": { type: "api_key", provider: "kilocode", key: "sk-kc-test" },
+      "openrouter:default": {
+        type: "api_key",
+        provider: "openrouter",
+        key: "sk-or-test",
+      },
+      "kilocode:default": {
+        type: "api_key",
+        provider: "kilocode",
+        key: "sk-kc-test",
+      },
     },
     usageStats,
   };
@@ -68,7 +84,12 @@ function expectProfileErrorStateCleared(
 describe("resolveProfileUnusableUntil", () => {
   it("returns null when both values are missing or invalid", () => {
     expect(resolveProfileUnusableUntil({})).toBeNull();
-    expect(resolveProfileUnusableUntil({ cooldownUntil: 0, disabledUntil: Number.NaN })).toBeNull();
+    expect(
+      resolveProfileUnusableUntil({
+        cooldownUntil: 0,
+        disabledUntil: Number.NaN,
+      }),
+    ).toBeNull();
   });
 
   it("returns the latest active timestamp", () => {
@@ -653,7 +674,7 @@ describe("markAuthProfileUsed", () => {
 });
 
 describe("markAuthProfileFailure — active windows do not extend on retry", () => {
-  // Regression for https://github.com/openclaw/openclaw/issues/23516
+  // Regression for https://github.com/synapsion/openclaw/issues/23516
   // When all providers are at saturation backoff (60 min) and retries fire every 30 min,
   // each retry was resetting cooldownUntil to now+60m, preventing recovery.
   type WindowStats = ProfileUsageStats;

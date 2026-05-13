@@ -906,7 +906,7 @@ export const agentHandlers: GatewayRequestHandlers = {
     // Inject timestamp into user-authored messages that don't already have one.
     // Channel messages (Discord, Telegram, etc.) get timestamps via envelope
     // formatting in a separate code path — they never reach this handler.
-    // See: https://github.com/openclaw/openclaw/issues/3658
+    // See: https://github.com/synapsion/openclaw/issues/3658
     if (!skipTimestampInjection && !isRawModelRun && inputProvenance?.kind !== "inter_session") {
       message = injectTimestamp(message, timestampOptsFromConfig(cfg));
     }
@@ -1165,7 +1165,9 @@ export const agentHandlers: GatewayRequestHandlers = {
     if (wantsDelivery && resolvedChannel === INTERNAL_MESSAGE_CHANNEL) {
       const cfgResolved = cfgForAgent ?? cfg;
       try {
-        const selection = await resolveMessageChannelSelection({ cfg: cfgResolved });
+        const selection = await resolveMessageChannelSelection({
+          cfg: cfgResolved,
+        });
         resolvedChannel = selection.channel;
         deliveryTargetMode = deliveryTargetMode ?? "implicit";
         effectivePlan = {
@@ -1502,7 +1504,9 @@ export const agentHandlers: GatewayRequestHandlers = {
         agentId: identity.agentId,
         basePath: cfg.gateway?.controlUi?.basePath,
       }) ?? identity.avatar;
-    const avatarResolution = resolveAgentAvatar(cfg, identity.agentId, { includeUiOverride: true });
+    const avatarResolution = resolveAgentAvatar(cfg, identity.agentId, {
+      includeUiOverride: true,
+    });
     respond(
       true,
       {
@@ -1577,8 +1581,14 @@ export const agentHandlers: GatewayRequestHandlers = {
     });
 
     const first = await Promise.race([
-      lifecyclePromise.then((snapshot) => ({ source: "lifecycle" as const, snapshot })),
-      dedupePromise.then((snapshot) => ({ source: "dedupe" as const, snapshot })),
+      lifecyclePromise.then((snapshot) => ({
+        source: "lifecycle" as const,
+        snapshot,
+      })),
+      dedupePromise.then((snapshot) => ({
+        source: "dedupe" as const,
+        snapshot,
+      })),
     ]);
 
     let snapshot: AgentWaitTerminalSnapshot | Awaited<ReturnType<typeof waitForAgentJob>> =

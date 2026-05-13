@@ -117,7 +117,12 @@ const authRuntimeMock = vi.hoisted(() => {
         const ts = options?.now ?? now();
         let soonest: number | null = null;
         for (const profileId of profileIds) {
-          if (!isProfileInCooldown(store, profileId, { now: ts, forModel: options?.forModel })) {
+          if (
+            !isProfileInCooldown(store, profileId, {
+              now: ts,
+              forModel: options?.forModel,
+            })
+          ) {
             continue;
           }
           const stats = store.usageStats?.[profileId];
@@ -321,7 +326,7 @@ const OPENAI_RATE_LIMIT_MESSAGE =
 const ANTHROPIC_OVERLOADED_PAYLOAD =
   '{"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_test"}';
 // Issue-backed Anthropic/OpenAI-compatible insufficient_quota payload under HTTP 400:
-// https://github.com/openclaw/openclaw/issues/23440
+// https://github.com/synapsion/openclaw/issues/23440
 const INSUFFICIENT_QUOTA_PAYLOAD =
   '{"type":"error","error":{"type":"insufficient_quota","message":"Your account has insufficient quota balance to run this request."}}';
 
@@ -399,7 +404,9 @@ describe("runWithModelFallback", () => {
             fallbacks: [],
           },
           models: {
-            "openai/xiaomi/mimo-v2-pro-mit": { alias: "xiaomi/mimo-v2-pro-mit" },
+            "openai/xiaomi/mimo-v2-pro-mit": {
+              alias: "xiaomi/mimo-v2-pro-mit",
+            },
           },
         },
       },
@@ -690,7 +697,10 @@ describe("runWithModelFallback", () => {
   it("classifies non-GPT incomplete terminal errors for configured fallback", () => {
     const runResult: EmbeddedPiRunResult = {
       payloads: [
-        { text: "⚠️ Agent couldn't generate a response. Please try again.", isError: true },
+        {
+          text: "⚠️ Agent couldn't generate a response. Please try again.",
+          isError: true,
+        },
       ],
       meta: {
         durationMs: 1,
@@ -1370,8 +1380,16 @@ describe("runWithModelFallback", () => {
     const store: AuthProfileStore = {
       version: AUTH_STORE_VERSION,
       profiles: {
-        "anthropic:default": { type: "api_key", provider: "anthropic", key: "anthropic-key" },
-        "openai:default": { type: "api_key", provider: "openai", key: "openai-key" },
+        "anthropic:default": {
+          type: "api_key",
+          provider: "anthropic",
+          key: "anthropic-key",
+        },
+        "openai:default": {
+          type: "api_key",
+          provider: "openai",
+          key: "openai-key",
+        },
       },
     };
 
@@ -1426,8 +1444,16 @@ describe("runWithModelFallback", () => {
     const store: AuthProfileStore = {
       version: AUTH_STORE_VERSION,
       profiles: {
-        "anthropic:default": { type: "api_key", provider: "anthropic", key: "anthropic-key" },
-        "openai:default": { type: "api_key", provider: "openai", key: "openai-key" },
+        "anthropic:default": {
+          type: "api_key",
+          provider: "anthropic",
+          key: "anthropic-key",
+        },
+        "openai:default": {
+          type: "api_key",
+          provider: "openai",
+          key: "openai-key",
+        },
       },
       usageStats: {
         "anthropic:default": {
@@ -1590,7 +1616,9 @@ describe("runWithModelFallback", () => {
       },
       {
         name: "documented OpenAI 429 rate limit",
-        firstError: Object.assign(new Error(OPENAI_RATE_LIMIT_MESSAGE), { status: 429 }),
+        firstError: Object.assign(new Error(OPENAI_RATE_LIMIT_MESSAGE), {
+          status: 429,
+        }),
       },
       {
         name: "documented overloaded_error payload",
@@ -1598,7 +1626,9 @@ describe("runWithModelFallback", () => {
       },
       {
         name: "provider request aborted",
-        firstError: Object.assign(new Error("Request was aborted"), { name: "AbortError" }),
+        firstError: Object.assign(new Error("Request was aborted"), {
+          name: "AbortError",
+        }),
       },
       {
         name: "bare undici terminated transport failure",
@@ -1803,7 +1833,11 @@ describe("runWithModelFallback", () => {
       const store: AuthProfileStore = {
         version: AUTH_STORE_VERSION,
         profiles: {
-          [`${provider}:default`]: { type: "api_key", provider, key: "test-key" },
+          [`${provider}:default`]: {
+            type: "api_key",
+            provider,
+            key: "test-key",
+          },
         },
         usageStats: {
           [`${provider}:default`]:
@@ -2006,8 +2040,16 @@ describe("runWithModelFallback", () => {
       const store: AuthProfileStore = {
         version: AUTH_STORE_VERSION,
         profiles: {
-          "anthropic:default": { type: "api_key", provider: "anthropic", key: "test-key" },
-          "groq:default": { type: "api_key", provider: "groq", key: "test-key" },
+          "anthropic:default": {
+            type: "api_key",
+            provider: "anthropic",
+            key: "test-key",
+          },
+          "groq:default": {
+            type: "api_key",
+            provider: "groq",
+            key: "test-key",
+          },
         },
         usageStats: {
           "anthropic:default": {

@@ -34,7 +34,7 @@ function overview(overrides: Partial<CrestodianOverview["tools"]> = {}): Crestod
     },
     references: {
       docsUrl: "https://docs.openclaw.ai",
-      sourceUrl: "https://github.com/openclaw/openclaw",
+      sourceUrl: "https://github.com/synapsion/openclaw",
     },
   };
 }
@@ -86,7 +86,7 @@ describe("Crestodian assistant", () => {
           docsPath: "/tmp/openclaw/docs",
           docsUrl: "https://docs.openclaw.ai",
           sourcePath: "/tmp/openclaw",
-          sourceUrl: "https://github.com/openclaw/openclaw",
+          sourceUrl: "https://github.com/synapsion/openclaw",
         },
       },
     });

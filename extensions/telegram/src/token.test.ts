@@ -100,7 +100,9 @@ describe("resolveTelegramToken", () => {
     fs.writeFileSync(tokenFile, "file-token\n", "utf-8");
     fs.symlinkSync(tokenFile, tokenLink);
 
-    const cfg = { channels: { telegram: { tokenFile: tokenLink } } } as OpenClawConfig;
+    const cfg = {
+      channels: { telegram: { tokenFile: tokenLink } },
+    } as OpenClawConfig;
     const res = resolveTelegramToken(cfg);
     expect(res.token).toBe("");
     expect(res.source).toBe("none");
@@ -234,7 +236,11 @@ describe("resolveTelegramToken", () => {
     const cfg = {
       channels: {
         telegram: {
-          botToken: { source: "env", provider: "default", id: "TELEGRAM_BOT_TOKEN" },
+          botToken: {
+            source: "env",
+            provider: "default",
+            id: "TELEGRAM_BOT_TOKEN",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -251,7 +257,11 @@ describe("resolveTelegramToken", () => {
     const cfg = {
       channels: {
         telegram: {
-          botToken: { source: "env", provider: "default", id: "TELEGRAM_REF_TOKEN" },
+          botToken: {
+            source: "env",
+            provider: "default",
+            id: "TELEGRAM_REF_TOKEN",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -301,7 +311,11 @@ describe("resolveTelegramToken", () => {
       },
       channels: {
         telegram: {
-          botToken: { source: "env", provider: "telegram-env", id: "TELEGRAM_BOT_TOKEN" },
+          botToken: {
+            source: "env",
+            provider: "telegram-env",
+            id: "TELEGRAM_BOT_TOKEN",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -323,7 +337,11 @@ describe("resolveTelegramToken", () => {
       },
       channels: {
         telegram: {
-          botToken: { source: "env", provider: "telegram-env", id: "TELEGRAM_BOT_TOKEN" },
+          botToken: {
+            source: "env",
+            provider: "telegram-env",
+            id: "TELEGRAM_BOT_TOKEN",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -337,7 +355,11 @@ describe("resolveTelegramToken", () => {
     const cfg = {
       channels: {
         telegram: {
-          botToken: { source: "env", provider: "ops-env", id: "TELEGRAM_BOT_TOKEN" },
+          botToken: {
+            source: "env",
+            provider: "ops-env",
+            id: "TELEGRAM_BOT_TOKEN",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -376,7 +398,11 @@ describe("resolveTelegramToken", () => {
     const cfg = {
       channels: {
         telegram: {
-          botToken: { source: "file", provider: "vault", id: "/telegram/bot-token" },
+          botToken: {
+            source: "file",
+            provider: "vault",
+            id: "/telegram/bot-token",
+          },
         },
       },
     } as unknown as OpenClawConfig;
@@ -386,7 +412,7 @@ describe("resolveTelegramToken", () => {
     );
   });
 
-  // Regression: https://github.com/openclaw/openclaw/issues/53876
+  // Regression: https://github.com/synapsion/openclaw/issues/53876
   // Binding-created accountIds should inherit the channel-level token in
   // single-bot setups (no accounts section).
   it("falls through to channel-level token for binding-created accountId without accounts section", () => {

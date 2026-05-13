@@ -162,7 +162,9 @@ describe("slack prepareSlackMessage inbound contract", () => {
   function createThreadSlackCtx(params: { cfg: OpenClawConfig; replies: unknown }) {
     return createInboundSlackCtx({
       cfg: params.cfg,
-      appClient: { conversations: { replies: params.replies } } as App["client"],
+      appClient: {
+        conversations: { replies: params.replies },
+      } as App["client"],
       defaultRequireMention: false,
       replyToMode: "all",
     });
@@ -228,7 +230,11 @@ describe("slack prepareSlackMessage inbound contract", () => {
         messages: [
           { text: params.starterText, user: params.user, ts: params.startTs },
           { text: "assistant reply", bot_id: "B1", ts: params.replyTs },
-          { text: params.followUpText, user: params.user, ts: params.followUpTs },
+          {
+            text: params.followUpText,
+            user: params.user,
+            ts: params.followUpTs,
+          },
           { text: "current message", user: params.user, ts: params.currentTs },
         ],
         response_metadata: { next_cursor: "" },
@@ -302,7 +308,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
     });
     slackCtx.resolveUserName = async () => ({ name: "Alice" }) as any;
     // Simulate API returning correct type for DM channel
-    slackCtx.resolveChannelName = async () => ({ name: undefined, type: "im" as const });
+    slackCtx.resolveChannelName = async () => ({
+      name: undefined,
+      type: "im" as const,
+    });
     return slackCtx;
   }
 
@@ -352,7 +361,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
     });
     slackCtx.resolveUserName = async () => ({ name: "Alice" }) as any;
     if (params?.asChannel) {
-      slackCtx.resolveChannelName = async () => ({ name: "general", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "general",
+        type: "channel",
+      });
     }
     return slackCtx;
   }
@@ -418,7 +430,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
       replyToMode: "all",
     });
     slackCtx.resolveUserName = async () => ({ name: "Alice" }) as any;
-    slackCtx.resolveChannelName = async () => ({ name: "general", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "general",
+      type: "channel",
+    });
 
     const prepared = await prepareMessageWith(slackCtx, defaultAccount, {
       channel: "C123",
@@ -553,7 +568,9 @@ describe("slack prepareSlackMessage inbound contract", () => {
   });
 
   it("drops bot-authored room messages when allowBots is true but no owner is present (#59284)", async () => {
-    const { slackCtx, members } = createOwnerScopedBotRoomCtx({ members: ["UOTHER"] });
+    const { slackCtx, members } = createOwnerScopedBotRoomCtx({
+      members: ["UOTHER"],
+    });
 
     const prepared = await prepareMessageWith(
       slackCtx,
@@ -568,7 +585,9 @@ describe("slack prepareSlackMessage inbound contract", () => {
   });
 
   it("allows bot-authored room messages when an explicit owner is present (#59284)", async () => {
-    const { slackCtx, members } = createOwnerScopedBotRoomCtx({ members: ["UOWNER"] });
+    const { slackCtx, members } = createOwnerScopedBotRoomCtx({
+      members: ["UOWNER"],
+    });
 
     const prepared = await prepareMessageWith(
       slackCtx,
@@ -776,7 +795,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
         } as OpenClawConfig,
         defaultRequireMention: false,
       });
-      slackCtx.resolveChannelName = async () => ({ name: "strategy", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "strategy",
+        type: "channel",
+      });
       slackCtx.resolveUserName = async () => ({ name: "Alice" });
 
       const prepared = await prepareMessageWith(slackCtx, createSlackAccount(), testCase.message);
@@ -791,7 +813,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
   it("respects replyToModeByChatType.direct override for DMs", async () => {
     const prepared = await prepareMessageWith(
       createReplyToAllSlackCtx(),
-      createSlackAccount({ replyToMode: "all", replyToModeByChatType: { direct: "off" } }),
+      createSlackAccount({
+        replyToMode: "all",
+        replyToModeByChatType: { direct: "off" },
+      }),
       createSlackMessage({}), // DM (channel_type: "im")
     );
 
@@ -807,7 +832,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
         defaultRequireMention: false,
         asChannel: true,
       }),
-      createSlackAccount({ replyToMode: "all", replyToModeByChatType: { direct: "off" } }),
+      createSlackAccount({
+        replyToMode: "all",
+        replyToModeByChatType: { direct: "off" },
+      }),
       createSlackMessage({ channel: "C123", channel_type: "channel" }),
     );
 
@@ -847,14 +875,19 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createThreadSlackCtx({
       cfg: {
         session: { store: storePath },
-        channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+        channels: {
+          slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+        },
       } as OpenClawConfig,
       replies,
     });
     slackCtx.resolveUserName = async (id: string) => ({
       name: id === "U1" ? "Alice" : "Bob",
     });
-    slackCtx.resolveChannelName = async () => ({ name: "general", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "general",
+      type: "channel",
+    });
 
     const prepared = await prepareThreadMessage(slackCtx, {
       text: "current message",
@@ -886,7 +919,9 @@ describe("slack prepareSlackMessage inbound contract", () => {
       appClient: { conversations: { history } } as unknown as App["client"],
       dmHistoryLimit: 2,
     });
-    slackCtx.resolveUserName = async (id: string) => ({ name: id === "U1" ? "Alice" : id });
+    slackCtx.resolveUserName = async (id: string) => ({
+      name: id === "U1" ? "Alice" : id,
+    });
 
     const prepared = await prepareMessageWith(
       slackCtx,
@@ -1082,7 +1117,9 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const { storePath } = storeFixture.makeTmpStorePath();
     const cfg = {
       session: { store: storePath },
-      channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+      channels: {
+        slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+      },
     } as OpenClawConfig;
     const route = resolveAgentRoute({
       cfg,
@@ -1105,7 +1142,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
     });
     const slackCtx = createThreadSlackCtx({ cfg, replies });
     slackCtx.resolveUserName = async () => ({ name: "Alice" });
-    slackCtx.resolveChannelName = async () => ({ name: "general", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "general",
+      type: "channel",
+    });
 
     const prepared = await prepareThreadMessage(slackCtx, {
       text: "reply in old thread",
@@ -1229,12 +1269,17 @@ describe("slack prepareSlackMessage inbound contract", () => {
       });
       const slackCtx = createThreadSlackCtx({
         cfg: {
-          channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+          channels: {
+            slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+          },
         } as OpenClawConfig,
         replies,
       });
       slackCtx.resolveUserName = async () => ({ name: "Alice" });
-      slackCtx.resolveChannelName = async () => ({ name: "general", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "general",
+        type: "channel",
+      });
 
       const prepared = await prepareThreadMessage(slackCtx, {
         text: "bound reply",
@@ -1255,7 +1300,11 @@ describe("slack prepareSlackMessage inbound contract", () => {
       });
       expect(touch).toHaveBeenCalledWith("test-binding", undefined);
     } finally {
-      unregisterSessionBindingAdapter({ channel: "slack", accountId: "default", adapter });
+      unregisterSessionBindingAdapter({
+        channel: "slack",
+        accountId: "default",
+        adapter,
+      });
     }
   });
 
@@ -1276,13 +1325,18 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createInboundSlackCtx({
       cfg: {
         session: { store: storePath },
-        channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+        channels: {
+          slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+        },
       } as OpenClawConfig,
       appClient: { conversations: { replies } } as unknown as App["client"],
       defaultRequireMention: true,
       replyToMode: "all",
     });
-    slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "proj-openclaw",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const root = await prepareSlackMessage({
@@ -1308,7 +1362,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
         channel: "C0AHZFCAS1K",
         channel_type: "channel",
         user: "U_BEK",
-        text: "https://github.com/openclaw/openclaw/issues/50621",
+        text: "https://github.com/synapsion/openclaw/issues/50621",
         ts: "1777244714.000100",
         thread_ts: rootTs,
       } as SlackMessageEvent,
@@ -1340,13 +1394,18 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createInboundSlackCtx({
       cfg: {
         session: { store: storePath },
-        channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+        channels: {
+          slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+        },
       } as OpenClawConfig,
       appClient: { conversations: { replies } } as unknown as App["client"],
       defaultRequireMention: true,
       replyToMode: "all",
     });
-    slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "proj-openclaw",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const root = await prepareSlackMessage({
@@ -1372,7 +1431,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
         channel: "C0AHZFCAS1K",
         channel_type: "channel",
         user: "U_BEK",
-        text: "https://github.com/openclaw/openclaw/issues/50621",
+        text: "https://github.com/synapsion/openclaw/issues/50621",
         ts: "1777244714.000100",
         thread_ts: rootTs,
       } as SlackMessageEvent,
@@ -1408,7 +1467,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
       } as unknown as App["client"],
       defaultRequireMention: true,
     });
-    slackCtx.resolveChannelName = async () => ({ name: "agents", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "agents",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const prepared = await prepareSlackMessage({
@@ -1453,7 +1515,10 @@ describe("slack prepareSlackMessage inbound contract", () => {
       } as unknown as App["client"],
       defaultRequireMention: true,
     });
-    slackCtx.resolveChannelName = async () => ({ name: "agents", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "agents",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const prepared = await prepareSlackMessage({
@@ -1495,13 +1560,18 @@ describe("slack prepareSlackMessage inbound contract", () => {
       cfg: {
         session: { store: storePath },
         messages: { groupChat: { mentionPatterns: ["\\bbill\\b"] } },
-        channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+        channels: {
+          slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+        },
       } as OpenClawConfig,
       appClient: { conversations: { replies } } as unknown as App["client"],
       defaultRequireMention: true,
       replyToMode: "all",
     });
-    slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "proj-openclaw",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const root = await prepareSlackMessage({
@@ -1527,7 +1597,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
         channel: "C0AHZFCAS1K",
         channel_type: "channel",
         user: "U_BEK",
-        text: "https://github.com/openclaw/openclaw/issues/50621",
+        text: "https://github.com/synapsion/openclaw/issues/50621",
         ts: "1777244714.000100",
         thread_ts: rootTs,
       } as SlackMessageEvent,
@@ -1575,15 +1645,23 @@ describe("slack prepareSlackMessage inbound contract", () => {
           agents: {
             list: [
               { id: "main", default: true },
-              { id: "review", groupChat: { mentionPatterns: ["\\breviewbot\\b"] } },
+              {
+                id: "review",
+                groupChat: { mentionPatterns: ["\\breviewbot\\b"] },
+              },
             ],
           },
-          channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+          channels: {
+            slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+          },
         } as OpenClawConfig,
         defaultRequireMention: true,
         replyToMode: "all",
       });
-      slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "proj-openclaw",
+        type: "channel",
+      });
       slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
       const prepared = await prepareSlackMessage({
@@ -1609,7 +1687,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
           channel: "C0AHZFCAS1K",
           channel_type: "channel",
           user: "U_BEK",
-          text: "https://github.com/openclaw/openclaw/issues/50621",
+          text: "https://github.com/synapsion/openclaw/issues/50621",
           ts: "1777244714.000100",
           thread_ts: rootTs,
         } as SlackMessageEvent,
@@ -1627,7 +1705,11 @@ describe("slack prepareSlackMessage inbound contract", () => {
         1,
       );
     } finally {
-      unregisterSessionBindingAdapter({ channel: "slack", accountId: "default", adapter });
+      unregisterSessionBindingAdapter({
+        channel: "slack",
+        accountId: "default",
+        adapter,
+      });
     }
   });
 
@@ -1667,12 +1749,17 @@ describe("slack prepareSlackMessage inbound contract", () => {
         cfg: {
           session: { store: storePath },
           messages: { groupChat: { mentionPatterns: ["\\bbill\\b"] } },
-          channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+          channels: {
+            slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+          },
         } as OpenClawConfig,
         defaultRequireMention: true,
         replyToMode: "all",
       });
-      slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "proj-openclaw",
+        type: "channel",
+      });
       slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
       const root = await prepareSlackMessage({
@@ -1698,7 +1785,7 @@ describe("slack prepareSlackMessage inbound contract", () => {
           channel: "C0AHZFCAS1K",
           channel_type: "channel",
           user: "U_BEK",
-          text: "https://github.com/openclaw/openclaw/issues/50621",
+          text: "https://github.com/synapsion/openclaw/issues/50621",
           ts: "1777244714.000100",
           thread_ts: rootTs,
         } as SlackMessageEvent,
@@ -1712,7 +1799,11 @@ describe("slack prepareSlackMessage inbound contract", () => {
       expect(followUp!.ctxPayload.SessionKey).toBe(expectedSessionKey);
       expect(new Set([root!.ctxPayload.SessionKey, followUp!.ctxPayload.SessionKey]).size).toBe(1);
     } finally {
-      unregisterSessionBindingAdapter({ channel: "slack", accountId: "default", adapter });
+      unregisterSessionBindingAdapter({
+        channel: "slack",
+        accountId: "default",
+        adapter,
+      });
     }
   });
 
@@ -1735,13 +1826,18 @@ describe("slack prepareSlackMessage inbound contract", () => {
     const slackCtx = createInboundSlackCtx({
       cfg: {
         session: { store: storePath },
-        channels: { slack: { enabled: true, replyToMode: "all", groupPolicy: "open" } },
+        channels: {
+          slack: { enabled: true, replyToMode: "all", groupPolicy: "open" },
+        },
       } as OpenClawConfig,
       appClient: { conversations: { replies } } as unknown as App["client"],
       defaultRequireMention: true,
       replyToMode: "all",
     });
-    slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+    slackCtx.resolveChannelName = async () => ({
+      name: "proj-openclaw",
+      type: "channel",
+    });
     slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
     const prepared = await prepareSlackMessage({
@@ -1777,12 +1873,17 @@ describe("slack prepareSlackMessage inbound contract", () => {
       const slackCtx = createInboundSlackCtx({
         cfg: {
           session: { store: storePath },
-          channels: { slack: { enabled: true, replyToMode, groupPolicy: "open" } },
+          channels: {
+            slack: { enabled: true, replyToMode, groupPolicy: "open" },
+          },
         } as OpenClawConfig,
         defaultRequireMention: true,
         replyToMode,
       });
-      slackCtx.resolveChannelName = async () => ({ name: "proj-openclaw", type: "channel" });
+      slackCtx.resolveChannelName = async () => ({
+        name: "proj-openclaw",
+        type: "channel",
+      });
       slackCtx.resolveUserName = async () => ({ name: "Bek" });
 
       const prepared = await prepareSlackMessage({
@@ -1818,7 +1919,12 @@ describe("prepareSlackMessage sender prefix", () => {
   }): SlackMonitorContext {
     return {
       cfg: {
-        agents: { defaults: { model: "anthropic/claude-opus-4-5", workspace: "/tmp/openclaw" } },
+        agents: {
+          defaults: {
+            model: "anthropic/claude-opus-4-5",
+            workspace: "/tmp/openclaw",
+          },
+        },
         channels: { slack: params.channels },
       },
       accountId: "default",
@@ -1873,7 +1979,11 @@ describe("prepareSlackMessage sender prefix", () => {
   async function prepareSenderPrefixMessage(ctx: SlackMonitorContext, text: string, ts: string) {
     return prepareSlackMessage({
       ctx,
-      account: { accountId: "default", config: {}, replyToMode: "off" } as never,
+      account: {
+        accountId: "default",
+        config: {},
+        replyToMode: "off",
+      } as never,
       message: {
         type: "message",
         channel: "C1",
@@ -1923,7 +2033,9 @@ describe("prepareSlackMessage sender prefix", () => {
       { length: 22 },
       (_, index) => `U${String(index + 1).padStart(2, "0")}`,
     );
-    const resolveUserName = vi.fn(async (userId: string) => ({ name: `Name ${userId}` }));
+    const resolveUserName = vi.fn(async (userId: string) => ({
+      name: `Name ${userId}`,
+    }));
 
     const result = await resolveSlackMessageContent({
       message: {
@@ -1962,7 +2074,9 @@ describe("prepareSlackMessage sender prefix", () => {
       "U10",
       ...Array.from({ length: 10 }, (_, index) => `U${String(index + 16).padStart(2, "0")}`),
     ];
-    const resolveUserName = vi.fn(async (userId: string) => ({ name: `Name ${userId}` }));
+    const resolveUserName = vi.fn(async (userId: string) => ({
+      name: `Name ${userId}`,
+    }));
 
     const result = await resolveSlackMessageContent({
       message: {

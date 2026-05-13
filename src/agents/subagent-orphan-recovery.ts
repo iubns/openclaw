@@ -6,7 +6,7 @@
  * that are still tracked as active in the subagent registry) and sends a
  * synthetic resume message to restart their work.
  *
- * @see https://github.com/openclaw/openclaw/issues/47711
+ * @see https://github.com/synapsion/openclaw/issues/47711
  */
 
 import crypto from "node:crypto";
@@ -249,7 +249,11 @@ export async function recoverOrphanedSubagentSessions(params: {
     recovered: 0,
     failed: 0,
     skipped: 0,
-    failedRuns: [] as Array<{ runId: string; childSessionKey: string; error?: string }>,
+    failedRuns: [] as Array<{
+      runId: string;
+      childSessionKey: string;
+      error?: string;
+    }>,
   };
   const resumedSessionKeys = params.resumedSessionKeys ?? new Set<string>();
   const attemptNumber = Math.max(1, params.attemptNumber ?? 1);

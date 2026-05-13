@@ -48,7 +48,11 @@ describe("loadCrestodianOverview", () => {
           found: command === "codex",
           version: command === "codex" ? "codex 1.0.0" : undefined,
         }),
-        probeGatewayUrl: async (url) => ({ reachable: false, url, error: "offline" }),
+        probeGatewayUrl: async (url) => ({
+          reachable: false,
+          url,
+          error: "offline",
+        }),
       },
     });
 
@@ -66,7 +70,7 @@ describe("loadCrestodianOverview", () => {
       reachable: false,
     });
     expect(overview.references.docsPath).toMatch(/docs$/);
-    expect(overview.references.sourceUrl).toBe("https://github.com/openclaw/openclaw");
+    expect(overview.references.sourceUrl).toBe("https://github.com/synapsion/openclaw");
     expect(formatCrestodianOverview(overview)).toContain(
       'Next: run "gateway status" or "restart gateway"',
     );

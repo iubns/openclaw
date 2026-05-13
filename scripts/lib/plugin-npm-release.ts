@@ -72,7 +72,7 @@ export type PublishablePluginPackageCandidate<
   packageJson: TPackageJson;
 };
 
-export const OPENCLAW_PLUGIN_NPM_REPOSITORY_URL = "https://github.com/openclaw/openclaw";
+export const OPENCLAW_PLUGIN_NPM_REPOSITORY_URL = "https://github.com/synapsion/openclaw";
 
 // oxlint-disable-next-line typescript/no-unnecessary-type-parameters -- Release helper preserves caller-specific package.json shape.
 function readPluginPackageJson<TPackageJson extends PluginPackageJson = PluginPackageJson>(
@@ -112,7 +112,10 @@ export function resolvePublishablePluginVersion(params: {
   extensionId: string;
   packageJson: Pick<PluginPackageJson, "version">;
   validationErrors: string[];
-}): { version: string; parsedVersion: NonNullable<ReturnType<typeof parseReleaseVersion>> } | null {
+}): {
+  version: string;
+  parsedVersion: NonNullable<ReturnType<typeof parseReleaseVersion>>;
+} | null {
   const version = params.packageJson.version?.trim() ?? "";
   const parsedVersion = parseReleaseVersion(version);
   if (parsedVersion === null) {

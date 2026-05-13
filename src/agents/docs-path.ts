@@ -3,7 +3,7 @@ import path from "node:path";
 import { resolveOpenClawPackageRoot } from "../infra/openclaw-root.js";
 
 export const OPENCLAW_DOCS_URL = "https://docs.openclaw.ai";
-export const OPENCLAW_SOURCE_URL = "https://github.com/openclaw/openclaw";
+export const OPENCLAW_SOURCE_URL = "https://github.com/synapsion/openclaw";
 
 type ResolveOpenClawReferencePathParams = {
   workspaceDir?: string;

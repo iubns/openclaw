@@ -101,7 +101,11 @@ vi.mock("@azure/identity", () => {
   class ClientCertificateCredential {
     getToken = mockGetToken;
   }
-  return { ManagedIdentityCredential, DefaultAzureCredential, ClientCertificateCredential };
+  return {
+    ManagedIdentityCredential,
+    DefaultAzureCredential,
+    ClientCertificateCredential,
+  };
 });
 
 const originalFetch = globalThis.fetch;
@@ -148,7 +152,7 @@ function createSdkStub(): MSTeamsTeamsSdk {
 
 describe("createMSTeamsApp", () => {
   it("does not crash with express 5 path-to-regexp (#55161)", async () => {
-    // Regression test for: https://github.com/openclaw/openclaw/issues/55161
+    // Regression test for: https://github.com/synapsion/openclaw/issues/55161
     // createMSTeamsApp passes a no-op httpServerAdapter to prevent the SDK from
     // creating its default HttpPlugin (which registers `/api*` — invalid in Express 5).
     const { App } = await import("@microsoft/teams.apps");
@@ -317,7 +321,9 @@ describe("createBotFrameworkJwtValidator", () => {
   });
 
   it("validates a token with Entra issuer", async () => {
-    jwtState.decodedPayload = { iss: `https://login.microsoftonline.com/tenant-id/v2.0` };
+    jwtState.decodedPayload = {
+      iss: `https://login.microsoftonline.com/tenant-id/v2.0`,
+    };
 
     const validator = await createBotFrameworkJwtValidator(creds);
     await expect(validator.validate("Bearer token-entra")).resolves.toBe(true);
@@ -404,7 +410,11 @@ function makeFakeSdk() {
       appInstances.push(opts);
     }
   };
-  return { sdk: { App: FakeApp as any, Client: FakeClient as any }, appInstances, FakeApp };
+  return {
+    sdk: { App: FakeApp as any, Client: FakeClient as any },
+    appInstances,
+    FakeApp,
+  };
 }
 
 describe("createMSTeamsApp – secret credentials", () => {
@@ -495,7 +505,10 @@ describe("createMSTeamsApp – federated managed identity", () => {
       managedIdentityClientId: "mi-client-id",
     };
     await createMSTeamsApp(creds, sdk);
-    expect(appInstances[0]).toMatchObject({ clientId: "mi-app-id", tenantId: "mi-tenant" });
+    expect(appInstances[0]).toMatchObject({
+      clientId: "mi-app-id",
+      tenantId: "mi-tenant",
+    });
     expect(typeof appInstances[0].token).toBe("function");
     const token = await (appInstances[0].token as (scope: string) => Promise<string>)(
       "https://api.botframework.com/.default",
@@ -582,7 +595,10 @@ describe("createMSTeamsAdapter – continueConversation", () => {
 
     expect(createFn).toHaveBeenCalledTimes(1);
     expect(createFn).toHaveBeenCalledWith(
-      expect.objectContaining({ type: "message", text: "hello from proactive send" }),
+      expect.objectContaining({
+        type: "message",
+        text: "hello from proactive send",
+      }),
     );
   });
 

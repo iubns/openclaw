@@ -81,7 +81,12 @@ vi.mock("../plugin-sdk/memory-core-engine-runtime.js", () => ({
       envVars: ["OPENAI_API_KEY"],
       transport: "remote",
     },
-    { providerId: "local", authProviderId: "local", envVars: [], transport: "local" },
+    {
+      providerId: "local",
+      authProviderId: "local",
+      envVars: [],
+      transport: "local",
+    },
   ]),
 }));
 
@@ -176,7 +181,10 @@ describe("noteMemorySearchHealth", () => {
     );
     getActiveMemorySearchManager.mockResolvedValue({
       manager: {
-        status: () => ({ workspaceDir: "/tmp/agent-default/workspace", backend: "builtin" }),
+        status: () => ({
+          workspaceDir: "/tmp/agent-default/workspace",
+          backend: "builtin",
+        }),
         close: vi.fn(async () => {}),
       },
     });
@@ -205,7 +213,11 @@ describe("noteMemorySearchHealth", () => {
     });
 
     await noteMemorySearchHealth(cfg, {
-      gatewayMemoryProbe: { checked: true, ready: false, error: "node-llama-cpp not installed" },
+      gatewayMemoryProbe: {
+        checked: true,
+        ready: false,
+        error: "node-llama-cpp not installed",
+      },
     });
 
     expect(note).toHaveBeenCalledTimes(1);
@@ -322,7 +334,11 @@ describe("noteMemorySearchHealth", () => {
     });
 
     await noteMemorySearchHealth(cfg, {
-      gatewayMemoryProbe: { checked: true, ready: false, error: "memory search unavailable" },
+      gatewayMemoryProbe: {
+        checked: true,
+        ready: false,
+        error: "memory search unavailable",
+      },
     });
 
     expect(resolveApiKeyForProvider).not.toHaveBeenCalled();
@@ -334,7 +350,9 @@ describe("noteMemorySearchHealth", () => {
   });
 
   it("does not warn when QMD backend is active", async () => {
-    const qmdCfg = { memory: { backend: "qmd", qmd: { command: "qmd" } } } as OpenClawConfig;
+    const qmdCfg = {
+      memory: { backend: "qmd", qmd: { command: "qmd" } },
+    } as OpenClawConfig;
     resolveMemorySearchConfig.mockReturnValue({
       provider: "auto",
       local: {},
@@ -352,7 +370,9 @@ describe("noteMemorySearchHealth", () => {
   });
 
   it("warns when QMD backend is active but the qmd binary is unavailable", async () => {
-    const qmdCfg = { memory: { backend: "qmd", qmd: { command: "qmd" } } } as OpenClawConfig;
+    const qmdCfg = {
+      memory: { backend: "qmd", qmd: { command: "qmd" } },
+    } as OpenClawConfig;
     checkQmdBinaryAvailability.mockResolvedValueOnce({
       available: false,
       error: "spawn qmd ENOENT",
@@ -492,7 +512,11 @@ describe("noteMemorySearchHealth", () => {
     });
 
     await noteMemorySearchHealth(cfg, {
-      gatewayMemoryProbe: { checked: true, ready: false, error: "connection refused" },
+      gatewayMemoryProbe: {
+        checked: true,
+        ready: false,
+        error: "connection refused",
+      },
     });
 
     const message = String(note.mock.calls[0]?.[0] ?? "");
@@ -508,7 +532,11 @@ describe("noteMemorySearchHealth", () => {
     });
 
     await noteMemorySearchHealth(cfg, {
-      gatewayMemoryProbe: { checked: true, ready: false, error: "LM API token missing" },
+      gatewayMemoryProbe: {
+        checked: true,
+        ready: false,
+        error: "LM API token missing",
+      },
     });
 
     const message = String(note.mock.calls[0]?.[0] ?? "");
@@ -521,7 +549,7 @@ describe("noteMemorySearchHealth", () => {
     // { checked: false, ready: false, skipped: true }. This must NOT produce a
     // false-positive warning — it means readiness was never checked, not that
     // embeddings are unavailable.
-    // Regression test for: https://github.com/openclaw/openclaw/issues/74608
+    // Regression test for: https://github.com/synapsion/openclaw/issues/74608
     resolveMemorySearchConfig.mockReturnValue({
       provider: "lmstudio",
       local: {},
@@ -553,7 +581,7 @@ describe("noteMemorySearchHealth", () => {
   it("warns for key-optional provider (lmstudio) when gateway probe timed out", async () => {
     // A gateway timeout sets checked: false but skipped: false/absent. This is a
     // real diagnostic signal — embeddings may be unavailable — so we should warn.
-    // Regression guard: https://github.com/openclaw/openclaw/issues/74608
+    // Regression guard: https://github.com/synapsion/openclaw/issues/74608
     resolveMemorySearchConfig.mockReturnValue({
       provider: "lmstudio",
       local: {},
@@ -806,7 +834,10 @@ describe("memory recall doctor integration", () => {
 
     await maybeRepairMemoryRecallHealth({ cfg, prompter });
 
-    expect(maybeRepairWorkspaceMemoryHealth).toHaveBeenCalledWith({ cfg, prompter });
+    expect(maybeRepairWorkspaceMemoryHealth).toHaveBeenCalledWith({
+      cfg,
+      prompter,
+    });
     expect(prompter.confirmRuntimeRepair).toHaveBeenCalled();
     expect(repairShortTermPromotionArtifacts).toHaveBeenCalledWith({
       workspaceDir: "/tmp/agent-default/workspace",
@@ -849,7 +880,10 @@ describe("memory recall doctor integration", () => {
 
     await maybeRepairMemoryRecallHealth({ cfg, prompter });
 
-    expect(maybeRepairWorkspaceMemoryHealth).toHaveBeenCalledWith({ cfg, prompter });
+    expect(maybeRepairWorkspaceMemoryHealth).toHaveBeenCalledWith({
+      cfg,
+      prompter,
+    });
     expect(prompter.confirmRuntimeRepair).toHaveBeenCalled();
     expect(repairDreamingArtifacts).toHaveBeenCalledWith({
       workspaceDir: "/tmp/agent-default/workspace",

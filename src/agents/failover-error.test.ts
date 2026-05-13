@@ -26,11 +26,11 @@ const OPENROUTER_MODEL_NOT_FOUND_PAYLOAD =
 const TOGETHER_MONTHLY_SPEND_CAP_MESSAGE =
   "The account associated with this API key has reached its maximum allowed monthly spending limit.";
 // Issue-backed Anthropic/OpenAI-compatible insufficient_quota payload under HTTP 400:
-// https://github.com/openclaw/openclaw/issues/23440
+// https://github.com/synapsion/openclaw/issues/23440
 const INSUFFICIENT_QUOTA_PAYLOAD =
   '{"type":"error","error":{"type":"insufficient_quota","message":"Your account has insufficient quota balance to run this request."}}';
 // Issue-backed ZhipuAI/GLM quota-exhausted log from #33785:
-// https://github.com/openclaw/openclaw/issues/33785
+// https://github.com/synapsion/openclaw/issues/33785
 const ZHIPUAI_WEEKLY_MONTHLY_LIMIT_EXHAUSTED_MESSAGE =
   "LLM error 1310: Weekly/Monthly Limit Exhausted. Your limit will reset at 2026-03-06 22:19:54 (request_id: 20260303141547610b7f574d1b44cb)";
 // AWS Bedrock 429 ThrottlingException / 503 ServiceUnavailable:
@@ -751,18 +751,24 @@ describe("failover-error", () => {
   });
 
   it("infers timeout from abort/error stop-reason messages", () => {
-    expect(resolveFailoverReasonFromError({ message: "Unhandled stop reason: abort" })).toBe(
-      "timeout",
-    );
-    expect(resolveFailoverReasonFromError({ message: "Unhandled stop reason: error" })).toBe(
-      "timeout",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        message: "Unhandled stop reason: abort",
+      }),
+    ).toBe("timeout");
+    expect(
+      resolveFailoverReasonFromError({
+        message: "Unhandled stop reason: error",
+      }),
+    ).toBe("timeout");
     expect(resolveFailoverReasonFromError({ message: "stop reason: abort" })).toBe("timeout");
     expect(resolveFailoverReasonFromError({ message: "stop reason: error" })).toBe("timeout");
     expect(resolveFailoverReasonFromError({ message: "reason: abort" })).toBe("timeout");
     expect(resolveFailoverReasonFromError({ message: "reason: error" })).toBe("timeout");
     expect(
-      resolveFailoverReasonFromError({ message: "Unhandled stop reason: network_error" }),
+      resolveFailoverReasonFromError({
+        message: "Unhandled stop reason: network_error",
+      }),
     ).toBe("timeout");
   });
 
@@ -774,17 +780,21 @@ describe("failover-error", () => {
     ).toBe("rate_limit");
     expect(resolveFailoverReasonFromError({ message: "Connection error." })).toBe("timeout");
     expect(resolveFailoverReasonFromError({ message: "fetch failed" })).toBe("timeout");
-    expect(resolveFailoverReasonFromError({ message: "Network error: ECONNREFUSED" })).toBe(
-      "timeout",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        message: "Network error: ECONNREFUSED",
+      }),
+    ).toBe("timeout");
     expect(
       resolveFailoverReasonFromError({
         message: "dial tcp: lookup api.example.com: no such host (ENOTFOUND)",
       }),
     ).toBe("timeout");
-    expect(resolveFailoverReasonFromError({ message: "temporary dns failure EAI_AGAIN" })).toBe(
-      "timeout",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        message: "temporary dns failure EAI_AGAIN",
+      }),
+    ).toBe("timeout");
   });
 
   it("treats AbortError reason=abort as timeout", () => {
@@ -881,15 +891,21 @@ describe("failover-error", () => {
   });
 
   it("401 with ambiguous auth message returns auth", () => {
-    expect(resolveFailoverReasonFromError({ status: 401, message: "invalid_api_key" })).toBe(
-      "auth",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        status: 401,
+        message: "invalid_api_key",
+      }),
+    ).toBe("auth");
   });
 
   it("403 with revoked key message returns auth_permanent", () => {
-    expect(resolveFailoverReasonFromError({ status: 403, message: "api key revoked" })).toBe(
-      "auth_permanent",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        status: 403,
+        message: "api key revoked",
+      }),
+    ).toBe("auth_permanent");
   });
 
   it("403 OpenRouter 'Key limit exceeded' returns billing (model fallback trigger)", () => {
@@ -946,9 +962,12 @@ describe("failover-error", () => {
   });
 
   it("403 bare permission_error returns auth", () => {
-    expect(resolveFailoverReasonFromError({ status: 403, message: "permission_error" })).toBe(
-      "auth",
-    );
+    expect(
+      resolveFailoverReasonFromError({
+        status: 403,
+        message: "permission_error",
+      }),
+    ).toBe("auth");
   });
 
   it("permission_error with organization denial stays auth_permanent", () => {

@@ -23,7 +23,10 @@ const { createCronPromptExecutor } = await import("./run-executor.js");
 
 function makeMessageToolPolicyJob(
   delivery: Record<string, unknown> = { mode: "none" },
-  payload: Record<string, unknown> = { kind: "agentTurn", message: "send a message" },
+  payload: Record<string, unknown> = {
+    kind: "agentTurn",
+    message: "send a message",
+  },
 ) {
   return {
     id: "message-tool-policy",
@@ -48,7 +51,12 @@ function makeAnnounceMessageToolJob(
     schedule: { kind: "every", everyMs: 60_000 },
     sessionTarget: "isolated",
     payload: { kind: "agentTurn", message: "send a message" },
-    delivery: { mode: "announce", channel: "messagechat", to: "123", ...options.delivery },
+    delivery: {
+      mode: "announce",
+      channel: "messagechat",
+      to: "123",
+      ...options.delivery,
+    },
   } as never;
 }
 
@@ -189,7 +197,12 @@ describe("runCronIsolatedAgentTurn message tool policy", () => {
     expect(result.delivery).toEqual(
       expect.objectContaining({
         intended: { channel: "messagechat", to: "123", source: "explicit" },
-        resolved: { ok: true, channel: "messagechat", to: "123", source: "explicit" },
+        resolved: {
+          ok: true,
+          channel: "messagechat",
+          to: "123",
+          source: "explicit",
+        },
         messageToolSentTo: [{ channel: "messagechat", to: "123" }],
         fallbackUsed: false,
         delivered: true,
@@ -377,7 +390,12 @@ describe("runCronIsolatedAgentTurn message tool policy", () => {
         schedule: { kind: "every", everyMs: 60_000 },
         sessionTarget: "isolated",
         payload: { kind: "agentTurn", message: "send a message" },
-        delivery: { mode: "none", channel: "topicchat", to: "room#42", threadId: 42 },
+        delivery: {
+          mode: "none",
+          channel: "topicchat",
+          to: "room#42",
+          threadId: 42,
+        },
       } as never,
     });
 
@@ -391,7 +409,12 @@ describe("runCronIsolatedAgentTurn message tool policy", () => {
     });
     expect(result.delivery).toEqual(
       expect.objectContaining({
-        intended: { channel: "topicchat", to: "room#42", threadId: 42, source: "explicit" },
+        intended: {
+          channel: "topicchat",
+          to: "room#42",
+          threadId: 42,
+          source: "explicit",
+        },
         resolved: {
           ok: true,
           channel: "topicchat",
@@ -608,7 +631,12 @@ describe("runCronIsolatedAgentTurn message tool policy", () => {
 
     expect(result.delivery).toEqual(
       expect.objectContaining({
-        resolved: { ok: true, channel: "messagechat", to: "123", source: "explicit" },
+        resolved: {
+          ok: true,
+          channel: "messagechat",
+          to: "123",
+          source: "explicit",
+        },
         messageToolSentTo: [{ channel: "messagechat", to: "123" }],
       }),
     );
@@ -798,7 +826,10 @@ describe("runCronIsolatedAgentTurn message tool policy", () => {
   it("keeps pending message presentation warnings fatal when cron delivery does not succeed", async () => {
     mockRunCronFallbackPassthrough();
     mockPendingMessagePresentationWarningOutcome();
-    resolveCronDeliveryPlanMock.mockReturnValue({ requested: false, mode: "none" });
+    resolveCronDeliveryPlanMock.mockReturnValue({
+      requested: false,
+      mode: "none",
+    });
     runEmbeddedPiAgentMock.mockResolvedValue({
       payloads: [{ text: "Final cron report" }, { text: "⚠️ ✉️ Message failed", isError: true }],
       meta: { agentMeta: { usage: { input: 10, output: 20 } } },
@@ -883,7 +914,10 @@ describe("runCronIsolatedAgentTurn delivery instruction", () => {
 
   it("does not append a delivery instruction when delivery is not requested", async () => {
     mockRunCronFallbackPassthrough();
-    resolveCronDeliveryPlanMock.mockReturnValue({ requested: false, mode: "none" });
+    resolveCronDeliveryPlanMock.mockReturnValue({
+      requested: false,
+      mode: "none",
+    });
 
     await runCronIsolatedAgentTurn(makeParams());
 
@@ -894,7 +928,7 @@ describe("runCronIsolatedAgentTurn delivery instruction", () => {
   });
 
   it("does not instruct the agent to summarize when delivery is requested", async () => {
-    // Regression for https://github.com/openclaw/openclaw/issues/58535:
+    // Regression for https://github.com/synapsion/openclaw/issues/58535:
     // "summary" caused LLMs to condense structured output and drop fields
     // non-deterministically on every run.
     mockRunCronFallbackPassthrough();

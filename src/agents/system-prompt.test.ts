@@ -493,7 +493,7 @@ describe("buildAgentSystemPrompt", () => {
     });
 
     expect(prompt).toContain("OpenClaw docs: https://docs.openclaw.ai");
-    expect(prompt).toContain("Source: https://github.com/openclaw/openclaw");
+    expect(prompt).toContain("Source: https://github.com/synapsion/openclaw");
     expect(prompt).toContain(
       "If docs are incomplete or stale, review the OpenClaw source on GitHub before answering.",
     );
@@ -989,7 +989,11 @@ describe("buildAgentSystemPrompt", () => {
         containerWorkspaceDir: "/workspace",
         workspaceAccess: "ro",
         agentWorkspaceMount: "/agent",
-        elevated: { allowed: true, defaultLevel: "on", fullAccessAvailable: true },
+        elevated: {
+          allowed: true,
+          defaultLevel: "on",
+          fullAccessAvailable: true,
+        },
       },
     });
 
@@ -1102,7 +1106,9 @@ describe("buildAgentBootstrapSystemContext", () => {
   });
 
   it("uses limited bootstrap wording for constrained user-facing runs", () => {
-    const prompt = buildAgentBootstrapSystemContext({ bootstrapMode: "limited" }).join("\n");
+    const prompt = buildAgentBootstrapSystemContext({
+      bootstrapMode: "limited",
+    }).join("\n");
 
     expect(prompt).toContain("## Bootstrap Pending");
     expect(prompt).toContain("cannot safely complete the full BOOTSTRAP.md workflow here");

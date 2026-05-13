@@ -3,9 +3,9 @@
   "version": "2026.5.4-beta.1",
   "description": "Multi-channel AI gateway with extensible messaging integrations",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/synapsion/openclaw#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/synapsion/openclaw/issues"
   },
   "license": "MIT",
   "author": "",

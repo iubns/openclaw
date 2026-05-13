@@ -108,7 +108,10 @@ function isHeartbeatOkResponse(message: { role: string; content?: unknown }): bo
   return stripHeartbeatTokenForDisplay(text).shouldSkip;
 }
 
-function resolveMessageText(content: unknown): { text: string; hasNonTextContent: boolean } {
+function resolveMessageText(content: unknown): {
+  text: string;
+  hasNonTextContent: boolean;
+} {
   if (typeof content === "string") {
     return { text: content, hasNonTextContent: false };
   }
@@ -397,7 +400,11 @@ export async function loadChatHistory(state: ChatState) {
   state.chatLoading = true;
   state.lastError = null;
   try {
-    let res: { messages?: Array<unknown>; sessionId?: string; thinkingLevel?: string };
+    let res: {
+      messages?: Array<unknown>;
+      sessionId?: string;
+      thinkingLevel?: string;
+    };
     for (;;) {
       try {
         res = await state.client.request<{
@@ -734,7 +741,7 @@ export function handleChatEvent(state: ChatState, payload?: ChatEventPayload) {
 
   // Terminal events for the active client run carry runId; missing-runId events are unowned.
   // Final from another run (e.g. sub-agent announce): refresh history to show new message.
-  // See https://github.com/openclaw/openclaw/issues/1909
+  // See https://github.com/synapsion/openclaw/issues/1909
   if (state.chatRunId && payload.runId !== state.chatRunId) {
     if (payload.state === "final") {
       const finalMessage = normalizeFinalAssistantMessage(payload.message);

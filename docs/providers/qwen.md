@@ -10,7 +10,7 @@ title: "Qwen"
 
 **Qwen OAuth has been removed.** The free-tier OAuth integration
 (`qwen-portal`) that used `portal.qwen.ai` endpoints is no longer available.
-See [Issue #49557](https://github.com/openclaw/openclaw/issues/49557) for
+See [Issue #49557](https://github.com/synapsion/openclaw/issues/49557) for
 background.
 
 </Warning>

@@ -139,7 +139,9 @@ function nullableStringArraySchema(description: string) {
 function cronPayloadObjectSchema(params: { toolsAllow: TSchema }) {
   return Type.Object(
     {
-      kind: optionalStringEnum(CRON_PAYLOAD_KINDS, { description: "Payload type" }),
+      kind: optionalStringEnum(CRON_PAYLOAD_KINDS, {
+        description: "Payload type",
+      }),
       text: Type.Optional(Type.String({ description: "Message text (kind=systemEvent)" })),
       message: Type.Optional(Type.String({ description: "Agent prompt (kind=agentTurn)" })),
       model: Type.Optional(Type.String({ description: "Model override" })),
@@ -157,11 +159,15 @@ function cronPayloadObjectSchema(params: { toolsAllow: TSchema }) {
 const CronScheduleSchema = Type.Optional(
   Type.Object(
     {
-      kind: optionalStringEnum(CRON_SCHEDULE_KINDS, { description: "Schedule type" }),
+      kind: optionalStringEnum(CRON_SCHEDULE_KINDS, {
+        description: "Schedule type",
+      }),
       at: Type.Optional(Type.String({ description: "ISO-8601 timestamp (kind=at)" })),
       everyMs: Type.Optional(Type.Number({ description: "Interval in milliseconds (kind=every)" })),
       anchorMs: Type.Optional(
-        Type.Number({ description: "Optional start anchor in milliseconds (kind=every)" }),
+        Type.Number({
+          description: "Optional start anchor in milliseconds (kind=every)",
+        }),
       ),
       expr: Type.Optional(
         Type.String({
@@ -190,7 +196,9 @@ const CronPayloadSchema = Type.Optional(
 const CronDeliverySchema = Type.Optional(
   Type.Object(
     {
-      mode: optionalStringEnum(CRON_DELIVERY_MODES, { description: "Delivery mode" }),
+      mode: optionalStringEnum(CRON_DELIVERY_MODES, {
+        description: "Delivery mode",
+      }),
       channel: Type.Optional(Type.String({ description: "Delivery channel" })),
       to: Type.Optional(Type.String({ description: "Delivery target" })),
       threadId: Type.Optional(
@@ -230,7 +238,9 @@ const CronFailureAlertSchema = Type.Optional(
       to: Type.Optional(Type.String({ description: "Alert target" })),
       cooldownMs: Type.Optional(Type.Number({ description: "Cooldown between alerts in ms" })),
       includeSkipped: Type.Optional(
-        Type.Boolean({ description: "Count consecutive skipped runs toward alerting" }),
+        Type.Boolean({
+          description: "Count consecutive skipped runs toward alerting",
+        }),
       ),
       mode: optionalStringEnum(["announce", "webhook"] as const),
       accountId: Type.Optional(Type.String()),
@@ -251,7 +261,9 @@ const CronJobObjectSchema = Type.Optional(
           description: 'Session target: "main", "isolated", "current", or "session:<id>"',
         }),
       ),
-      wakeMode: optionalStringEnum(CRON_WAKE_MODES, { description: "When to wake the session" }),
+      wakeMode: optionalStringEnum(CRON_WAKE_MODES, {
+        description: "When to wake the session",
+      }),
       payload: CronPayloadSchema,
       delivery: CronDeliverySchema,
       agentId: nullableStringSchema("Agent id, or null to keep it unset"),
@@ -396,7 +408,11 @@ async function buildReminderContextLines(params: {
   }
   const cfg = getRuntimeConfig();
   const { mainKey, alias } = resolveMainSessionAlias(cfg);
-  const resolvedKey = resolveInternalSessionKey({ key: sessionKey, alias, mainKey });
+  const resolvedKey = resolveInternalSessionKey({
+    key: sessionKey,
+    alias,
+    mainKey,
+  });
   try {
     const res = await params.callGatewayTool<{ messages: Array<unknown> }>(
       "chat.history",
@@ -664,7 +680,7 @@ Use jobId as the canonical identifier; id is accepted for compatibility. Use con
           // job properties to the top level alongside `action` instead of nesting
           // them inside `job`. When `params.job` is missing or empty, reconstruct
           // a synthetic job object from any recognised top-level job fields.
-          // See: https://github.com/openclaw/openclaw/issues/11310
+          // See: https://github.com/synapsion/openclaw/issues/11310
           if (isMissingOrEmptyObject(params.job)) {
             const synthetic = recoverCronObjectFromFlatParams(params);
             // Only use the synthetic job if at least one meaningful field is present
@@ -686,11 +702,18 @@ Use jobId as the canonical identifier; id is accepted for compatibility. Use con
             const cfg = getRuntimeConfig();
             const { mainKey, alias } = resolveMainSessionAlias(cfg);
             const resolvedSessionKey = opts?.agentSessionKey
-              ? resolveInternalSessionKey({ key: opts.agentSessionKey, alias, mainKey })
+              ? resolveInternalSessionKey({
+                  key: opts.agentSessionKey,
+                  alias,
+                  mainKey,
+                })
               : undefined;
             if (!("agentId" in job) || (job as { agentId?: unknown }).agentId === undefined) {
               const agentId = opts?.agentSessionKey
-                ? resolveSessionAgentId({ sessionKey: opts.agentSessionKey, config: cfg })
+                ? resolveSessionAgentId({
+                    sessionKey: opts.agentSessionKey,
+                    config: cfg,
+                  })
                 : undefined;
               if (agentId) {
                 (job as { agentId?: string }).agentId = agentId;

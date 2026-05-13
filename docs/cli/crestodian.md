@@ -37,7 +37,7 @@ local CLI probes, API-key presence, agents, model, and Gateway details.
 Crestodian uses the same OpenClaw reference discovery as regular agents. In a Git checkout,
 it points itself at local `docs/` and the local source tree. In an npm package install, it
 uses the bundled package docs and links to
-[https://github.com/openclaw/openclaw](https://github.com/openclaw/openclaw), with explicit
+[https://github.com/synapsion/openclaw](https://github.com/synapsion/openclaw), with explicit
 guidance to review source whenever the docs are not enough.
 
 ## Examples

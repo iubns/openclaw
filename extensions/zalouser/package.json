@@ -4,7 +4,7 @@
   "description": "OpenClaw Zalo Personal Account plugin via native zca-js integration",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openclaw/openclaw"
+    "url": "https://github.com/synapsion/openclaw"
   },
   "type": "module",
   "dependencies": {

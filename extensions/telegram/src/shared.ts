@@ -83,7 +83,7 @@ export function formatDuplicateTelegramTokenReason(params: {
  *   2. The config has an explicit `accounts` section with entries, AND
  *   3. The accountId is not found in that `accounts` section.
  *
- * See: https://github.com/openclaw/openclaw/issues/53876
+ * See: https://github.com/synapsion/openclaw/issues/53876
  */
 function isBlockedByMultiBotGuard(cfg: OpenClawConfig, accountId: string): boolean {
   if (normalizeAccountId(accountId) === DEFAULT_ACCOUNT_ID) {
@@ -193,24 +193,33 @@ export function createTelegramPluginBase(params: {
         // channel-level fallback paths not available in resolveTelegramAccount.
         // This ensures binding-created accountIds that inherit the channel-level
         // token are correctly detected as configured.
-        // See: https://github.com/openclaw/openclaw/issues/53876
+        // See: https://github.com/synapsion/openclaw/issues/53876
         if (isBlockedByMultiBotGuard(cfg, account.accountId)) {
           return false;
         }
-        const inspected = inspectTelegramAccount({ cfg, accountId: account.accountId });
+        const inspected = inspectTelegramAccount({
+          cfg,
+          accountId: account.accountId,
+        });
         // Gate on actually available token, not just "configured" — the latter
         // includes "configured_unavailable" (unreadable tokenFile, unresolved
         // SecretRef) which would pass here but fail at runtime.
         if (!inspected.token?.trim()) {
           return false;
         }
-        return !findTelegramTokenOwnerAccountId({ cfg, accountId: account.accountId });
+        return !findTelegramTokenOwnerAccountId({
+          cfg,
+          accountId: account.accountId,
+        });
       },
       unconfiguredReason: (account, cfg) => {
         if (isBlockedByMultiBotGuard(cfg, account.accountId)) {
           return `not configured: unknown accountId "${account.accountId}" in multi-bot setup`;
         }
-        const inspected = inspectTelegramAccount({ cfg, accountId: account.accountId });
+        const inspected = inspectTelegramAccount({
+          cfg,
+          accountId: account.accountId,
+        });
         if (!inspected.token?.trim()) {
           if (inspected.tokenStatus === "configured_unavailable") {
             return `not configured: token ${inspected.tokenSource} is configured but unavailable`;
@@ -239,14 +248,20 @@ export function createTelegramPluginBase(params: {
             tokenSource: "none" as const,
           };
         }
-        const inspected = inspectTelegramAccount({ cfg, accountId: account.accountId });
+        const inspected = inspectTelegramAccount({
+          cfg,
+          accountId: account.accountId,
+        });
         return {
           accountId: account.accountId,
           name: account.name,
           enabled: account.enabled,
           configured:
             !!inspected.token?.trim() &&
-            !findTelegramTokenOwnerAccountId({ cfg, accountId: account.accountId }),
+            !findTelegramTokenOwnerAccountId({
+              cfg,
+              accountId: account.accountId,
+            }),
           tokenSource: inspected.tokenSource,
         };
       },

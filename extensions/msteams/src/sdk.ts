@@ -97,8 +97,8 @@ async function loadMSTeamsSdk(): Promise<MSTeamsTeamsSdk> {
  * HttpPlugin (which uses the deprecated `plugins` array and registers an
  * Express middleware with the pattern `/api*` — invalid in Express 5).
  *
- * See: https://github.com/openclaw/openclaw/issues/55161
- * See: https://github.com/openclaw/openclaw/issues/60732
+ * See: https://github.com/synapsion/openclaw/issues/55161
+ * See: https://github.com/synapsion/openclaw/issues/60732
  */
 function createNoOpHttpServerAdapter(): IHttpServerAdapter {
   return {
@@ -236,12 +236,16 @@ export function createMSTeamsTokenProvider(app: MSTeamsApp): MSTeamsTokenProvide
     async getAccessToken(scope: string): Promise<string> {
       if (scope.includes("graph.microsoft.com")) {
         const token = await (
-          app as unknown as { getAppGraphToken(): Promise<{ toString(): string } | null> }
+          app as unknown as {
+            getAppGraphToken(): Promise<{ toString(): string } | null>;
+          }
         ).getAppGraphToken();
         return token ? String(token) : "";
       }
       const token = await (
-        app as unknown as { getBotToken(): Promise<{ toString(): string } | null> }
+        app as unknown as {
+          getBotToken(): Promise<{ toString(): string } | null>;
+        }
       ).getBotToken();
       return token ? String(token) : "";
     },
@@ -251,7 +255,9 @@ export function createMSTeamsTokenProvider(app: MSTeamsApp): MSTeamsTokenProvide
 function createBotTokenGetter(app: MSTeamsApp): () => Promise<string | undefined> {
   return async () => {
     const token = await (
-      app as unknown as { getBotToken(): Promise<{ toString(): string } | null> }
+      app as unknown as {
+        getBotToken(): Promise<{ toString(): string } | null>;
+      }
     ).getBotToken();
     return token ? String(token) : undefined;
   };

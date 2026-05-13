@@ -85,7 +85,7 @@ const REPAIR_DEBOUNCE_MS = 30_000;
 // previous 8s threshold was triggering false-positive teardowns on every gateway
 // restart in such environments. 20s gives healthy networks plenty of room while
 // still catching genuinely stuck advertisers (announce that never completes).
-// See https://github.com/openclaw/openclaw/issues/72481
+// See https://github.com/synapsion/openclaw/issues/72481
 const STUCK_ANNOUNCING_MS = 20_000;
 const MAX_CONSECUTIVE_RESTARTS = 3;
 const MAX_CONSECUTIVE_STUCK_STATE_RESTARTS = 1;

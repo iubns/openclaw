@@ -1372,9 +1372,9 @@ When a single Slack message contains multiple file attachments:
 
 - [Media understanding pipeline](/nodes/media-understanding)
 - [PDF tool](/tools/pdf)
-- Epic: [#51349](https://github.com/openclaw/openclaw/issues/51349) — Slack attachment vision enablement
-- Regression tests: [#51353](https://github.com/openclaw/openclaw/issues/51353)
-- Live verification: [#51354](https://github.com/openclaw/openclaw/issues/51354)
+- Epic: [#51349](https://github.com/synapsion/openclaw/issues/51349) — Slack attachment vision enablement
+- Regression tests: [#51353](https://github.com/synapsion/openclaw/issues/51353)
+- Live verification: [#51354](https://github.com/synapsion/openclaw/issues/51354)
 
 ## Related
 

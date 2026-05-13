@@ -33,7 +33,7 @@ function createFakeSession(): ChromeMcpSession {
       const pageLines = [
         "## Pages",
         `1: ${currentUrl} [selected]`,
-        "2: https://github.com/openclaw/openclaw/pull/45318",
+        "2: https://github.com/synapsion/openclaw/pull/45318",
       ];
       if (createdPageOpen) {
         pageLines.push(`3: ${currentUrl}`);
@@ -57,7 +57,7 @@ function createFakeSession(): ChromeMcpSession {
             text: [
               "## Pages",
               "1: https://developer.chrome.com/blog/chrome-devtools-mcp-debug-your-browser-session",
-              "2: https://github.com/openclaw/openclaw/pull/45318",
+              "2: https://github.com/synapsion/openclaw/pull/45318",
               `3: ${currentUrl} [selected]`,
             ].join("\n"),
           },
@@ -121,7 +121,7 @@ describe("chrome MCP page parsing", () => {
       {
         targetId: "2",
         title: "",
-        url: "https://github.com/openclaw/openclaw/pull/45318",
+        url: "https://github.com/synapsion/openclaw/pull/45318",
         type: "page",
       },
     ]);
@@ -263,7 +263,9 @@ describe("chrome MCP page parsing", () => {
     };
     setChromeMcpSessionFactoryForTest(factory);
 
-    await ensureChromeMcpAvailable("chrome-live", undefined, { ephemeral: true });
+    await ensureChromeMcpAvailable("chrome-live", undefined, {
+      ephemeral: true,
+    });
 
     expect(factoryCalls).toBe(1);
     expect(closeMocks[0]).toHaveBeenCalledTimes(1);
@@ -390,7 +392,12 @@ describe("chrome MCP page parsing", () => {
         }
         if (name === "list_pages") {
           return {
-            content: [{ type: "text", text: "## Pages\n1: https://example.com [selected]" }],
+            content: [
+              {
+                type: "text",
+                text: "## Pages\n1: https://example.com [selected]",
+              },
+            ],
           };
         }
         throw new Error(`unexpected tool ${name}`);
@@ -402,7 +409,11 @@ describe("chrome MCP page parsing", () => {
 
     // First call: tool error (isError: true) — should NOT destroy session
     await expect(
-      evaluateChromeMcpScript({ profileName: "chrome-live", targetId: "1", fn: "() => null" }),
+      evaluateChromeMcpScript({
+        profileName: "chrome-live",
+        targetId: "1",
+        fn: "() => null",
+      }),
     ).rejects.toThrow(/element not found/);
 
     // Second call: should reuse the same session (factory called only once)
@@ -447,7 +458,12 @@ describe("chrome MCP page parsing", () => {
         }
         if (name === "list_pages") {
           return {
-            content: [{ type: "text", text: "## Pages\n1: https://example.com [selected]" }],
+            content: [
+              {
+                type: "text",
+                text: "## Pages\n1: https://example.com [selected]",
+              },
+            ],
           };
         }
         throw new Error(`unexpected tool ${name}`);
@@ -558,7 +574,12 @@ describe("chrome MCP page parsing", () => {
           };
         }
         return {
-          content: [{ type: "text", text: "## Pages\n1: https://example.com [selected]" }],
+          content: [
+            {
+              type: "text",
+              text: "## Pages\n1: https://example.com [selected]",
+            },
+          ],
         };
       }) as typeof session.client.callTool;
       return session;
@@ -599,7 +620,12 @@ describe("chrome MCP page parsing", () => {
           };
         }
         return {
-          content: [{ type: "text", text: "## Pages\n1: https://example.com [selected]" }],
+          content: [
+            {
+              type: "text",
+              text: "## Pages\n1: https://example.com [selected]",
+            },
+          ],
         };
       }) as typeof session.client.callTool;
       return session;

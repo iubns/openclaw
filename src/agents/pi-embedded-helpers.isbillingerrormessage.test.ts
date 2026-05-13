@@ -32,7 +32,7 @@ const ANTHROPIC_OVERLOADED_PAYLOAD =
 // OpenRouter 402 billing example: https://openrouter.ai/docs/api-reference/errors
 const OPENROUTER_CREDITS_MESSAGE = "Payment Required: insufficient credits";
 // Issue-backed Anthropic/OpenAI-compatible insufficient_quota payload under HTTP 400:
-// https://github.com/openclaw/openclaw/issues/23440
+// https://github.com/synapsion/openclaw/issues/23440
 const INSUFFICIENT_QUOTA_PAYLOAD =
   '{"type":"error","error":{"type":"insufficient_quota","message":"Your account has insufficient quota balance to run this request."}}'; // pragma: allowlist secret
 // Together AI error code examples: https://docs.together.ai/docs/error-codes
@@ -773,15 +773,21 @@ describe("classifyFailoverReason", () => {
       expect(classifyFailoverReason(sample)).toBe("timeout");
       expect(isFailoverErrorMessage(sample)).toBe(true);
     }
-    expect(classifyFailoverReason("An unknown error occurred", { provider: "anthropic" })).toBe(
-      "timeout",
-    );
-    expect(classifyFailoverReason("An unknown error occurred", { provider: "google" })).toBe(
-      "timeout",
-    );
-    expect(classifyFailoverReason("An unknown error occurred", { provider: "openrouter" })).toBe(
-      "timeout",
-    );
+    expect(
+      classifyFailoverReason("An unknown error occurred", {
+        provider: "anthropic",
+      }),
+    ).toBe("timeout");
+    expect(
+      classifyFailoverReason("An unknown error occurred", {
+        provider: "google",
+      }),
+    ).toBe("timeout");
+    expect(
+      classifyFailoverReason("An unknown error occurred", {
+        provider: "openrouter",
+      }),
+    ).toBe("timeout");
   });
 
   it("does not match wrapped or unrelated unknown-error phrases as bare wrapper", () => {
@@ -793,9 +799,11 @@ describe("classifyFailoverReason", () => {
   });
 
   it("classifies openrouter-scoped upstream messages", () => {
-    expect(classifyFailoverReason("Provider returned error", { provider: "openrouter" })).toBe(
-      "timeout",
-    );
+    expect(
+      classifyFailoverReason("Provider returned error", {
+        provider: "openrouter",
+      }),
+    ).toBe("timeout");
     expect(classifyFailoverReason("Key limit exceeded", { provider: "openrouter" })).toBe(
       "billing",
     );
@@ -803,7 +811,11 @@ describe("classifyFailoverReason", () => {
 
   it("does not classify openrouter-scoped upstream messages without provider context", () => {
     expect(classifyFailoverReason("Provider returned error")).toBeNull();
-    expect(classifyFailoverReason("Provider returned error", { provider: "anthropic" })).toBeNull();
+    expect(
+      classifyFailoverReason("Provider returned error", {
+        provider: "anthropic",
+      }),
+    ).toBeNull();
     expect(classifyFailoverReason("Key limit exceeded")).toBeNull();
   });
 });
@@ -1290,7 +1302,7 @@ describe("classifyFailoverReason", () => {
 
   it("classifies Chinese provider error messages correctly", () => {
     // ZhipuAI/GLM error code 1234: "网络错误" (network error) — real production error
-    // from https://github.com/openclaw/openclaw/issues/56242
+    // from https://github.com/synapsion/openclaw/issues/56242
     expect(
       classifyFailoverReason(
         "LLM error 1234: 网络错误，错误id：202603281427587491f4467f1c4712，请联系客服。 (request_id: 202603281427587491f4467f1c4712)",

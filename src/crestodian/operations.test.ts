@@ -87,7 +87,11 @@ vi.mock("./probes.js", () => ({
     found: false,
     error: "not found",
   })),
-  probeGatewayUrl: vi.fn(async (url: string) => ({ reachable: false, url, error: "offline" })),
+  probeGatewayUrl: vi.fn(async (url: string) => ({
+    reachable: false,
+    url,
+    error: "offline",
+  })),
 }));
 
 vi.mock("./overview.js", () => ({
@@ -99,7 +103,13 @@ vi.mock("./overview.js", () => ({
       { id: "main", isDefault: true },
       { id: "work", isDefault: false, model: "openai/gpt-5.2" },
     ],
-    config: { path: "/tmp/openclaw.json", exists: true, valid: true, issues: [], hash: null },
+    config: {
+      path: "/tmp/openclaw.json",
+      exists: true,
+      valid: true,
+      issues: [],
+      hash: null,
+    },
     tools: {
       codex: { command: "codex", found: false, error: "not found" },
       claude: { command: "claude", found: false, error: "not found" },
@@ -113,7 +123,7 @@ vi.mock("./overview.js", () => ({
     },
     references: {
       docsUrl: "https://docs.openclaw.ai",
-      sourceUrl: "https://github.com/openclaw/openclaw",
+      sourceUrl: "https://github.com/synapsion/openclaw",
     },
   })),
 }));
@@ -178,18 +188,30 @@ describe("parseCrestodianOperation", () => {
   });
 
   it("keeps ambiguous model requests read-only", () => {
-    expect(parseCrestodianOperation("models please")).toEqual({ kind: "models" });
+    expect(parseCrestodianOperation("models please")).toEqual({
+      kind: "models",
+    });
   });
 
   it("parses gateway lifecycle operations", () => {
-    expect(parseCrestodianOperation("gateway status")).toEqual({ kind: "gateway-status" });
-    expect(parseCrestodianOperation("restart gateway")).toEqual({ kind: "gateway-restart" });
-    expect(parseCrestodianOperation("start gateway")).toEqual({ kind: "gateway-start" });
-    expect(parseCrestodianOperation("stop gateway")).toEqual({ kind: "gateway-stop" });
+    expect(parseCrestodianOperation("gateway status")).toEqual({
+      kind: "gateway-status",
+    });
+    expect(parseCrestodianOperation("restart gateway")).toEqual({
+      kind: "gateway-restart",
+    });
+    expect(parseCrestodianOperation("start gateway")).toEqual({
+      kind: "gateway-start",
+    });
+    expect(parseCrestodianOperation("stop gateway")).toEqual({
+      kind: "gateway-stop",
+    });
   });
 
   it("parses config and doctor repair operations", () => {
-    expect(parseCrestodianOperation("validate config")).toEqual({ kind: "config-validate" });
+    expect(parseCrestodianOperation("validate config")).toEqual({
+      kind: "config-validate",
+    });
     expect(parseCrestodianOperation("config set gateway.port 19001")).toEqual({
       kind: "config-set",
       path: "gateway.port",
@@ -203,12 +225,18 @@ describe("parseCrestodianOperation", () => {
         id: "GATEWAY_TOKEN",
       },
     );
-    expect(parseCrestodianOperation("doctor fix")).toEqual({ kind: "doctor-fix" });
+    expect(parseCrestodianOperation("doctor fix")).toEqual({
+      kind: "doctor-fix",
+    });
   });
 
   it("parses plugin management operations", () => {
-    expect(parseCrestodianOperation("plugins list")).toEqual({ kind: "plugin-list" });
-    expect(parseCrestodianOperation("list plugin")).toEqual({ kind: "plugin-list" });
+    expect(parseCrestodianOperation("plugins list")).toEqual({
+      kind: "plugin-list",
+    });
+    expect(parseCrestodianOperation("list plugin")).toEqual({
+      kind: "plugin-list",
+    });
     expect(parseCrestodianOperation("plugins search calendar sync")).toEqual({
       kind: "plugin-search",
       query: "calendar sync",

@@ -516,7 +516,9 @@ function applyConfiguredProviderOverrides(params: {
       ...discoveredModel,
       ...(resolvedParams ? { params: resolvedParams } : {}),
       // Discovered models originate from models.json and may contain persistence markers.
-      headers: sanitizeModelHeaders(discoveredModel.headers, { stripSecretRefMarkers: true }),
+      headers: sanitizeModelHeaders(discoveredModel.headers, {
+        stripSecretRefMarkers: true,
+      }),
     };
   }
   const configuredModel =
@@ -1141,7 +1143,7 @@ export async function resolveModelAsync(
  * providers before setup, the raw `Unknown model` error is too vague. Provider
  * plugins can append a targeted recovery hint here.
  *
- * See: https://github.com/openclaw/openclaw/issues/17328
+ * See: https://github.com/synapsion/openclaw/issues/17328
  */
 function buildUnknownModelError(params: {
   provider: string;

@@ -15,8 +15,8 @@ describe("gh-read helpers", () => {
 
   it("normalizes repo strings from common git formats", () => {
     expect(normalizeRepo("openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("github.com/openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("https://github.com/openclaw/openclaw.git")).toBe("openclaw/openclaw");
+    expect(normalizeRepo("github.com/synapsion/openclaw")).toBe("openclaw/openclaw");
+    expect(normalizeRepo("https://github.com/synapsion/openclaw.git")).toBe("openclaw/openclaw");
     expect(normalizeRepo("git@github.com:openclaw/openclaw.git")).toBe("openclaw/openclaw");
     expect(normalizeRepo("invalid")).toBeNull();
   });

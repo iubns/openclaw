@@ -424,7 +424,10 @@ export function remapInjectedContextFilesToWorkspace(params: {
   });
 }
 
-function summarizeMessagePayload(msg: AgentMessage): { textChars: number; imageBlocks: number } {
+function summarizeMessagePayload(msg: AgentMessage): {
+  textChars: number;
+  imageBlocks: number;
+} {
   const content = (msg as { content?: unknown }).content;
   if (typeof content === "string") {
     return { textChars: content.length, imageBlocks: 0 };
@@ -496,7 +499,10 @@ function isMidTurnPrecheckAssistantError(message: AgentMessage | undefined): boo
   if (!message || message.role !== "assistant") {
     return false;
   }
-  const record = message as unknown as { stopReason?: unknown; errorMessage?: unknown };
+  const record = message as unknown as {
+    stopReason?: unknown;
+    errorMessage?: unknown;
+  };
   return record.stopReason === "error" && record.errorMessage === MID_TURN_PRECHECK_ERROR_MESSAGE;
 }
 
@@ -619,7 +625,11 @@ function collectAttemptExplicitToolAllowlistSources(params: {
     { label: "group tools.allow", allow: groupPolicy?.allow },
     { label: "sandbox tools.allow", allow: params.sandboxToolPolicy?.allow },
     { label: "subagent tools.allow", allow: subagentPolicy?.allow },
-    { label: "runtime toolsAllow", allow: params.toolsAllow, enforceWhenToolsDisabled: true },
+    {
+      label: "runtime toolsAllow",
+      allow: params.toolsAllow,
+      enforceWhenToolsDisabled: true,
+    },
   ]);
 }
 
@@ -796,7 +806,10 @@ export async function runEmbeddedAttempt(
       : (() => {
           const allTools = createOpenClawCodingTools({
             agentId: sessionAgentId,
-            ...buildEmbeddedAttemptToolRunContext({ ...params, trace: runTrace }),
+            ...buildEmbeddedAttemptToolRunContext({
+              ...params,
+              trace: runTrace,
+            }),
             exec: {
               ...params.execOverrides,
               elevated: params.bashElevated,
@@ -2050,7 +2063,9 @@ export async function runEmbeddedAttempt(
 
       const innerStreamFn = activeSession.agent.streamFn;
       activeSession.agent.streamFn = (model, context, options) => {
-        const signal = runAbortController.signal as AbortSignal & { reason?: unknown };
+        const signal = runAbortController.signal as AbortSignal & {
+          reason?: unknown;
+        };
         if (yieldDetected && signal.aborted && signal.reason === "sessions_yield") {
           return createYieldAbortedResponse(model) as unknown as Awaited<
             ReturnType<typeof innerStreamFn>
@@ -2903,7 +2918,9 @@ export async function runEmbeddedAttempt(
           const preemptiveCompaction = shouldPreemptivelyCompactBeforePrompt({
             messages: activeSession.messages,
             ...(contextEnginePromptAuthority === "preassembly_may_overflow"
-              ? { unwindowedMessages: unwindowedContextEngineMessagesForPrecheck }
+              ? {
+                  unwindowedMessages: unwindowedContextEngineMessagesForPrecheck,
+                }
               : {}),
             systemPrompt: systemPromptText,
             prompt: effectivePrompt,
@@ -3015,7 +3032,9 @@ export async function runEmbeddedAttempt(
               // This avoids potential issues with models that don't expect the images parameter
               if (imageResult.images.length > 0) {
                 await abortable(
-                  activeSession.prompt(promptForModel, { images: imageResult.images }),
+                  activeSession.prompt(promptForModel, {
+                    images: imageResult.images,
+                  }),
                 );
               } else {
                 await abortable(activeSession.prompt(promptForModel));
@@ -3129,7 +3148,7 @@ export async function runEmbeddedAttempt(
         // Previously this was before the prompt, which caused a custom entry to be
         // inserted between compaction and the next prompt — breaking the
         // prepareCompaction() guard that checks the last entry type, leading to
-        // double-compaction. See: https://github.com/openclaw/openclaw/issues/9282
+        // double-compaction. See: https://github.com/synapsion/openclaw/issues/9282
         // Skip when timed out during compaction — session state may be inconsistent.
         // Also skip when compaction ran this attempt — appending a custom entry
         // after compaction would break the guard again. See: #28491
@@ -3613,7 +3632,7 @@ export async function runEmbeddedAttempt(
       // *before* tool execution completes in the retried agent loop. Without this wait,
       // flushPendingToolResults() fires while tools are still executing, inserting
       // synthetic "missing tool result" errors and causing silent agent failures.
-      // See: https://github.com/openclaw/openclaw/issues/8643
+      // See: https://github.com/synapsion/openclaw/issues/8643
       let cleanupError: unknown;
       try {
         await cleanupEmbeddedAttemptResources({

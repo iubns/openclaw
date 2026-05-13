@@ -180,7 +180,11 @@ async function cleanupTimedOutCronAgentRun(
     return;
   }
   let settleTimer: NodeJS.Timeout | undefined;
-  const cleanupPromise = state.deps.cleanupTimedOutAgentRun({ job, timeoutMs, execution });
+  const cleanupPromise = state.deps.cleanupTimedOutAgentRun({
+    job,
+    timeoutMs,
+    execution,
+  });
   const settleTimeout = new Promise<void>((resolve) => {
     settleTimer = setTimeout(resolve, CRON_TIMEOUT_CLEANUP_GUARD_MS);
   });
@@ -555,7 +559,10 @@ export function applyJobResult(
     result.status === "error" && typeof result.error === "string"
       ? (resolveFailoverReasonFromError(result.error) ?? undefined)
       : undefined;
-  const deliveryState = resolveDeliveryState({ job, delivered: result.delivered });
+  const deliveryState = resolveDeliveryState({
+    job,
+    delivered: result.delivered,
+  });
   job.state.lastDelivered = deliveryState.delivered;
   job.state.lastDeliveryStatus = deliveryState.status;
   job.state.lastDeliveryError =
@@ -847,7 +854,7 @@ export async function onTimer(state: CronServiceState) {
     // We use MAX_TIMER_DELAY_MS as a fixed re-check interval to avoid a
     // zero-delay hot-loop when past-due jobs are waiting for the current
     // execution to finish.
-    // See: https://github.com/openclaw/openclaw/issues/12025
+    // See: https://github.com/synapsion/openclaw/issues/12025
     armRunningRecheckTimer(state);
     return;
   }
@@ -896,7 +903,12 @@ export async function onTimer(state: CronServiceState) {
       const startedAt = state.deps.nowMs();
       job.state.runningAtMs = startedAt;
       markCronJobActive(job.id);
-      emit(state, { jobId: job.id, action: "started", job, runAtMs: startedAt });
+      emit(state, {
+        jobId: job.id,
+        action: "started",
+        job,
+        runAtMs: startedAt,
+      });
       const jobTimeoutMs = resolveCronJobTimeoutMs(job);
       const taskRunId = tryCreateCronTaskRun({ state, job, startedAt });
 
@@ -932,7 +944,9 @@ export async function onTimer(state: CronServiceState) {
     };
 
     const concurrency = Math.min(resolveRunConcurrency(state), Math.max(1, dueJobs.length));
-    const results: (TimedCronRunOutcome | undefined)[] = Array.from({ length: dueJobs.length });
+    const results: (TimedCronRunOutcome | undefined)[] = Array.from({
+      length: dueJobs.length,
+    });
     let cursor = 0;
     const workers = Array.from({ length: concurrency }, async () => {
       for (;;) {
@@ -1170,7 +1184,10 @@ async function planStartupCatchup(
     );
     const deferred: StartupDeferredJob[] = [
       ...deferredOverflow.map((job) => ({ jobId: job.id })),
-      ...deferredAgentJobs.map((job) => ({ jobId: job.id, delayMs: deferredAgentDelayMs })),
+      ...deferredAgentJobs.map((job) => ({
+        jobId: job.id,
+        delayMs: deferredAgentDelayMs,
+      })),
     ];
     if (deferred.length > 0) {
       state.deps.log.info(
@@ -1194,7 +1211,10 @@ async function planStartupCatchup(
     }
     if (startupCandidates.length > 0) {
       state.deps.log.info(
-        { count: startupCandidates.length, jobIds: startupCandidates.map((j) => j.id) },
+        {
+          count: startupCandidates.length,
+          jobIds: startupCandidates.map((j) => j.id),
+        },
         "cron: running missed jobs after restart",
       );
     }
@@ -1460,7 +1480,11 @@ async function executeMainSessionCronJob(
       return { status: "ok", summary: text };
     }
     if (heartbeatResult.status === "skipped") {
-      return { status: "skipped", error: heartbeatResult.reason, summary: text };
+      return {
+        status: "skipped",
+        error: heartbeatResult.reason,
+        summary: text,
+      };
     }
     return { status: "error", error: heartbeatResult.reason, summary: text };
   }
@@ -1643,7 +1667,11 @@ export function wake(
   }
   state.deps.enqueueSystemEvent(text);
   if (opts.mode === "now") {
-    state.deps.requestHeartbeat({ source: "manual", intent: "immediate", reason: "wake" });
+    state.deps.requestHeartbeat({
+      source: "manual",
+      intent: "immediate",
+      reason: "wake",
+    });
   }
   return { ok: true } as const;
 }

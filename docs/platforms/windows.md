@@ -223,7 +223,7 @@ systemctl --user status
 For a normal first-time setup inside WSL, follow the Linux Getting Started flow:
 
 ```bash
-git clone https://github.com/openclaw/openclaw.git
+git clone https://github.com/synapsion/openclaw.git
 cd openclaw
 pnpm install
 pnpm build

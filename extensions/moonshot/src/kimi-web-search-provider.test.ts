@@ -74,10 +74,14 @@ describe("kimi web search provider", () => {
 
   it("inherits native Moonshot chat baseUrl when kimi baseUrl is unset", () => {
     const cnConfig = {
-      models: { providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1" } } },
+      models: {
+        providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1" } },
+      },
     } as unknown as OpenClawConfig;
     const cnConfigWithTrailingSlash = {
-      models: { providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1/" } } },
+      models: {
+        providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1/" } },
+      },
     } as unknown as OpenClawConfig;
 
     expect(__testing.resolveKimiBaseUrl(undefined, cnConfig)).toBe("https://api.moonshot.cn/v1");
@@ -88,7 +92,9 @@ describe("kimi web search provider", () => {
 
   it("does not inherit non-native Moonshot baseUrl for web search", () => {
     const proxyConfig = {
-      models: { providers: { moonshot: { baseUrl: "https://proxy.example/v1" } } },
+      models: {
+        providers: { moonshot: { baseUrl: "https://proxy.example/v1" } },
+      },
     } as unknown as OpenClawConfig;
 
     expect(__testing.resolveKimiBaseUrl(undefined, proxyConfig)).toBe("https://api.moonshot.ai/v1");
@@ -96,7 +102,9 @@ describe("kimi web search provider", () => {
 
   it("keeps explicit kimi baseUrl over models.providers.moonshot.baseUrl", () => {
     const moonshotConfig = {
-      models: { providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1" } } },
+      models: {
+        providers: { moonshot: { baseUrl: "https://api.moonshot.cn/v1" } },
+      },
     } as unknown as OpenClawConfig;
 
     expect(
@@ -207,7 +215,7 @@ describe("kimi web search provider", () => {
   it("accepts final responses with search result citations", async () => {
     const fetchMock = vi.fn().mockResolvedValue(
       jsonResponse({
-        search_results: [{ title: "OpenClaw", url: "https://github.com/openclaw/openclaw" }],
+        search_results: [{ title: "OpenClaw", url: "https://github.com/synapsion/openclaw" }],
         choices: [
           {
             finish_reason: "stop",
@@ -224,7 +232,7 @@ describe("kimi web search provider", () => {
       expect(result).toMatchObject({
         provider: "kimi",
         content: expect.stringContaining("OpenClaw is on GitHub."),
-        citations: ["https://github.com/openclaw/openclaw"],
+        citations: ["https://github.com/synapsion/openclaw"],
       });
       expect(result).not.toHaveProperty("error");
     });

@@ -7,7 +7,7 @@ description: Triage, redact, clean up, and resolve OpenClaw GitHub Secret Scanni
 
 **Maintainer-only.** This skill requires repo admin / maintainer permissions to edit or delete other users' comments and resolve secret scanning alerts.
 
-Use this skill when processing alerts from `https://github.com/openclaw/openclaw/security/secret-scanning`.
+Use this skill when processing alerts from `https://github.com/synapsion/openclaw/security/secret-scanning`.
 
 **Language rule:** All notification comments and replacement comments MUST be written in English.
 
@@ -198,7 +198,7 @@ The JSON format:
     "number": 72,
     "secret_type": "Discord Bot Token",
     "location_label": "Issue #63101 comment",
-    "location_url": "https://github.com/openclaw/openclaw/issues/63101#issuecomment-xxx",
+    "location_url": "https://github.com/synapsion/openclaw/issues/63101#issuecomment-xxx",
     "actions": "Deleted+Recreated+Notified",
     "history_cleared": true
   }

@@ -38,8 +38,8 @@ and troubleshooting see the main [FAQ](/help/faq).
     necessary commands. That keeps changes small and easier to audit.
 
     If you discover a real bug or fix, please file a GitHub issue or send a PR:
-    [https://github.com/openclaw/openclaw/issues](https://github.com/openclaw/openclaw/issues)
-    [https://github.com/openclaw/openclaw/pulls](https://github.com/openclaw/openclaw/pulls)
+    [https://github.com/synapsion/openclaw/issues](https://github.com/synapsion/openclaw/issues)
+    [https://github.com/synapsion/openclaw/pulls](https://github.com/synapsion/openclaw/pulls)
 
     Start with these commands (share outputs when asking for help):
 
@@ -91,7 +91,7 @@ and troubleshooting see the main [FAQ](/help/faq).
     From source (contributors/dev):
 
     ```bash
-    git clone https://github.com/openclaw/openclaw.git
+    git clone https://github.com/synapsion/openclaw.git
     cd openclaw
     pnpm install
     pnpm build
@@ -234,7 +234,7 @@ and troubleshooting see the main [FAQ](/help/faq).
 
   <Accordion title="Where do I see what is new in the latest version?">
     Check the GitHub changelog:
-    [https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md](https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md)
+    [https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md](https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md)
 
     Newest entries are at the top. If the top section is marked **Unreleased**, the next dated
     section is the latest shipped version. Entries are grouped by **Highlights**, **Changes**, and
@@ -248,7 +248,7 @@ and troubleshooting see the main [FAQ](/help/faq).
     Please help us unblock it by reporting here: [https://spa.xfinity.com/check_url_status](https://spa.xfinity.com/check_url_status).
 
     If you still can't reach the site, the docs are mirrored on GitHub:
-    [https://github.com/openclaw/openclaw/tree/main/docs](https://github.com/openclaw/openclaw/tree/main/docs)
+    [https://github.com/synapsion/openclaw/tree/main/docs](https://github.com/synapsion/openclaw/tree/main/docs)
 
   </Accordion>
 
@@ -264,7 +264,7 @@ and troubleshooting see the main [FAQ](/help/faq).
     point at the **same version** after promotion.
 
     See what changed:
-    [https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md](https://github.com/openclaw/openclaw/blob/main/CHANGELOG.md)
+    [https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md](https://github.com/synapsion/openclaw/blob/main/CHANGELOG.md)
 
     For install one-liners and the difference between beta and dev, see the accordion below.
 
@@ -313,7 +313,7 @@ and troubleshooting see the main [FAQ](/help/faq).
     If you prefer a clean clone manually, use:
 
     ```bash
-    git clone https://github.com/openclaw/openclaw.git
+    git clone https://github.com/synapsion/openclaw.git
     cd openclaw
     pnpm install
     pnpm build
@@ -417,7 +417,7 @@ and troubleshooting see the main [FAQ](/help/faq).
 
     If you still reproduce this on latest OpenClaw, track/report it in:
 
-    - [Issue #30640](https://github.com/openclaw/openclaw/issues/30640)
+    - [Issue #30640](https://github.com/synapsion/openclaw/issues/30640)
 
   </Accordion>
 

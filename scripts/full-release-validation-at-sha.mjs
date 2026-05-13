@@ -116,7 +116,9 @@ function sanitizeBranchPart(value) {
 
 function resolveSha(requestedSha) {
   const rev = requestedSha || "HEAD";
-  return run("git", ["rev-parse", "--verify", `${rev}^{commit}`], { dryRun: false });
+  return run("git", ["rev-parse", "--verify", `${rev}^{commit}`], {
+    dryRun: false,
+  });
 }
 
 function collectRunId(dispatchOutput) {
@@ -230,7 +232,7 @@ function main() {
       throw new Error("Could not determine Full Release Validation run id.");
     }
 
-    console.log(`Parent run: https://github.com/openclaw/openclaw/actions/runs/${parentRunId}`);
+    console.log(`Parent run: https://github.com/synapsion/openclaw/actions/runs/${parentRunId}`);
     const watch = runStatus(
       "gh",
       ["run", "watch", parentRunId, "--exit-status", "--interval", "30"],
@@ -240,7 +242,7 @@ function main() {
     );
     if (watch.status !== 0) {
       throw new Error(
-        `Full Release Validation failed: https://github.com/openclaw/openclaw/actions/runs/${parentRunId}`,
+        `Full Release Validation failed: https://github.com/synapsion/openclaw/actions/runs/${parentRunId}`,
       );
     }
     verifyChildHeads(parentRunId, sha);

@@ -90,7 +90,10 @@ function buildToolTrimSettings() {
     minPrunableToolChars: DEFAULT_CONTEXT_PRUNING_SETTINGS.minPrunableToolChars,
     tools: DEFAULT_CONTEXT_PRUNING_SETTINGS.tools,
     softTrim: { maxChars: 200, headChars: 100, tailChars: 50 },
-    hardClear: { ...DEFAULT_CONTEXT_PRUNING_SETTINGS.hardClear, enabled: false },
+    hardClear: {
+      ...DEFAULT_CONTEXT_PRUNING_SETTINGS.hardClear,
+      enabled: false,
+    },
   };
 }
 
@@ -155,7 +158,7 @@ describe("pruneContextMessages", () => {
   it("does not crash on toolResult with malformed text block (missing text string)", () => {
     // Regression: a plugin returning undefined produces {type: "text"} with no text property,
     // which crashed estimateTextAndImageChars / collectTextSegments / collectPrunableToolResultSegments.
-    // See https://github.com/openclaw/openclaw/issues/34979
+    // See https://github.com/synapsion/openclaw/issues/34979
     const malformedToolResult = {
       role: "toolResult",
       toolName: "sentinel_control",
@@ -167,7 +170,12 @@ describe("pruneContextMessages", () => {
     const messages: AgentMessage[] = [
       makeUser("remove sentinel"),
       makeAssistant([
-        { type: "toolCall", toolCallId: "call_1", toolName: "sentinel_control", arguments: {} },
+        {
+          type: "toolCall",
+          toolCallId: "call_1",
+          toolName: "sentinel_control",
+          arguments: {},
+        },
       ] as unknown as AssistantContentBlock[]),
       malformedToolResult,
       makeUser("follow up"),

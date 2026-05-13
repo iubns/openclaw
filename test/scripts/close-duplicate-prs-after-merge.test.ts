@@ -26,7 +26,7 @@ function pr(params: {
     number: params.number,
     state: params.state ?? "OPEN",
     title: params.title ?? `PR ${params.number}`,
-    url: `https://github.com/openclaw/openclaw/pull/${params.number}`,
+    url: `https://github.com/synapsion/openclaw/pull/${params.number}`,
   };
 }
 
@@ -213,7 +213,11 @@ diff --git a/b.ts b/b.ts
           action: "close",
           candidate: pr({ number: 70592 }),
           comment: "closing",
-          evidence: { overlappingHunks: false, sharedFiles: [], sharedIssues: [70491] },
+          evidence: {
+            overlappingHunks: false,
+            sharedFiles: [],
+            sharedIssues: [70491],
+          },
         },
       ],
       repo: "openclaw/openclaw",

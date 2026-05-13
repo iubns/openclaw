@@ -528,7 +528,7 @@ function buildDocsSection(params: {
     docsPath ? `OpenClaw docs: ${docsPath}` : "OpenClaw docs: https://docs.openclaw.ai",
     "Mirror: https://docs.openclaw.ai",
     sourcePath ? `Local source: ${sourcePath}` : undefined,
-    "Source: https://github.com/openclaw/openclaw",
+    "Source: https://github.com/synapsion/openclaw",
     "Community: https://discord.com/invite/clawd",
     "Find new skills: https://clawhub.ai",
     docsPath

@@ -44,7 +44,7 @@ describe("Crestodian configured-model planner", () => {
           },
           references: {
             docsUrl: "https://docs.openclaw.ai",
-            sourceUrl: "https://github.com/openclaw/openclaw",
+            sourceUrl: "https://github.com/synapsion/openclaw",
           },
         },
         deps: {

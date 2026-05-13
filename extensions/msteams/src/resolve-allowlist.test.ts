@@ -41,7 +41,10 @@ beforeEach(() => {
 
 describe("resolveMSTeamsUserAllowlist", () => {
   it("marks empty input unresolved", async () => {
-    const [result] = await resolveMSTeamsUserAllowlist({ cfg: {}, entries: ["  "] });
+    const [result] = await resolveMSTeamsUserAllowlist({
+      cfg: {},
+      entries: ["  "],
+    });
     expect(result).toEqual({ input: "  ", resolved: false });
   });
 
@@ -50,7 +53,10 @@ describe("resolveMSTeamsUserAllowlist", () => {
       { id: "user-1", displayName: "Alice One" },
       { id: "user-2", displayName: "Alice Two" },
     ]);
-    const [result] = await resolveMSTeamsUserAllowlist({ cfg: {}, entries: ["alice"] });
+    const [result] = await resolveMSTeamsUserAllowlist({
+      cfg: {},
+      entries: ["alice"],
+    });
     expect(result).toEqual({
       input: "alice",
       resolved: true,
@@ -188,7 +194,7 @@ describe("resolveMSTeamsChannelAllowlist", () => {
 });
 
 describe("looksLikeMSTeamsTargetId", () => {
-  // Regression suite for https://github.com/openclaw/openclaw/issues/58001:
+  // Regression suite for https://github.com/synapsion/openclaw/issues/58001:
   // cron announce delivery rejected valid Teams conversation ids because the
   // validator only matched the `conversation:`-prefixed and `@thread`-suffixed
   // forms. It must now accept every documented Bot Framework + Graph format.

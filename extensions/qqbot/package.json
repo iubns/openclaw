@@ -5,7 +5,7 @@
   "description": "OpenClaw QQ Bot channel plugin",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openclaw/openclaw"
+    "url": "https://github.com/synapsion/openclaw"
   },
   "type": "module",
   "dependencies": {

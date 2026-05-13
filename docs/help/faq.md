@@ -1965,7 +1965,7 @@ lives on the [Models FAQ](/help/faq-models).
 
 ---
 
-Still stuck? Ask in [Discord](https://discord.com/invite/clawd) or open a [GitHub discussion](https://github.com/openclaw/openclaw/discussions).
+Still stuck? Ask in [Discord](https://discord.com/invite/clawd) or open a [GitHub discussion](https://github.com/synapsion/openclaw/discussions).
 
 ## Related
 

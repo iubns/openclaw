@@ -220,7 +220,7 @@ export type GatewayReloadConfig = {
    * before forcing a restart. Absent uses the gateway's default bounded wait;
    * 0 waits indefinitely and logs periodic still-pending warnings.
    * Lower positive values risk aborting active subagent LLM calls.
-   * @see https://github.com/openclaw/openclaw/issues/65485
+   * @see https://github.com/synapsion/openclaw/issues/65485
    */
   deferralTimeoutMs?: number;
 };
