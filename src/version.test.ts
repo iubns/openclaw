@@ -57,7 +57,7 @@ describe("version resolution", () => {
   it("resolves package version from nested dist/plugin-sdk module URL", async () => {
     await withVersionFixtureDir(async (root) => {
       await writeJsonFixture(root, "package.json", {
-        name: "synapsion/openclaw",
+        name: "@synapsion/openclaw",
         version: "1.2.3",
       });
       const moduleUrl = await ensureModuleFixture(root);
@@ -69,7 +69,7 @@ describe("version resolution", () => {
   it("ignores unrelated nearby package.json files", async () => {
     await withVersionFixtureDir(async (root) => {
       await writeJsonFixture(root, "package.json", {
-        name: "synapsion/openclaw",
+        name: "@synapsion/openclaw",
         version: "2.3.4",
       });
       await writeJsonFixture(root, "dist/package.json", {
@@ -119,7 +119,7 @@ describe("version resolution", () => {
   it("resolves binary version with explicit precedence", async () => {
     await withVersionFixtureDir(async (root) => {
       await writeJsonFixture(root, "package.json", {
-        name: "synapsion/openclaw",
+        name: "@synapsion/openclaw",
         version: "2.3.4",
       });
       const moduleUrl = await ensureModuleFixture(root);
