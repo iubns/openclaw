@@ -135,14 +135,22 @@ describe("git commit resolution", () => {
     const temp = await makeTempDir("git-commit-build-info-cache");
     const readBuildInfoCommit = vi.fn(() => "deadbee");
 
-    expect(resolveCommitHash({ cwd: temp, env: {}, readers: { readBuildInfoCommit } })).toBe(
-      "deadbee",
-    );
+    expect(
+      resolveCommitHash({
+        cwd: temp,
+        env: {},
+        readers: { readBuildInfoCommit },
+      }),
+    ).toBe("deadbee");
     const firstCallRequires = readBuildInfoCommit.mock.calls.length;
     expect(firstCallRequires).toBeGreaterThan(0);
-    expect(resolveCommitHash({ cwd: temp, env: {}, readers: { readBuildInfoCommit } })).toBe(
-      "deadbee",
-    );
+    expect(
+      resolveCommitHash({
+        cwd: temp,
+        env: {},
+        readers: { readBuildInfoCommit },
+      }),
+    ).toBe("deadbee");
     expect(readBuildInfoCommit.mock.calls.length).toBe(firstCallRequires);
   });
 
@@ -184,11 +192,19 @@ describe("git commit resolution", () => {
       .slice(0, 7);
 
     expect(() =>
-      resolveCommitHash({ moduleUrl: "not-a-file-url", cwd: repoRoot, env: {} }),
+      resolveCommitHash({
+        moduleUrl: "not-a-file-url",
+        cwd: repoRoot,
+        env: {},
+      }),
     ).not.toThrow();
-    expect(resolveCommitHash({ moduleUrl: "not-a-file-url", cwd: repoRoot, env: {} })).toBe(
-      repoHead,
-    );
+    expect(
+      resolveCommitHash({
+        moduleUrl: "not-a-file-url",
+        cwd: repoRoot,
+        env: {},
+      }),
+    ).toBe(repoHead);
   });
 
   it("does not walk out of the openclaw package into a host repo", async () => {
@@ -204,11 +220,11 @@ describe("git commit resolution", () => {
       { cwd: hostRepo },
     );
 
-    const packageRoot = path.join(hostRepo, "node_modules", "openclaw");
+    const packageRoot = path.join(hostRepo, "node_modules", "@synapsion", "openclaw");
     await fs.mkdir(path.join(packageRoot, "dist"), { recursive: true });
     await fs.writeFile(
       path.join(packageRoot, "package.json"),
-      JSON.stringify({ name: "openclaw", version: "2026.3.10" }),
+      JSON.stringify({ name: "@synapsion/openclaw", version: "2026.3.10" }),
       "utf-8",
     );
     const moduleUrl = pathToFileURL(path.join(packageRoot, "dist", "entry.js")).href;
@@ -322,7 +338,10 @@ describe("git commit resolution", () => {
       "abcdef0",
     );
     expect(
-      resolveCommitHash({ cwd: temp, env: { GIT_SHA: "commit abcdef0123456789 dirty" } }),
+      resolveCommitHash({
+        cwd: temp,
+        env: { GIT_SHA: "commit abcdef0123456789 dirty" },
+      }),
     ).toBe("abcdef0");
     expect(resolveCommitHash({ cwd: temp, env: { GIT_COMMIT: "not-a-sha" } })).toBeNull();
     expect(resolveCommitHash({ cwd: temp, env: { GIT_COMMIT: "" } })).toBeNull();

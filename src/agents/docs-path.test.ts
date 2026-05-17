@@ -10,7 +10,7 @@ import {
 
 async function makePackageRoot(prefix: string): Promise<string> {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), prefix));
-  await fs.writeFile(path.join(root, "package.json"), '{"name":"openclaw"}\n');
+  await fs.writeFile(path.join(root, "package.json"), '{"name":"@synapsion/openclaw"}\n');
   return root;
 }
 
@@ -40,7 +40,9 @@ describe("resolveOpenClawDocsPath", () => {
 
   it("does not accept incomplete template-only docs directories", async () => {
     const root = await makePackageRoot("openclaw-docs-incomplete-");
-    await fs.mkdir(path.join(root, "docs", "reference", "templates"), { recursive: true });
+    await fs.mkdir(path.join(root, "docs", "reference", "templates"), {
+      recursive: true,
+    });
 
     await expect(resolveOpenClawDocsPath({ cwd: root })).resolves.toBeNull();
   });
