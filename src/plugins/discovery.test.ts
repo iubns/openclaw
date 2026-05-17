@@ -30,7 +30,11 @@ const mkdirSafe = mkdirSafeDir;
 
 function withOpenClawPackageArgv<T>(packageRoot: string, fn: () => T): T {
   mkdirSafe(path.join(packageRoot, "bin"));
-  fs.writeFileSync(path.join(packageRoot, "package.json"), '{"name":"openclaw"}\n', "utf-8");
+  fs.writeFileSync(
+    path.join(packageRoot, "package.json"),
+    '{"name":"@synapsion/openclaw"}\n',
+    "utf-8",
+  );
   const originalArgv = process.argv;
   process.argv = [originalArgv[0] ?? "node", path.join(packageRoot, "bin", "openclaw")];
   try {
@@ -113,7 +117,10 @@ async function discoverWithStateDir(
   stateDir: string,
   params: Parameters<typeof discoverOpenClawPlugins>[0],
 ) {
-  return discoverOpenClawPlugins({ ...params, env: buildDiscoveryEnv(stateDir) });
+  return discoverOpenClawPlugins({
+    ...params,
+    env: buildDiscoveryEnv(stateDir),
+  });
 }
 
 function discoverWithEnv(params: Parameters<typeof discoverOpenClawPlugins>[0]) {
@@ -359,7 +366,9 @@ describe("discoverOpenClawPlugins", () => {
     mkdirSafe(workspaceExt);
     fs.writeFileSync(path.join(workspaceExt, "beta.ts"), "export default function () {}", "utf-8");
 
-    const { candidates } = await discoverWithStateDir(stateDir, { workspaceDir });
+    const { candidates } = await discoverWithStateDir(stateDir, {
+      workspaceDir,
+    });
     expectCandidateIds(candidates, { includes: ["alpha", "beta"] });
   });
 
@@ -405,7 +414,9 @@ describe("discoverOpenClawPlugins", () => {
 
       symlinkDirectory(linkedPluginDir, path.join(workspaceExt, "workspace-linked-plugin"));
 
-      const { candidates, diagnostics } = await discoverWithStateDir(stateDir, { workspaceDir });
+      const { candidates, diagnostics } = await discoverWithStateDir(stateDir, {
+        workspaceDir,
+      });
       expectCandidateIds(candidates, { includes: ["workspace-linked-plugin"] });
       expect(findCandidateById(candidates, "workspace-linked-plugin")?.rootDir).toBe(
         fs.realpathSync(linkedPluginDir),
@@ -1709,7 +1720,9 @@ describe("discoverOpenClawPlugins", () => {
       );
 
       const actualUid = (process as NodeJS.Process & { getuid: () => number }).getuid();
-      const result = await discoverWithStateDir(stateDir, { ownershipUid: actualUid + 1 });
+      const result = await discoverWithStateDir(stateDir, {
+        ownershipUid: actualUid + 1,
+      });
       const shouldBlockForMismatch = actualUid !== 0;
       expect(result.candidates).toHaveLength(shouldBlockForMismatch ? 0 : 1);
       expect(result.diagnostics.some((diag) => diag.message.includes("suspicious ownership"))).toBe(
@@ -1860,14 +1873,24 @@ describe("discoverOpenClawPlugins", () => {
         writeStandalonePlugin(path.join(stateDirA, "extensions", "alpha.ts"));
         writeStandalonePlugin(path.join(stateDirB, "extensions", "beta.ts"));
         return {
-          first: discoverWithEnv({ env: buildDiscoveryEnvWithOverrides(stateDirA) }),
-          second: discoverWithEnv({ env: buildDiscoveryEnvWithOverrides(stateDirB) }),
+          first: discoverWithEnv({
+            env: buildDiscoveryEnvWithOverrides(stateDirA),
+          }),
+          second: discoverWithEnv({
+            env: buildDiscoveryEnvWithOverrides(stateDirB),
+          }),
           assert: (
             first: ReturnType<typeof discoverWithEnv>,
             second: ReturnType<typeof discoverWithEnv>,
           ) => {
-            expectCandidatePresence(first, { present: ["alpha"], absent: ["beta"] });
-            expectCandidatePresence(second, { present: ["beta"], absent: ["alpha"] });
+            expectCandidatePresence(first, {
+              present: ["alpha"],
+              absent: ["beta"],
+            });
+            expectCandidatePresence(second, {
+              present: ["beta"],
+              absent: ["alpha"],
+            });
           },
         };
       },

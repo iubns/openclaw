@@ -75,7 +75,7 @@ function createPluginSdkAliasFixture(params?: {
     params?.trustedRootIndicatorMode ??
     (params?.trustedRootIndicators === false ? "none" : "bin+marker");
   const packageJson: Record<string, unknown> = {
-    name: "openclaw",
+    name: "@synapsion/openclaw",
     type: "module",
   };
   if (trustedRootIndicatorMode === "bin+marker") {
@@ -121,7 +121,7 @@ function createExtensionApiAliasFixture(params?: {
   mkdirSafeDir(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "@synapsion/openclaw", type: "module" }, null, 2),
     "utf-8",
   );
   fs.writeFileSync(path.join(root, "openclaw.mjs"), "export {};\n", "utf-8");
@@ -138,7 +138,7 @@ function createPluginRuntimeAliasFixture(params?: { srcBody?: string; distBody?:
   mkdirSafeDir(path.dirname(distFile));
   fs.writeFileSync(
     path.join(root, "package.json"),
-    JSON.stringify({ name: "openclaw", type: "module" }, null, 2),
+    JSON.stringify({ name: "@synapsion/openclaw", type: "module" }, null, 2),
     "utf-8",
   );
   fs.writeFileSync(
@@ -162,8 +162,12 @@ function createPluginSdkAliasTargetFixture(params?: {
     srcFile: `channel-runtime${sourceChannelRuntimeExtension}`,
     distFile: "channel-runtime.js",
     packageExports: {
-      "./plugin-sdk/channel-runtime": { default: "./dist/plugin-sdk/channel-runtime.js" },
-      "./plugin-sdk/plugin-entry": { default: "./dist/plugin-sdk/plugin-entry.js" },
+      "./plugin-sdk/channel-runtime": {
+        default: "./dist/plugin-sdk/channel-runtime.js",
+      },
+      "./plugin-sdk/plugin-entry": {
+        default: "./dist/plugin-sdk/plugin-entry.js",
+      },
     },
   });
   const sourceRootAlias = path.join(fixture.root, "src", "plugin-sdk", "root-alias.cjs");
@@ -584,7 +588,9 @@ describe("plugin sdk alias helpers", () => {
       packageExports: {
         "./plugin-sdk/compat": { default: "./dist/plugin-sdk/compat.js" },
         "./plugin-sdk/core": { default: "./dist/plugin-sdk/core.js" },
-        "./plugin-sdk/nested/value": { default: "./dist/plugin-sdk/nested/value.js" },
+        "./plugin-sdk/nested/value": {
+          default: "./dist/plugin-sdk/nested/value.js",
+        },
         "./plugin-sdk/..\\..\\evil": { default: "./dist/plugin-sdk/evil.js" },
         "./plugin-sdk/C:temp": { default: "./dist/plugin-sdk/drive.js" },
         "./plugin-sdk/.hidden": { default: "./dist/plugin-sdk/hidden.js" },
@@ -686,7 +692,9 @@ describe("plugin sdk alias helpers", () => {
           trustedRootIndicators: false,
           packageExports: {
             "./plugin-sdk/core": { default: "./dist/plugin-sdk/core.js" },
-            "./plugin-sdk/channel-runtime": { default: "./dist/plugin-sdk/channel-runtime.js" },
+            "./plugin-sdk/channel-runtime": {
+              default: "./dist/plugin-sdk/channel-runtime.js",
+            },
           },
         }),
       expected: [],
@@ -698,7 +706,9 @@ describe("plugin sdk alias helpers", () => {
           trustedRootIndicatorMode: "cli-entry-only",
           packageExports: {
             "./plugin-sdk/core": { default: "./dist/plugin-sdk/core.js" },
-            "./plugin-sdk/channel-runtime": { default: "./dist/plugin-sdk/channel-runtime.js" },
+            "./plugin-sdk/channel-runtime": {
+              default: "./dist/plugin-sdk/channel-runtime.js",
+            },
           },
         }),
       expected: ["channel-runtime", "core"],
@@ -880,7 +890,9 @@ describe("plugin sdk alias helpers", () => {
       distFile: "provider-entry.js",
       distBody: 'import { entry } from "../missing-provider-entry-chunk.js";\nexport { entry };\n',
       packageExports: {
-        "./plugin-sdk/provider-entry": { default: "./dist/plugin-sdk/provider-entry.js" },
+        "./plugin-sdk/provider-entry": {
+          default: "./dist/plugin-sdk/provider-entry.js",
+        },
       },
     });
     const sourceProviderEntryPath = path.join(
@@ -996,7 +1008,9 @@ describe("plugin sdk alias helpers", () => {
           distFile: "channel-runtime.js",
           trustedRootIndicators: false,
           packageExports: {
-            "./plugin-sdk/channel-runtime": { default: "./dist/plugin-sdk/channel-runtime.js" },
+            "./plugin-sdk/channel-runtime": {
+              default: "./dist/plugin-sdk/channel-runtime.js",
+            },
           },
         }),
       expected: null,

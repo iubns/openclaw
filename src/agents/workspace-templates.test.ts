@@ -26,7 +26,10 @@ describe("resolveWorkspaceTemplateDir", () => {
 
   it("resolves templates from package root when module url is dist-rooted", async () => {
     const root = await makeTempRoot();
-    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "openclaw" }));
+    await fs.writeFile(
+      path.join(root, "package.json"),
+      JSON.stringify({ name: "@synapsion/openclaw" }),
+    );
 
     const templatesDir = path.join(root, "docs", "reference", "templates");
     await fs.mkdir(templatesDir, { recursive: true });
@@ -36,7 +39,10 @@ describe("resolveWorkspaceTemplateDir", () => {
     await fs.mkdir(distDir, { recursive: true });
     const moduleUrl = pathToFileURL(path.join(distDir, "model-selection.mjs")).toString();
 
-    const resolved = await resolveWorkspaceTemplateDir({ cwd: distDir, moduleUrl });
+    const resolved = await resolveWorkspaceTemplateDir({
+      cwd: distDir,
+      moduleUrl,
+    });
     expect(resolved).toBe(templatesDir);
   });
 
@@ -48,7 +54,10 @@ describe("resolveWorkspaceTemplateDir", () => {
     await fs.mkdir(distDir, { recursive: true });
     const moduleUrl = pathToFileURL(path.join(distDir, "model-selection.mjs")).toString();
 
-    const resolved = await resolveWorkspaceTemplateDir({ cwd: distDir, moduleUrl });
+    const resolved = await resolveWorkspaceTemplateDir({
+      cwd: distDir,
+      moduleUrl,
+    });
     expect(path.normalize(resolved)).toBe(path.resolve("docs", "reference", "templates"));
   });
 });
