@@ -86,7 +86,7 @@ self.addEventListener("push", (event) => {
   const title = data.title || "OpenClaw";
   const options = {
     body: data.body || "",
-    icon: "./apple-touch-icon.png",
+    icon: "./favicon.png",
     badge: "./favicon-32.png",
     tag: data.tag || "openclaw-notification",
     data: { url: data.url || "./" },

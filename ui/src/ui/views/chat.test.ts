@@ -159,7 +159,7 @@ vi.mock("./agents-utils.ts", () => ({
   isRenderableControlUiAvatarUrl: (value: string) =>
     /^data:image\//i.test(value) || (value.startsWith("/") && !value.startsWith("//")),
   agentLogoUrl: () => "/openclaw-logo.svg",
-  assistantAvatarFallbackUrl: () => "apple-touch-icon.png",
+  assistantAvatarFallbackUrl: () => "favicon.png",
   resolveChatAvatarRenderUrl: (
     candidate: string | null | undefined,
     agent: { identity?: { avatar?: string; avatarUrl?: string } },
@@ -648,7 +648,9 @@ describe("chat attachment picker", () => {
     const onAttachmentsChange = vi.fn();
     const container = renderChatView({ onAttachmentsChange });
     const input = container.querySelector<HTMLInputElement>(".agent-chat__file-input");
-    const file = new File(["%PDF-1.4\n"], "brief.pdf", { type: "application/pdf" });
+    const file = new File(["%PDF-1.4\n"], "brief.pdf", {
+      type: "application/pdf",
+    });
 
     expect(input).not.toBeNull();
     Object.defineProperty(input!, "files", {
@@ -698,8 +700,18 @@ describe("chat queue", () => {
       onQueueSteer,
       queue: [
         { id: "queued-1", text: "tighten the plan", createdAt: 1 },
-        { id: "steered-1", text: "already sent", createdAt: 2, kind: "steered" },
-        { id: "local-1", text: "/status", createdAt: 3, localCommandName: "status" },
+        {
+          id: "steered-1",
+          text: "already sent",
+          createdAt: 2,
+          kind: "steered",
+        },
+        {
+          id: "local-1",
+          text: "/status",
+          createdAt: 3,
+          localCommandName: "status",
+        },
       ],
     });
 
@@ -760,7 +772,10 @@ describe("chat welcome", () => {
   }
 
   it("renders configured assistant avatars and fallback in the welcome state", () => {
-    let container = renderWelcome({ assistantAvatar: "VC", assistantAvatarUrl: null });
+    let container = renderWelcome({
+      assistantAvatar: "VC",
+      assistantAvatarUrl: null,
+    });
 
     const avatar = container.querySelector<HTMLElement>(".agent-chat__avatar");
     expect(avatar).not.toBeNull();
@@ -778,13 +793,16 @@ describe("chat welcome", () => {
     expect(imageAvatar?.getAttribute("src")).toBe("blob:identity-avatar");
     expect(imageAvatar?.getAttribute("alt")).toBe("Val");
 
-    container = renderWelcome({ assistantAvatar: null, assistantAvatarUrl: null });
+    container = renderWelcome({
+      assistantAvatar: null,
+      assistantAvatarUrl: null,
+    });
 
     const fallbackAvatar = container.querySelector<HTMLImageElement>(
       ".agent-chat__avatar--logo img",
     );
     expect(fallbackAvatar).not.toBeNull();
-    expect(fallbackAvatar?.getAttribute("src")).toBe("apple-touch-icon.png");
+    expect(fallbackAvatar?.getAttribute("src")).toBe("favicon.png");
     expect(fallbackAvatar?.getAttribute("alt")).toBe("Val");
   });
 });
@@ -807,11 +825,23 @@ describe("chat session controls", () => {
       ts: 0,
       path: "",
       count: 4,
-      defaults: { modelProvider: "openai", model: "gpt-5", contextTokens: null },
+      defaults: {
+        modelProvider: "openai",
+        model: "gpt-5",
+        contextTokens: null,
+      },
       sessions: [
         { key: "agent:alpha:main", kind: "direct", updatedAt: 4 },
-        { key: "agent:alpha:dashboard:alpha-recent", kind: "direct", updatedAt: 3 },
-        { key: "agent:beta:dashboard:beta-recent", kind: "direct", updatedAt: 2 },
+        {
+          key: "agent:alpha:dashboard:alpha-recent",
+          kind: "direct",
+          updatedAt: 3,
+        },
+        {
+          key: "agent:beta:dashboard:beta-recent",
+          kind: "direct",
+          updatedAt: 2,
+        },
         { key: "agent:beta:main", kind: "direct", updatedAt: 1 },
       ],
     };
@@ -855,7 +885,11 @@ describe("chat session controls", () => {
       ts: 0,
       path: "",
       count: 1,
-      defaults: { modelProvider: "openai", model: "gpt-5", contextTokens: null },
+      defaults: {
+        modelProvider: "openai",
+        model: "gpt-5",
+        contextTokens: null,
+      },
       sessions: [{ key: "agent:alpha:main", kind: "direct", updatedAt: 4 }],
     };
 
@@ -902,7 +936,11 @@ describe("chat session controls", () => {
       ts: 0,
       path: "",
       count: 0,
-      defaults: { modelProvider: "openai", model: "gpt-5", contextTokens: null },
+      defaults: {
+        modelProvider: "openai",
+        model: "gpt-5",
+        contextTokens: null,
+      },
       sessions: [],
     };
     const container = document.createElement("div");

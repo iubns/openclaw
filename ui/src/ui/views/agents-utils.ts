@@ -289,7 +289,7 @@ export function agentLogoUrl(basePath: string): string {
 
 export function assistantAvatarFallbackUrl(basePath: string): string {
   const base = normalizeOptionalString(basePath)?.replace(/\/$/, "") ?? "";
-  return base ? `${base}/apple-touch-icon.png` : "apple-touch-icon.png";
+  return base ? `${base}/favicon.png` : "favicon.png";
 }
 
 function isAvatarUrl(value: string): boolean {

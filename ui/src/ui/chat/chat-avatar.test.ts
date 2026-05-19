@@ -7,7 +7,7 @@ import { renderChatAvatar } from "./chat-avatar.ts";
 vi.mock("../views/agents-utils.ts", () => ({
   isRenderableControlUiAvatarUrl: (value: string) =>
     /^data:image\//i.test(value) || (value.startsWith("/") && !value.startsWith("//")),
-  assistantAvatarFallbackUrl: () => "apple-touch-icon.png",
+  assistantAvatarFallbackUrl: () => "favicon.png",
   resolveAssistantTextAvatar: (value: string | null | undefined) => {
     if (!value) {
       return null;
@@ -42,13 +42,13 @@ describe("renderChatAvatar", () => {
   it("renders assistant fallback, blob image, and text avatars", () => {
     const defaultAvatar = renderAvatar(["assistant"]);
     expect(defaultAvatar).not.toBeNull();
-    expect(defaultAvatar?.getAttribute("src")).toBe("apple-touch-icon.png");
+    expect(defaultAvatar?.getAttribute("src")).toBe("favicon.png");
 
     const remoteAvatar = renderAvatar([
       "assistant",
       { avatar: "https://example.com/avatar.png", name: "Val" },
     ]);
-    expect(remoteAvatar?.getAttribute("src")).toBe("apple-touch-icon.png");
+    expect(remoteAvatar?.getAttribute("src")).toBe("favicon.png");
 
     const blobAvatar = renderAvatar(["assistant", { avatar: "blob:managed-image", name: "Val" }]);
     expect(blobAvatar?.tagName).toBe("IMG");
@@ -69,7 +69,7 @@ describe("renderChatAvatar", () => {
       "session-token",
     ]);
 
-    expect(avatar?.getAttribute("src")).toBe("apple-touch-icon.png");
+    expect(avatar?.getAttribute("src")).toBe("favicon.png");
   });
 
   it("renders local user image and text avatars", () => {

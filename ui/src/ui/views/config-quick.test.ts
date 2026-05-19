@@ -145,7 +145,7 @@ describe("renderQuickSettings", () => {
     );
 
     expect(container.querySelector(".qs-assistant-avatar")?.getAttribute("src")).toBe(
-      "apple-touch-icon.png",
+      "favicon.png",
     );
     expect(container.querySelector(".qs-identity-card__source")?.textContent).toContain(
       "assets/avatars/nova-portrait.png",
@@ -306,7 +306,9 @@ describe("renderQuickSettings", () => {
         return;
       }
 
-      const file = new File([new Uint8Array(1_500_001)], "avatar.png", { type: "image/png" });
+      const file = new File([new Uint8Array(1_500_001)], "avatar.png", {
+        type: "image/png",
+      });
       Object.defineProperty(input, "files", {
         configurable: true,
         value: [file],

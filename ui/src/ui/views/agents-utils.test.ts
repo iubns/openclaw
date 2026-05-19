@@ -123,8 +123,8 @@ describe("agentLogoUrl", () => {
 
 describe("assistantAvatarFallbackUrl", () => {
   it("uses the bundled Molty png for assistant profile fallbacks", () => {
-    expect(assistantAvatarFallbackUrl("/ui")).toBe("/ui/apple-touch-icon.png");
-    expect(assistantAvatarFallbackUrl("")).toBe("apple-touch-icon.png");
+    expect(assistantAvatarFallbackUrl("/ui")).toBe("/ui/favicon.png");
+    expect(assistantAvatarFallbackUrl("")).toBe("favicon.png");
   });
 });
 
