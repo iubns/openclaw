@@ -1512,13 +1512,17 @@ async function resolveInstallerTargetVersion(params) {
   if (resolvedVersion) {
     return resolvedVersion;
   }
-  const latestResult = await runCommand(npmCommand(), ["view", "openclaw@latest", "version"], {
-    logPath: join(params.logsDir, `${params.suiteName}-latest-version.log`),
-    timeoutMs: 2 * 60 * 1000,
-  });
+  const latestResult = await runCommand(
+    npmCommand(),
+    ["view", "@synapsion/openclaw@latest", "version"],
+    {
+      logPath: join(params.logsDir, `${params.suiteName}-latest-version.log`),
+      timeoutMs: 2 * 60 * 1000,
+    },
+  );
   const latestVersion = latestResult.stdout.trim();
   if (!latestVersion) {
-    throw new Error("npm view openclaw@latest version did not return a version.");
+    throw new Error("npm view @synapsion/openclaw@latest version did not return a version.");
   }
   return latestVersion;
 }
@@ -2131,7 +2135,11 @@ async function runInstalledAgentTurn(params) {
         logPath: params.logPath,
         timeoutMs: (CROSS_OS_AGENT_TURN_TIMEOUT_SECONDS + 60) * 1000,
       });
-      if (!agentOutputHasExpectedOkMarker(result.stdout, { logPath: params.logPath })) {
+      if (
+        !agentOutputHasExpectedOkMarker(result.stdout, {
+          logPath: params.logPath,
+        })
+      ) {
         throw new Error("Agent output did not contain the expected OK marker.");
       }
       return result;
@@ -2512,10 +2520,15 @@ async function installPackageSpec(params) {
     npm_config_location: "global",
     npm_config_prefix: params.lane.prefixDir,
   };
-  rmSync(installedPackageRoot(params.lane.prefixDir), { force: true, recursive: true });
+  rmSync(installedPackageRoot(params.lane.prefixDir), {
+    force: true,
+    recursive: true,
+  });
   await runCommand(
     npmCommand(),
-    buildNpmGlobalInstallArgs(params.packageSpec, { ignoreScripts: params.ignoreScripts }),
+    buildNpmGlobalInstallArgs(params.packageSpec, {
+      ignoreScripts: params.ignoreScripts,
+    }),
     {
       cwd: params.lane.homeDir,
       env: installEnv,
@@ -2942,7 +2955,11 @@ async function runAgentTurn(params) {
         logPath: params.logPath,
         timeoutMs: (CROSS_OS_AGENT_TURN_TIMEOUT_SECONDS + 60) * 1000,
       });
-      if (!agentOutputHasExpectedOkMarker(result.stdout, { logPath: params.logPath })) {
+      if (
+        !agentOutputHasExpectedOkMarker(result.stdout, {
+          logPath: params.logPath,
+        })
+      ) {
         throw new Error("Agent output did not contain the expected OK marker.");
       }
       return result;
@@ -3093,7 +3110,7 @@ async function runDashboardSmoke(params) {
         const html = await response.text();
         if (
           response.ok &&
-          html.includes("<title>OpenClaw Control</title>") &&
+          html.includes("<title>시오닉스</title>") &&
           html.includes("<openclaw-app></openclaw-app>")
         ) {
           logStream.write(
@@ -3102,7 +3119,7 @@ async function runDashboardSmoke(params) {
           return;
         }
         logStream.write(
-          `${new Date().toISOString()} dashboard-not-ready status=${response.status} title=${html.includes("<title>OpenClaw Control</title>")} app=${html.includes("<openclaw-app></openclaw-app>")}\n`,
+          `${new Date().toISOString()} dashboard-not-ready status=${response.status} title=${html.includes("<title>시오닉스</title>")} app=${html.includes("<openclaw-app></openclaw-app>")}\n`,
         );
       } catch (error) {
         logStream.write(

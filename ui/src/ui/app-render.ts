@@ -191,7 +191,9 @@ function formatDreamNextCycle(nextRunAtMs: number | undefined): string | null {
 }
 
 function resolveDreamingNextCycle(
-  status: { phases?: Record<string, { enabled: boolean; nextRunAtMs?: number }> } | null,
+  status: {
+    phases?: Record<string, { enabled: boolean; nextRunAtMs?: number }>;
+  } | null,
 ): string | null {
   if (!status?.phases) {
     return null;
@@ -280,7 +282,10 @@ function isUpdateBannerDismissed(updateAvailable: unknown): boolean {
   if (!dismissed) {
     return false;
   }
-  const info = updateAvailable as { latestVersion?: unknown; channel?: unknown };
+  const info = updateAvailable as {
+    latestVersion?: unknown;
+    channel?: unknown;
+  };
   const latestVersion = info && typeof info.latestVersion === "string" ? info.latestVersion : null;
   const channel = info && typeof info.channel === "string" ? info.channel : null;
   return Boolean(
@@ -289,7 +294,10 @@ function isUpdateBannerDismissed(updateAvailable: unknown): boolean {
 }
 
 function dismissUpdateBanner(updateAvailable: unknown) {
-  const info = updateAvailable as { latestVersion?: unknown; channel?: unknown };
+  const info = updateAvailable as {
+    latestVersion?: unknown;
+    channel?: unknown;
+  };
   const latestVersion = info && typeof info.latestVersion === "string" ? info.latestVersion : null;
   if (!latestVersion) {
     return;
@@ -602,7 +610,10 @@ function renderCronQuickCreateForTab(
       const draft = state.cronQuickCreateDraft ?? createDefaultDraft();
       const formPatch = draftToCronFormPatch(draft);
       state.cronEditingJobId = null;
-      state.cronForm = { ...DEFAULT_CRON_FORM, ...formPatch } as typeof state.cronForm;
+      state.cronForm = {
+        ...DEFAULT_CRON_FORM,
+        ...formPatch,
+      } as typeof state.cronForm;
       requestHostUpdate?.();
       void (async () => {
         await addCronJob(state);
@@ -1018,14 +1029,14 @@ export function renderApp(state: AppViewState) {
               requestHostUpdate?.();
             },
             onThinkingChange: (level) => {
-              void patchSession(state, state.sessionKey, { thinkingLevel: level }).then(() =>
-                requestHostUpdate?.(),
-              );
+              void patchSession(state, state.sessionKey, {
+                thinkingLevel: level,
+              }).then(() => requestHostUpdate?.());
             },
             onFastModeToggle: () => {
-              void patchSession(state, state.sessionKey, { fastMode: !fastMode }).then(() =>
-                requestHostUpdate?.(),
-              );
+              void patchSession(state, state.sessionKey, {
+                fastMode: !fastMode,
+              }).then(() => requestHostUpdate?.());
             },
             channels: extractQuickSettingsChannels(state),
             onChannelConfigure: () => {
@@ -1401,11 +1412,11 @@ export function renderApp(state: AppViewState) {
                       <img
                         class="sidebar-brand__logo"
                         src="${agentLogoUrl(basePath)}"
-                        alt="OpenClaw"
+                        alt="시냅시온"
                       />
                       <span class="sidebar-brand__copy">
                         <span class="sidebar-brand__eyebrow">${t("nav.control")}</span>
-                        <span class="sidebar-brand__title">OpenClaw</span>
+                        <span class="sidebar-brand__title">시냅시온</span>
                       </span>
                     `}
               </div>
@@ -1439,7 +1450,9 @@ export function renderApp(state: AppViewState) {
                             <button
                               class="nav-section__label"
                               @click=${() => {
-                                const next = { ...state.settings.navGroupsCollapsed };
+                                const next = {
+                                  ...state.settings.navGroupsCollapsed,
+                                };
                                 next[group.label] = !isGroupCollapsed;
                                 state.applySettings({
                                   ...state.settings,
@@ -1472,7 +1485,9 @@ export function renderApp(state: AppViewState) {
                   href="https://docs.openclaw.ai"
                   target=${EXTERNAL_LINK_TARGET}
                   rel=${buildExternalLinkRel()}
-                  title=${t("chat.docsOpensInNewTab", { label: t("common.docs") })}
+                  title=${t("chat.docsOpensInNewTab", {
+                    label: t("common.docs"),
+                  })}
                 >
                   <span class="nav-item__icon" aria-hidden="true">${icons.book}</span>
                   ${!navCollapsed
@@ -1515,7 +1530,9 @@ export function renderApp(state: AppViewState) {
         !isUpdateBannerDismissed(state.updateAvailable)
           ? html`<div class="update-banner callout danger" role="alert">
               <strong>${t("chat.updateAvailable")}</strong> v${state.updateAvailable.latestVersion}
-              (${t("chat.runningVersion", { version: state.updateAvailable.currentVersion })}).
+              (${t("chat.runningVersion", {
+                version: state.updateAvailable.currentVersion,
+              })}).
               <button
                 class="btn btn--sm update-banner__btn"
                 ?disabled=${state.updateRunning || !state.connected}
@@ -1863,7 +1880,10 @@ export function renderApp(state: AppViewState) {
                 deliveryToSuggestions,
                 accountSuggestions,
                 onFormChange: (patch) => {
-                  state.cronForm = normalizeCronFormState({ ...state.cronForm, ...patch });
+                  state.cronForm = normalizeCronFormState({
+                    ...state.cronForm,
+                    ...patch,
+                  });
                   state.cronFieldErrors = validateCronForm(state.cronForm);
                 },
                 onRefresh: () => state.loadCron(),
@@ -2058,11 +2078,17 @@ export function renderApp(state: AppViewState) {
                   void loadAgentFileContent(state, resolvedAgentId, name);
                 },
                 onFileDraftChange: (name, content) => {
-                  state.agentFileDrafts = { ...state.agentFileDrafts, [name]: content };
+                  state.agentFileDrafts = {
+                    ...state.agentFileDrafts,
+                    [name]: content,
+                  };
                 },
                 onFileReset: (name) => {
                   const base = state.agentFileContents[name] ?? "";
-                  state.agentFileDrafts = { ...state.agentFileDrafts, [name]: base };
+                  state.agentFileDrafts = {
+                    ...state.agentFileDrafts,
+                    [name]: base,
+                  };
                 },
                 onFileSave: (name) => {
                   if (!resolvedAgentId) {
@@ -2127,8 +2153,11 @@ export function renderApp(state: AppViewState) {
                   if (index < 0) {
                     return;
                   }
-                  const list = (getCurrentConfigValue() as { agents?: { list?: unknown[] } } | null)
-                    ?.agents?.list;
+                  const list = (
+                    getCurrentConfigValue() as {
+                      agents?: { list?: unknown[] };
+                    } | null
+                  )?.agents?.list;
                   const entry = Array.isArray(list)
                     ? (list[index] as { skills?: unknown })
                     : undefined;
@@ -2236,7 +2265,10 @@ export function renderApp(state: AppViewState) {
                   if (!primary) {
                     return;
                   }
-                  updateConfigFormValue(state, basePath, { primary, fallbacks: normalized });
+                  updateConfigFormValue(state, basePath, {
+                    primary,
+                    fallbacks: normalized,
+                  });
                 },
                 onSetDefault: (agentId) => {
                   stageDefaultAgentConfigEntry(state, agentId);
@@ -2324,7 +2356,10 @@ export function renderApp(state: AppViewState) {
                 onLoadExecApprovals: () => {
                   const target =
                     state.execApprovalsTarget === "node" && state.execApprovalsTargetNodeId
-                      ? { kind: "node" as const, nodeId: state.execApprovalsTargetNodeId }
+                      ? {
+                          kind: "node" as const,
+                          nodeId: state.execApprovalsTargetNodeId,
+                        }
                       : { kind: "gateway" as const };
                   return loadExecApprovals(state, target);
                 },
@@ -2361,7 +2396,10 @@ export function renderApp(state: AppViewState) {
                 onSaveExecApprovals: () => {
                   const target =
                     state.execApprovalsTarget === "node" && state.execApprovalsTargetNodeId
-                      ? { kind: "node" as const, nodeId: state.execApprovalsTargetNodeId }
+                      ? {
+                          kind: "node" as const,
+                          nodeId: state.execApprovalsTargetNodeId,
+                        }
                       : { kind: "gateway" as const };
                   return saveExecApprovals(state, target);
                 },
@@ -2449,7 +2487,9 @@ export function renderApp(state: AppViewState) {
                   return;
                 }
                 try {
-                  await state.client.request("sessions.reset", { key: state.sessionKey });
+                  await state.client.request("sessions.reset", {
+                    key: state.sessionKey,
+                  });
                   state.chatMessages = [];
                   state.chatSideResult = null;
                   state.chatStream = null;
@@ -2528,7 +2568,10 @@ export function renderApp(state: AppViewState) {
                 truncated: state.logsTruncated,
                 onFilterTextChange: (next) => (state.logsFilterText = next),
                 onLevelToggle: (level, enabled) => {
-                  state.logsLevelFilters = { ...state.logsLevelFilters, [level]: enabled };
+                  state.logsLevelFilters = {
+                    ...state.logsLevelFilters,
+                    [level]: enabled,
+                  };
                 },
                 onToggleAutoFollow: (next) => (state.logsAutoFollow = next),
                 onRefresh: () => loadLogs(state, { reset: true }),

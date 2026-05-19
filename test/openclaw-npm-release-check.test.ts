@@ -577,7 +577,7 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("validates the expected npm package metadata", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "@synapsion/openclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
         repository: { url: "git+https://github.com/synapsion/openclaw.git" },
@@ -589,7 +589,7 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("rejects node-llama-cpp as a peer dependency", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "@synapsion/openclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
         repository: { url: "git+https://github.com/synapsion/openclaw.git" },
@@ -606,7 +606,7 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("rejects node-llama-cpp as a direct runtime dependency", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "@synapsion/openclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
         repository: { url: "git+https://github.com/synapsion/openclaw.git" },
@@ -619,7 +619,7 @@ describe("collectReleasePackageMetadataErrors", () => {
   it("rejects node-llama-cpp as an optional dependency", () => {
     expect(
       collectReleasePackageMetadataErrors({
-        name: "openclaw",
+        name: "@synapsion/openclaw",
         description: "Multi-channel AI gateway with extensible messaging integrations",
         license: "MIT",
         repository: { url: "git+https://github.com/synapsion/openclaw.git" },

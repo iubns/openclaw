@@ -41,7 +41,11 @@ export const FALLBACK_TOOL_SECTIONS: AgentToolSection[] = [
       { id: "read", label: "read", description: "Read file contents" },
       { id: "write", label: "write", description: "Create or overwrite files" },
       { id: "edit", label: "edit", description: "Make precise edits" },
-      { id: "apply_patch", label: "apply_patch", description: "Patch files (OpenAI)" },
+      {
+        id: "apply_patch",
+        label: "apply_patch",
+        description: "Patch files (OpenAI)",
+      },
     ],
   },
   {
@@ -49,7 +53,11 @@ export const FALLBACK_TOOL_SECTIONS: AgentToolSection[] = [
     label: "Runtime",
     tools: [
       { id: "exec", label: "exec", description: "Run shell commands" },
-      { id: "process", label: "process", description: "Manage background processes" },
+      {
+        id: "process",
+        label: "process",
+        description: "Manage background processes",
+      },
     ],
   },
   {
@@ -64,19 +72,47 @@ export const FALLBACK_TOOL_SECTIONS: AgentToolSection[] = [
     id: "memory",
     label: "Memory",
     tools: [
-      { id: "memory_search", label: "memory_search", description: "Semantic search" },
-      { id: "memory_get", label: "memory_get", description: "Read memory files" },
+      {
+        id: "memory_search",
+        label: "memory_search",
+        description: "Semantic search",
+      },
+      {
+        id: "memory_get",
+        label: "memory_get",
+        description: "Read memory files",
+      },
     ],
   },
   {
     id: "sessions",
     label: "Sessions",
     tools: [
-      { id: "sessions_list", label: "sessions_list", description: "List sessions" },
-      { id: "sessions_history", label: "sessions_history", description: "Session history" },
-      { id: "sessions_send", label: "sessions_send", description: "Send to session" },
-      { id: "sessions_spawn", label: "sessions_spawn", description: "Spawn sub-agent" },
-      { id: "session_status", label: "session_status", description: "Session status" },
+      {
+        id: "sessions_list",
+        label: "sessions_list",
+        description: "List sessions",
+      },
+      {
+        id: "sessions_history",
+        label: "sessions_history",
+        description: "Session history",
+      },
+      {
+        id: "sessions_send",
+        label: "sessions_send",
+        description: "Send to session",
+      },
+      {
+        id: "sessions_spawn",
+        label: "sessions_spawn",
+        description: "Spawn sub-agent",
+      },
+      {
+        id: "session_status",
+        label: "session_status",
+        description: "Session status",
+      },
     ],
   },
   {
@@ -179,7 +215,11 @@ type AgentConfigEntry = {
 
 type ConfigSnapshot = {
   agents?: {
-    defaults?: { workspace?: string; model?: unknown; models?: Record<string, { alias?: string }> };
+    defaults?: {
+      workspace?: string;
+      model?: unknown;
+      models?: Record<string, { alias?: string }>;
+    };
     list?: AgentConfigEntry[];
   };
   tools?: {
@@ -244,7 +284,7 @@ export function resolveChatAvatarRenderUrl(
 
 export function agentLogoUrl(basePath: string): string {
   const base = normalizeOptionalString(basePath)?.replace(/\/$/, "") ?? "";
-  return base ? `${base}/favicon.svg` : "favicon.svg";
+  return base ? `${base}/favicon.png` : "favicon.png";
 }
 
 export function assistantAvatarFallbackUrl(basePath: string): string {
@@ -733,7 +773,10 @@ function compilePattern(pattern: string): CompiledPattern {
     return { kind: "exact", value: normalized };
   }
   const escaped = normalized.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&");
-  return { kind: "regex", value: new RegExp(`^${escaped.replaceAll("\\*", ".*")}$`) };
+  return {
+    kind: "regex",
+    value: new RegExp(`^${escaped.replaceAll("\\*", ".*")}$`),
+  };
 }
 
 function compilePatterns(patterns?: string[]): CompiledPattern[] {

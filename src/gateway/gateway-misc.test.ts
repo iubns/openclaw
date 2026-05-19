@@ -69,7 +69,7 @@ describe("GatewayClient", () => {
     try {
       await fs.writeFile(path.join(tmp, "index.html"), params.indexHtml ?? "<html></html>\n");
       if (typeof params.faviconSvg === "string") {
-        await fs.writeFile(path.join(tmp, "favicon.svg"), params.faviconSvg);
+        await fs.writeFile(path.join(tmp, "favicon.png"), params.faviconSvg);
       }
       await run(tmp);
     } finally {
@@ -128,7 +128,7 @@ describe("GatewayClient", () => {
     await withControlUiRoot({ faviconSvg: "<svg/>" }, async (tmp) => {
       const { res } = makeControlUiResponse();
       const handled = await handleControlUiHttpRequest(
-        { url: "/webchat/favicon.svg", method: "GET" } as IncomingMessage,
+        { url: "/webchat/favicon.png", method: "GET" } as IncomingMessage,
         res,
         { root: { kind: "resolved", path: tmp } },
       );
@@ -141,7 +141,7 @@ describe("GatewayClient", () => {
     await withControlUiRoot({}, async (tmp) => {
       const { res } = makeControlUiResponse();
       const handled = await handleControlUiHttpRequest(
-        { url: "/webchat/favicon.svg?v=1", method: "GET" } as IncomingMessage,
+        { url: "/webchat/favicon.png?v=1", method: "GET" } as IncomingMessage,
         res,
         { root: { kind: "resolved", path: tmp } },
       );
@@ -167,7 +167,7 @@ describe("GatewayClient", () => {
     await withControlUiRoot({}, async (tmp) => {
       const { res } = makeControlUiResponse();
       const handled = await handleControlUiHttpRequest(
-        { url: "/webchat/favicon.svg", method: "HEAD" } as IncomingMessage,
+        { url: "/webchat/favicon.png", method: "HEAD" } as IncomingMessage,
         res,
         { root: { kind: "resolved", path: tmp } },
       );
@@ -276,7 +276,14 @@ function makeScopedBroadcastClients() {
     } as GatewayWsClient["connect"]),
   ]);
 
-  return { pairingSocket, nodeSocket, readSocket, writeSocket, adminSocket, clients };
+  return {
+    pairingSocket,
+    nodeSocket,
+    readSocket,
+    writeSocket,
+    adminSocket,
+    clients,
+  };
 }
 
 describe("gateway broadcaster", () => {
@@ -312,7 +319,9 @@ describe("gateway broadcaster", () => {
       } as GatewayWsClient["connect"]),
     ]);
 
-    const { broadcast, broadcastToConnIds } = createGatewayBroadcaster({ clients });
+    const { broadcast, broadcastToConnIds } = createGatewayBroadcaster({
+      clients,
+    });
 
     broadcast("exec.approval.requested", { id: "1" });
     broadcast("device.pair.requested", { requestId: "r1" });
@@ -335,7 +344,10 @@ describe("gateway broadcaster", () => {
 
     broadcast("chat", { sessionKey: "agent:main:main", message: "secret" });
     broadcast("agent", { type: "status", sessionKey: "agent:main:main" });
-    broadcast("chat.side_result", { sessionKey: "agent:main:main", text: "tool output" });
+    broadcast("chat.side_result", {
+      sessionKey: "agent:main:main",
+      text: "tool output",
+    });
 
     expect(pairingSocket.send).not.toHaveBeenCalled();
     expect(nodeSocket.send).not.toHaveBeenCalled();
@@ -398,7 +410,9 @@ describe("gateway broadcaster", () => {
     broadcast("health", { ok: true });
     broadcast("tick", { ts: 2 });
     broadcast("shutdown", { reason: "restart" });
-    broadcast("update.available", { updateAvailable: { version: "2026.4.20" } });
+    broadcast("update.available", {
+      updateAvailable: { version: "2026.4.20" },
+    });
     broadcast("unknown.future.event", { hidden: true });
 
     expect(pairingSocket.sent.map((frame) => frame.event)).toEqual([
@@ -475,7 +489,10 @@ describe("gateway broadcaster", () => {
 
     broadcast("chat", { sessionKey: "agent:main:main", message: "secret" });
     broadcast("heartbeat", { ts: 1 });
-    broadcast("chat.side_result", { sessionKey: "agent:main:main", text: "tool output" });
+    broadcast("chat.side_result", {
+      sessionKey: "agent:main:main",
+      text: "tool output",
+    });
     broadcast("tick", { ts: 2 });
 
     expect(pairingSocket.sent.map((frame) => [frame.event, frame.seq])).toEqual([

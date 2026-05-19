@@ -67,7 +67,10 @@ describe("resolveConfiguredCronModelSuggestions", () => {
         },
         list: {
           writer: {
-            model: { primary: "xai/grok-4", fallbacks: ["openai/gpt-5.2-mini"] },
+            model: {
+              primary: "xai/grok-4",
+              fallbacks: ["openai/gpt-5.2-mini"],
+            },
           },
           planner: {
             model: "google/gemini-2.5-flash",
@@ -89,9 +92,11 @@ describe("resolveConfiguredCronModelSuggestions", () => {
   it("returns empty array for invalid or missing config shape", () => {
     expect(resolveConfiguredCronModelSuggestions(null)).toEqual([]);
     expect(resolveConfiguredCronModelSuggestions({})).toEqual([]);
-    expect(resolveConfiguredCronModelSuggestions({ agents: { defaults: { model: "" } } })).toEqual(
-      [],
-    );
+    expect(
+      resolveConfiguredCronModelSuggestions({
+        agents: { defaults: { model: "" } },
+      }),
+    ).toEqual([]);
   });
 });
 
@@ -107,12 +112,12 @@ describe("sortLocaleStrings", () => {
 
 describe("agentLogoUrl", () => {
   it("keeps base-mounted control UI logo paths absolute to the mount", () => {
-    expect(agentLogoUrl("/ui")).toBe("/ui/favicon.svg");
-    expect(agentLogoUrl("/apps/openclaw/")).toBe("/apps/openclaw/favicon.svg");
+    expect(agentLogoUrl("/ui")).toBe("/ui/favicon.png");
+    expect(agentLogoUrl("/apps/openclaw/")).toBe("/apps/openclaw/favicon.png");
   });
 
   it("uses a route-relative fallback before basePath bootstrap finishes", () => {
-    expect(agentLogoUrl("")).toBe("favicon.svg");
+    expect(agentLogoUrl("")).toBe("favicon.png");
   });
 });
 

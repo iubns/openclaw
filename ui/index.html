@@ -2,10 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>OpenClaw Control</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>시오닉스</title>
     <meta name="color-scheme" content="dark light" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
@@ -40,7 +43,9 @@
           var theme = THEMES[t] ? t : legacy ? legacy.split(":")[0] : "claw";
           var mode = MODES[m] ? m : legacy ? legacy.split(":")[1] : "system";
           if (mode === "system") {
-            mode = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+            mode = window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
           }
           var resolved =
             theme === "knot"
