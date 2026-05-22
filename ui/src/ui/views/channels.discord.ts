@@ -20,11 +20,17 @@ export function renderDiscordCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Discord",
-    subtitle: "Bot status and channel configuration.",
+    subtitle: "봇 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.running"), value: discord?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.running"),
+        value: discord?.running ? t("common.yes") : t("common.no"),
+      },
       {
         label: t("common.lastStart"),
         value: discord?.lastStartAt ? formatRelativeTimestamp(discord.lastStartAt) : t("common.na"),

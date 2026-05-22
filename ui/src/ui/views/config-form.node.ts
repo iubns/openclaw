@@ -196,14 +196,14 @@ function renderSensitiveToggleButton(params: {
       style="width:28px;height:28px;padding:0;"
       title=${state.canReveal
         ? state.isRevealed
-          ? "Hide value"
-          : "Reveal value"
-        : "Disable stream mode to reveal value"}
+          ? "값 숨기기"
+          : "값 표시하기"
+        : "값을 표시하려면 스트림 모드를 비활성화하세요"}
       aria-label=${state.canReveal
         ? state.isRevealed
-          ? "Hide value"
-          : "Reveal value"
-        : "Disable stream mode to reveal value"}
+          ? "값 숨기기"
+          : "값 표시하기"
+        : "값을 표시하려면 스트림 모드를 비활성화하세요"}
       aria-pressed=${state.isRevealed}
       ?disabled=${params.disabled || !state.canReveal}
       @click=${() => params.onToggleSensitivePath?.(params.path)}
@@ -453,7 +453,7 @@ export function renderNode(params: {
   if (unsupported.has(key)) {
     return html`<div class="cfg-field cfg-field--error">
       <div class="cfg-field__label">${label}</div>
-      <div class="cfg-field__error">Unsupported schema node. Use Raw mode.</div>
+      <div class="cfg-field__error">지원되지 않는 스키마 노드입니다. Raw 모드를 사용하세요.</div>
     </div>`;
   }
   if (
@@ -517,7 +517,11 @@ export function renderNode(params: {
 
     if (allLiterals && literals.length > 5) {
       // Use dropdown for larger sets
-      return renderSelect({ ...params, options: literals, value: value ?? schema.default });
+      return renderSelect({
+        ...params,
+        options: literals,
+        value: value ?? schema.default,
+      });
     }
 
     // Handle mixed primitive types
@@ -534,7 +538,12 @@ export function renderNode(params: {
       if (hasBoolean && normalizedTypes.size === 1) {
         return renderNode({
           ...params,
-          schema: { ...schema, type: "boolean", anyOf: undefined, oneOf: undefined },
+          schema: {
+            ...schema,
+            type: "boolean",
+            anyOf: undefined,
+            oneOf: undefined,
+          },
         });
       }
 
@@ -644,7 +653,7 @@ export function renderNode(params: {
   return html`
     <div class="cfg-field cfg-field--error">
       <div class="cfg-field__label">${label}</div>
-      <div class="cfg-field__error">Unsupported type: ${type}. Use Raw mode.</div>
+      <div class="cfg-field__error">지원되지 않는 유형입니다: ${type}. Raw 모드를 사용하세요.</div>
     </div>
   `;
 }
@@ -683,11 +692,11 @@ function renderTextInput(params: {
   const placeholder = effectiveRedacted
     ? isStructuredSecretRef
       ? rawAvailable
-        ? "Structured value (SecretRef) - use Raw mode to edit"
-        : "Structured value (SecretRef) - edit the config file directly"
+        ? "구조화된 값 (SecretRef) - 편집하려면 Raw 모드를 사용하세요"
+        : "구조화된 값 (SecretRef) - 설정 파일을 직접 편집하세요"
       : REDACTED_PLACEHOLDER
     : (hint?.placeholder ??
-      (schema.default !== undefined ? `Default: ${formatUnknownText(schema.default)}` : ""));
+      (schema.default !== undefined ? `기본값: ${formatUnknownText(schema.default)}` : ""));
   const displayValue = effectiveRedacted
     ? ""
     : isStructuredValue
@@ -852,7 +861,7 @@ function renderSelect(params: {
           onPatch(path, val === unset ? undefined : options[Number(val)]);
         }}
       >
-        <option value=${unset} ?selected=${currentIndex < 0}>Select...</option>
+        <option value=${unset} ?selected=${currentIndex < 0}>선택...</option>
         ${options.map(
           (opt, idx) =>
             html` <option value=${String(idx)} ?selected=${idx === currentIndex}>
@@ -896,7 +905,7 @@ function renderJsonTextarea(params: {
       <div class="cfg-input-wrap">
         <textarea
           class="cfg-textarea${sensitiveState.isRedacted ? " cfg-textarea--redacted" : ""}"
-          placeholder=${sensitiveState.isRedacted ? REDACTED_PLACEHOLDER : "JSON value"}
+          placeholder=${sensitiveState.isRedacted ? REDACTED_PLACEHOLDER : "JSON 값"}
           rows="3"
           .value=${displayValue}
           ?disabled=${disabled}
@@ -1096,7 +1105,7 @@ function renderArray(params: {
     return html`
       <div class="cfg-field cfg-field--error">
         <div class="cfg-field__label">${label}</div>
-        <div class="cfg-field__error">Unsupported array schema. Use Raw mode.</div>
+        <div class="cfg-field__error">지원되지 않는 배열 스키마입니다. Raw 모드를 사용하세요.</div>
       </div>
     `;
   }
@@ -1121,12 +1130,14 @@ function renderArray(params: {
           }}
         >
           <span class="cfg-array__add-icon">${icons.plus}</span>
-          Add
+          추가
         </button>
       </div>
       ${help ? html`<div class="cfg-array__help">${help}</div>` : nothing}
       ${arr.length === 0
-        ? html` <div class="cfg-array__empty">No items yet. Click "Add" to create one.</div> `
+        ? html`
+            <div class="cfg-array__empty">항목이 아직 없습니다. "추가"를 클릭하여 만드세요.</div>
+          `
         : html`
             <div class="cfg-array__items">
               ${arr.map(
@@ -1137,7 +1148,7 @@ function renderArray(params: {
                       <button
                         type="button"
                         class="cfg-array__item-remove"
-                        title="Remove item"
+                        title="항목 제거"
                         ?disabled=${disabled}
                         @click=${() => {
                           const next = [...arr];
@@ -1240,12 +1251,12 @@ function renderMapField(params: {
           }}
         >
           <span class="cfg-map__add-icon">${icons.plus}</span>
-          Add Entry
+          항목 추가
         </button>
       </div>
 
       ${visibleEntries.length === 0
-        ? html` <div class="cfg-map__empty">No custom entries.</div> `
+        ? html` <div class="cfg-map__empty">기본 항목이 없습니다.</div> `
         : html`
             <div class="cfg-map__items">
               ${visibleEntries.map(([key, entryValue]) => {
@@ -1286,7 +1297,7 @@ function renderMapField(params: {
                       <button
                         type="button"
                         class="cfg-map__item-remove"
-                        title="Remove entry"
+                        title="항목 제거"
                         ?disabled=${disabled}
                         @click=${() => {
                           const next = { ...value };
@@ -1307,7 +1318,7 @@ function renderMapField(params: {
                                   : ""}"
                                 placeholder=${sensitiveState.isRedacted
                                   ? REDACTED_PLACEHOLDER
-                                  : "JSON value"}
+                                  : "JSON 값"}
                                 rows="2"
                                 .value=${sensitiveState.isRedacted ? "" : fallback}
                                 ?disabled=${disabled}

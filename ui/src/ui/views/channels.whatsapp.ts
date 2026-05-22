@@ -20,12 +20,21 @@ export function renderWhatsAppCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "WhatsApp",
-    subtitle: "Link WhatsApp Web and monitor connection health.",
+    subtitle: "WhatsApp Web을 연동하고 연결 상태를 모니터링합니다.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.linked"), value: whatsapp?.linked ? t("common.yes") : t("common.no") },
-      { label: t("common.running"), value: whatsapp?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.linked"),
+        value: whatsapp?.linked ? t("common.yes") : t("common.no"),
+      },
+      {
+        label: t("common.running"),
+        value: whatsapp?.running ? t("common.yes") : t("common.no"),
+      },
       {
         label: t("common.connected"),
         value: whatsapp?.connected ? t("common.yes") : t("common.no"),

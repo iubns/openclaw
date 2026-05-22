@@ -20,11 +20,17 @@ export function renderIMessageCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "iMessage",
-    subtitle: "macOS bridge status and channel configuration.",
+    subtitle: "macOS 브리지 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.running"), value: imessage?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.running"),
+        value: imessage?.running ? t("common.yes") : t("common.no"),
+      },
       {
         label: t("common.lastStart"),
         value: imessage?.lastStartAt

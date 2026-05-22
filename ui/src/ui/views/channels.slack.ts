@@ -20,11 +20,17 @@ export function renderSlackCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Slack",
-    subtitle: "Socket mode status and channel configuration.",
+    subtitle: "소켓 모드 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.running"), value: slack?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.running"),
+        value: slack?.running ? t("common.yes") : t("common.no"),
+      },
       {
         label: t("common.lastStart"),
         value: slack?.lastStartAt ? formatRelativeTimestamp(slack.lastStartAt) : t("common.na"),

@@ -20,10 +20,13 @@ export function renderGoogleChatCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Google Chat",
-    subtitle: "Chat API webhook status and channel configuration.",
+    subtitle: "Chat API 웹훅 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
       {
         label: t("common.running"),
         value: googleChat
@@ -32,7 +35,10 @@ export function renderGoogleChatCard(params: {
             : t("common.no")
           : t("common.na"),
       },
-      { label: t("common.credential"), value: googleChat?.credentialSource ?? t("common.na") },
+      {
+        label: t("common.credential"),
+        value: googleChat?.credentialSource ?? t("common.na"),
+      },
       {
         label: t("common.audience"),
         value: googleChat?.audienceType
@@ -59,7 +65,10 @@ export function renderGoogleChatCard(params: {
           ${googleChat.probe.status ?? ""} ${googleChat.probe.error ?? ""}
         </div>`
       : nothing,
-    configSection: renderChannelConfigSection({ channelId: "googlechat", props }),
+    configSection: renderChannelConfigSection({
+      channelId: "googlechat",
+      props,
+    }),
     footer: html`<div class="row" style="margin-top: 12px;">
       <button class="btn" @click=${() => props.onRefresh(true)}>${t("common.probe")}</button>
     </div>`,

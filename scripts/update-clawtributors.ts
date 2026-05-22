@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import type { ApiContributor, Entry, MapConfig, User } from "./update-clawtributors.types.js";
 
-const REPO = "openclaw/openclaw";
+const REPO = "synapsion/openclaw";
 const PER_LINE = 10;
 const AVATAR_PROBE_SIZE = 40;
 const AVATAR_SIZE = 48;
@@ -686,14 +686,22 @@ function parseReadmeEntries(
     return [];
   }
   const block = content.slice(range.start, range.end);
-  const entries: Array<{ display: string; html_url: string; avatar_url: string }> = [];
+  const entries: Array<{
+    display: string;
+    html_url: string;
+    avatar_url: string;
+  }> = [];
   const markdown = /\[!\[([^\]]+)\]\(([^)]+)\)\]\(([^)]+)\)/g;
   for (const match of block.matchAll(markdown)) {
     const [, alt, src, href] = match;
     if (!href || !src || !alt) {
       continue;
     }
-    entries.push({ html_url: href, avatar_url: src, display: alt.replace(/\\([\\[\]])/g, "$1") });
+    entries.push({
+      html_url: href,
+      avatar_url: src,
+      display: alt.replace(/\\([\\[\]])/g, "$1"),
+    });
   }
   const linked = /<a href="([^"]+)"><img src="([^"]+)"[^>]*alt="([^"]+)"[^>]*>/g;
   for (const match of block.matchAll(linked)) {
@@ -712,7 +720,11 @@ function parseReadmeEntries(
     if (entries.some((entry) => entry.display === alt && entry.avatar_url === src)) {
       continue;
     }
-    entries.push({ html_url: fallbackHref(alt), avatar_url: src, display: alt });
+    entries.push({
+      html_url: fallbackHref(alt),
+      avatar_url: src,
+      display: alt,
+    });
   }
   return entries;
 }

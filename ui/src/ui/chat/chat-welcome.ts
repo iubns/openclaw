@@ -16,10 +16,10 @@ export type ChatWelcomeProps = {
 };
 
 const WELCOME_SUGGESTIONS = [
-  "What can you do?",
-  "Summarize my recent sessions",
-  "Help me configure a channel",
-  "Check system health",
+  "무엇을 할 수 있나요?",
+  "최근 세션 요약하기",
+  "채널 설정 도와주기",
+  "시스템 상태 확인하기",
 ];
 
 function resolveAssistantAvatarUrl(
@@ -40,7 +40,7 @@ export function resolveAssistantDisplayAvatar(
 }
 
 export function renderWelcomeState(props: ChatWelcomeProps) {
-  const name = props.assistantName || "Assistant";
+  const name = props.assistantName || "어시스턴트";
   const avatar = resolveAssistantAvatarUrl(props);
   const avatarText = avatar ? null : resolveAssistantTextAvatar(props.assistantAvatar);
   const fallbackAvatarUrl = assistantAvatarFallbackUrl(props.basePath ?? "");
@@ -64,9 +64,9 @@ export function renderWelcomeState(props: ChatWelcomeProps) {
             </div>`}
       <h2>${name}</h2>
       <div class="agent-chat__badges">
-        <span class="agent-chat__badge"><img src=${logoUrl} alt="" /> Ready to chat</span>
+        <span class="agent-chat__badge"><img src=${logoUrl} alt="" /> 대화 준비 완료</span>
       </div>
-      <p class="agent-chat__hint">Type a message below &middot; <kbd>/</kbd> for commands</p>
+      <p class="agent-chat__hint">아래에 메시지를 입력하세요 &middot; 명령어는 <kbd>/</kbd> 입력</p>
       <div class="agent-chat__suggestions">
         ${WELCOME_SUGGESTIONS.map(
           (text) => html`

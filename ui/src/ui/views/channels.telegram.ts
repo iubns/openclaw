@@ -86,11 +86,17 @@ export function renderTelegramCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Telegram",
-    subtitle: "Bot status and channel configuration.",
+    subtitle: "봇 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.running"), value: telegram?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.running"),
+        value: telegram?.running ? t("common.yes") : t("common.no"),
+      },
       { label: t("common.mode"), value: telegram?.mode ?? t("common.na") },
       {
         label: t("common.lastStart"),

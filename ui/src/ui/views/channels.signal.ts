@@ -20,11 +20,17 @@ export function renderSignalCard(params: {
 
   return renderSingleAccountChannelCard({
     title: "Signal",
-    subtitle: "signal-cli status and channel configuration.",
+    subtitle: "signal-cli 상태 및 채널 설정.",
     accountCountLabel,
     statusRows: [
-      { label: t("common.configured"), value: formatNullableBoolean(configured) },
-      { label: t("common.running"), value: signal?.running ? t("common.yes") : t("common.no") },
+      {
+        label: t("common.configured"),
+        value: formatNullableBoolean(configured),
+      },
+      {
+        label: t("common.running"),
+        value: signal?.running ? t("common.yes") : t("common.no"),
+      },
       { label: t("common.baseUrl"), value: signal?.baseUrl ?? t("common.na") },
       {
         label: t("common.lastStart"),
