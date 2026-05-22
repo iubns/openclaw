@@ -8,16 +8,18 @@ import {
 
 describe("gh-read helpers", () => {
   it("finds repo from gh args", () => {
-    expect(parseRepoArg(["pr", "view", "42", "-R", "openclaw/openclaw"])).toBe("openclaw/openclaw");
-    expect(parseRepoArg(["run", "list", "--repo=openclaw/docs"])).toBe("openclaw/docs");
+    expect(parseRepoArg(["pr", "view", "42", "-R", "synapsion/openclaw"])).toBe(
+      "synapsion/openclaw",
+    );
+    expect(parseRepoArg(["run", "list", "--repo=synapsion/docs"])).toBe("synapsion/docs");
     expect(parseRepoArg(["pr", "view", "42"])).toBeNull();
   });
 
   it("normalizes repo strings from common git formats", () => {
-    expect(normalizeRepo("openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("github.com/openclaw/openclaw")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("https://github.com/openclaw/openclaw.git")).toBe("openclaw/openclaw");
-    expect(normalizeRepo("git@github.com:openclaw/openclaw.git")).toBe("openclaw/openclaw");
+    expect(normalizeRepo("synapsion/openclaw")).toBe("synapsion/openclaw");
+    expect(normalizeRepo("github.com/synapsion/openclaw")).toBe("synapsion/openclaw");
+    expect(normalizeRepo("https://github.com/synapsion/openclaw.git")).toBe("synapsion/openclaw");
+    expect(normalizeRepo("git@github.com:synapsion/openclaw.git")).toBe("synapsion/openclaw");
     expect(normalizeRepo("invalid")).toBeNull();
   });
 

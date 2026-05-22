@@ -26,7 +26,10 @@ describe("resolveWorkspaceTemplateDir", () => {
 
   it("resolves templates from package root when module url is dist-rooted", async () => {
     const root = await makeTempRoot();
-    await fs.writeFile(path.join(root, "package.json"), JSON.stringify({ name: "openclaw" }));
+    await fs.writeFile(
+      path.join(root, "package.json"),
+      JSON.stringify({ name: "@synapsion/openclaw" }),
+    );
 
     const templatesDir = path.join(root, "docs", "reference", "templates");
     await fs.mkdir(templatesDir, { recursive: true });

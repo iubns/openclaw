@@ -10,7 +10,7 @@ import {
 
 async function makePackageRoot(prefix: string): Promise<string> {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), prefix));
-  await fs.writeFile(path.join(root, "package.json"), '{"name":"openclaw"}\n');
+  await fs.writeFile(path.join(root, "package.json"), '{"name":"@synapsion/openclaw"}\n');
   return root;
 }
 

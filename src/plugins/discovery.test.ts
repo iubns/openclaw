@@ -41,7 +41,11 @@ function countMatching<T>(items: readonly T[], predicate: (item: T) => boolean):
 
 function withOpenClawPackageArgv<T>(packageRoot: string, fn: () => T): T {
   mkdirSafe(path.join(packageRoot, "bin"));
-  fs.writeFileSync(path.join(packageRoot, "package.json"), '{"name":"openclaw"}\n', "utf-8");
+  fs.writeFileSync(
+    path.join(packageRoot, "package.json"),
+    '{"name":"@synapsion/openclaw"}\n',
+    "utf-8",
+  );
   const originalArgv = process.argv;
   process.argv = [originalArgv[0] ?? "node", path.join(packageRoot, "bin", "openclaw")];
   try {

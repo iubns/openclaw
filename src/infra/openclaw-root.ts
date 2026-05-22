@@ -2,7 +2,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openClawRootFs, openClawRootFsSync } from "./openclaw-root.fs.runtime.js";
 
-const CORE_PACKAGE_NAMES = new Set(["openclaw"]);
+const CORE_PACKAGE_NAME = "@synapsion/openclaw";
+const CORE_PACKAGE_NAMES = new Set([CORE_PACKAGE_NAME]);
 const packageNameCache = new Map<string, string | null>();
 const packageRootCache = new Map<string, string | null>();
 const argv1CandidateCache = new Map<string, string[]>();
@@ -97,9 +98,8 @@ function candidateDirsFromArgv1(argv1: string): string[] {
   const parts = normalized.split(path.sep);
   const binIndex = parts.lastIndexOf(".bin");
   if (binIndex > 0 && parts[binIndex - 1] === "node_modules") {
-    const binName = path.basename(normalized);
     const nodeModulesDir = parts.slice(0, binIndex).join(path.sep);
-    candidates.push(path.join(nodeModulesDir, binName));
+    candidates.push(path.join(nodeModulesDir, CORE_PACKAGE_NAME));
   }
   const deduped = dedupeCandidates(candidates);
   argv1CandidateCache.set(cacheKey, deduped);

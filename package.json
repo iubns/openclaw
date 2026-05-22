@@ -1,17 +1,17 @@
 {
-  "name": "openclaw",
-  "version": "2026.5.20",
+  "name": "@synapsion/openclaw",
+  "version": "2026.5.20-beta.1",
   "description": "Multi-channel AI gateway with extensible messaging integrations",
   "keywords": [],
-  "homepage": "https://github.com/openclaw/openclaw#readme",
+  "homepage": "https://github.com/synapsion/openclaw#readme",
   "bugs": {
-    "url": "https://github.com/openclaw/openclaw/issues"
+    "url": "https://github.com/synapsion/openclaw/issues"
   },
   "license": "MIT",
   "author": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/openclaw/openclaw.git"
+    "url": "git+https://github.com/synapsion/openclaw.git"
   },
   "bin": {
     "openclaw": "openclaw.mjs"
@@ -1701,6 +1701,7 @@
     "test:live:media:music": "node --import tsx scripts/test-live-media.ts music",
     "test:live:media:video": "node --import tsx scripts/test-live-media.ts video",
     "test:live:models-profiles": "node scripts/test-live.mjs -- src/agents/models.profiles.live.test.ts",
+    "test:log": "node scripts/test-projects-with-log.mjs",
     "test:macos:ci": "node scripts/test-projects.mjs src/daemon/launchd.test.ts src/daemon/runtime-paths.test.ts src/daemon/runtime-binary.test.ts src/infra/brew.test.ts src/infra/stable-node-path.test.ts test/scripts/vitest-process-group.test.ts",
     "test:max": "OPENCLAW_VITEST_MAX_WORKERS=8 node scripts/test-projects.mjs",
     "test:parallels:linux": "bash scripts/e2e/parallels-linux-smoke.sh",
