@@ -1,6 +1,6 @@
 ---
 name: wacli
-description: Send third-party WhatsApp messages or sync/search WhatsApp history via wacli, not normal active chats.
+description: 일반 활성 채팅이 아닌, wacli로 제3자 WhatsApp 메시지를 보내거나 WhatsApp 기록을 동기화/검색합니다.
 homepage: https://wacli.sh
 metadata:
   {

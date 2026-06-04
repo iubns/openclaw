@@ -1,6 +1,6 @@
 ---
 name: taskflow-inbox-triage
-description: Example TaskFlow pattern for inbox triage, intent routing, waiting on replies, and later summaries.
+description: 인박스 분류, 의도 라우팅, 답장 대기, 후속 요약을 위한 TaskFlow 예시 패턴입니다.
 metadata: { "openclaw": { "emoji": "📥" } }
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: gh-issues
-description: "Fetch GitHub issues, delegate fixes to subagents, open PRs, watch reviews, or run /gh-issues workflows."
+description: "GitHub 이슈를 가져오고, 수정 작업을 서브에이전트에 위임하고, PR을 열고, 리뷰를 확인하거나, /gh-issues 워크플로를 실행합니다."
 user-invocable: true
 metadata:
   {

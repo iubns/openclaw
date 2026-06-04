@@ -1,6 +1,6 @@
 ---
 name: mcporter
-description: List, configure, authenticate, call, and inspect MCP servers/tools with mcporter over HTTP or stdio.
+description: HTTP 또는 stdio를 통해 mcporter로 MCP 서버/도구를 목록화, 설정, 인증, 호출, 검사합니다.
 homepage: http://mcporter.dev
 metadata:
   {

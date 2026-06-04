@@ -1,6 +1,6 @@
 ---
 name: apple-reminders
-description: List, add, edit, complete, or delete Apple Reminders and reminder lists via remindctl.
+description: remindctl로 Apple Reminders와 목록을 조회, 추가, 편집, 완료, 삭제합니다.
 homepage: https://github.com/steipete/remindctl
 metadata:
   {

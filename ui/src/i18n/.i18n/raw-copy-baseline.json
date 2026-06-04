@@ -13,7 +13,7 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/app-render.ts",
-      "text": "OpenClaw"
+      "text": "시오닉스"
     },
     {
       "count": 1,
@@ -62,161 +62,161 @@
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/app-settings.ts",
-      "text": "This connection does not have the operator.read scope. Some features may be unavailable."
+      "text": "이 연결에는 operator.read 권한이 없습니다. 일부 기능을 사용할 수 없습니다."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/app-settings.ts",
-      "text": "Gateway Error"
+      "text": "게이트웨이 오류"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/app-settings.ts",
-      "text": "Missing operator.read scope"
+      "text": "operator.read 권한 누락"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/app-settings.ts",
-      "text": "Skills with missing dependencies"
+      "text": "종속성이 누락된 스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/chat/build-chat-items.ts",
-      "text": "Earlier turns are preserved in a compaction checkpoint. Open session checkpoints to branch or restore that pre-compaction view."
+      "text": "이전 대화는 압축 체크포인트에 보존됩니다. 세션 체크포인트를 열어 압축 전 뷰로 분기하거나 복원하세요."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/chat/build-chat-items.ts",
-      "text": "Compacted history"
+      "text": "압축된 기록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/chat/build-chat-items.ts",
-      "text": "Open checkpoints"
+      "text": "체크포인트 열기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/chat-queue.ts",
-      "text": "Remove queued message"
+      "text": "대기열 메시지 제거"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/chat-queue.ts",
-      "text": "Steer queued message"
+      "text": "대기열 메시지 조정"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/chat-queue.ts",
-      "text": "Steer now"
+      "text": "지금 조정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/chat-queue.ts",
-      "text": "Steer"
+      "text": "조정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/chat-queue.ts",
-      "text": "Steered"
+      "text": "조정됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/chat-welcome.ts",
-      "text": "for commands"
+      "text": "명령어용"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/chat-welcome.ts",
-      "text": "Ready to chat"
+      "text": "채팅 준비 완료"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/chat-welcome.ts",
-      "text": "Type a message below ·"
+      "text": "아래에 메시지를 입력하세요 ·"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/context-notice.ts",
-      "text": "Compact recommended session context"
+      "text": "권장 세션 컨텍스트 압축"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/context-notice.ts",
-      "text": "Compact session context"
+      "text": "세션 컨텍스트 압축"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Delete message"
+      "text": "메시지 삭제"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Open in canvas"
+      "text": "캔버스에서 열기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Delete"
+      "text": "삭제"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Open in canvas"
+      "text": "캔버스에서 열기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Show message context details"
+      "text": "메시지 컨텍스트 세부정보 표시"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Context"
+      "text": "컨텍스트"
     },
     {
       "count": 2,
@@ -230,210 +230,210 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Voice note"
+      "text": "음성 메모"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Unknown date"
+      "text": "음성 메모"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/chat/grouped-render.ts",
-      "text": "Unknown date"
+      "text": "알 수 없는 날짜"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Export chat"
+      "text": "채팅 내보내기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "New session"
+      "text": "새 세션"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Queue message"
+      "text": "메시지 큐에 추가"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Stop generating"
+      "text": "생성 중지"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Export"
+      "text": "내보내기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "New session"
+      "text": "새 세션"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Queue"
+      "text": "대기열"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/run-controls.ts",
-      "text": "Stop"
+      "text": "중지"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/session-controls.ts",
-      "text": "Chat model"
+      "text": "채팅 모델"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/session-controls.ts",
-      "text": "Chat session"
+      "text": "채팅 세션"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/session-controls.ts",
-      "text": "Chat thinking level"
+      "text": "채팅 생각 수준"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/session-controls.ts",
-      "text": "Filter sessions by agent"
+      "text": "에이전트별 세션 필터"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/side-result-render.ts",
-      "text": "BTW side result"
+      "text": "참고( BTW ) 사이드 결과"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/side-result-render.ts",
-      "text": "Dismiss BTW result"
+      "text": "참고 결과 무시"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/side-result-render.ts",
-      "text": "Dismiss"
+      "text": "무시"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/side-result-render.ts",
-      "text": "BTW"
+      "text": "참고"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/side-result-render.ts",
-      "text": "Not saved to chat history"
+      "text": "채팅 기록에 저장되지 않음"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/chat/slash-commands.ts",
-      "text": "Abort and restart with a new message"
+      "text": "중단하고 새 메시지로 다시 시작"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/chat/slash-commands.ts",
-      "text": "Clear chat history"
+      "text": "채팅 기록 지우기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "help",
       "path": "ui/src/ui/chat/slash-commands.ts",
-      "text": "book"
+      "text": "도움말 서적"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "help",
       "path": "ui/src/ui/chat/slash-commands.ts",
-      "text": "tools"
+      "text": "도구"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Open tool details in side panel"
+      "text": "사이드 패널에서 도구 세부정보 열기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Open in the side panel"
+      "text": "사이드 패널에서 열기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Completed"
+      "text": "완료됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Raw details"
+      "text": "원시 세부정보"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Tool input"
+      "text": "도구 입력"
     },
     {
       "count": 2,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/chat/tool-cards.ts",
-      "text": "Tool output"
+      "text": "도구 출력"
     },
     {
       "count": 1,
@@ -447,35 +447,35 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/navigation.ts",
-      "text": "agent"
+      "text": "에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/navigation.ts",
-      "text": "chat"
+      "text": "채팅"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/navigation.ts",
-      "text": "control"
+      "text": "제어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/navigation.ts",
-      "text": "settings"
+      "text": "설정"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Open Files tab"
+      "text": "파일 탭 열기"
     },
     {
       "count": 1,
@@ -489,728 +489,728 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Fallbacks"
+      "text": "대체"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Model Selection"
+      "text": "모델 선택"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Not set"
+      "text": "설정되지 않음"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Overview"
+      "text": "개요"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Primary Model"
+      "text": "기본 모델"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Runtime"
+      "text": "런타임"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Skills Filter"
+      "text": "스킬 필터"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Workspace"
+      "text": "작업공간"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "Workspace paths and identity metadata."
+      "text": "작업공간 경로 및 식별자 메타데이터."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-overview.ts",
-      "text": "You have unsaved config changes."
+      "text": "저장되지 않은 설정 변경 사항이 있습니다."
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Tool preview"
+      "text": "도구 미리보기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Search skills"
+      "text": "스킬 검색"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Remove per-agent allowlist and use all skills"
+      "text": "에이전트별 허용 목록 제거하고 모든 스킬 사용"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Access"
+      "text": "액세스"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "All skills are enabled. Disabling any skill will create a per-agent allowlist."
+      "text": "모든 스킬이 활성화되어 있습니다. 스킬을 비활성화하면 에이전트별 허용 목록이 생성됩니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Available Right Now"
+      "text": "지금 사용 가능"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Could not load available tools for this session."
+      "text": "이 세션에 사용할 수 있는 도구를 불러올 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Could not load runtime tool catalog. Showing built-in fallback list instead."
+      "text": "런타임 도구 카탈로그를 불러올 수 없습니다. 대신 내장 대체 목록을 표시합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Current Session"
+      "text": "현재 세션"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Default Presets"
+      "text": "기본 프리셋"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Disable All"
+      "text": "모두 비활성화"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Enable All"
+      "text": "모두 활성화"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Enabled"
+      "text": "활성화 됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "enabled."
+      "text": "활성화 됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Filter"
+      "text": "필터"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Global tools.allow is set. Agent overrides cannot enable tools that are globally blocked."
+      "text": "글로벌 tools.allow이 설정되어 있습니다. 에이전트 오버라이드는 글로벌로 차단된 도구를 활성화할 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Inherit"
+      "text": "상속"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Link to This Tool"
+      "text": "해당 툴을 연결하기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Live"
+      "text": "실시간"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Load skills for this agent to view workspace-specific entries."
+      "text": "이 에이전트의 스킬을 불러와 작업공간별 항목을 확인하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Load the gateway config to adjust tool profiles."
+      "text": "도구 프로필을 조정하려면 게이트웨이 구성을 불러오세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Load the gateway config to set per-agent skills."
+      "text": "에이전트별 스킬을 설정하려면 게이트웨이 구성을 불러오세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Loading available tools…"
+      "text": "사용 가능한 도구 로딩 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Loading runtime tool catalog…"
+      "text": "런타임 도구 카탈로그 로딩 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "No skills found."
+      "text": "스킬을 찾을 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "No tools are available for this session right now."
+      "text": "현재 이 세션에서 사용할 수 있는 도구가 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Profile"
+      "text": "프로필"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Profile + per-tool overrides for this agent."
+      "text": "이 에이전트의 도구별 오버라이드를 포함한 프로필."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Quick Presets"
+      "text": "빠른 프리셋"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Reset"
+      "text": "재설정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Session"
+      "text": "세션"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Skills"
+      "text": "스킬"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Source"
+      "text": "소스"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Status"
+      "text": "상태"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Switch chat to this agent to view its live runtime tools."
+      "text": "이 에이전트의 채팅으로 전환하면 실시간 런타임 도구를 볼 수 있습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "This agent is using an explicit allowlist in config. Tool overrides are managed in the Config tab."
+      "text": "이 에이전트는 구성에서 명시적 허용 목록을 사용 중입니다. 도구 오버라이드는 구성 탭에서 관리됩니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "This agent uses a custom skill allowlist."
+      "text": "이 에이전트는 사용자 정의 스킬 허용 목록을 사용합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "Tool Access"
+      "text": "도구 접근"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/agents-panels-tools-skills.ts",
-      "text": "What this agent can use in the current chat session."
+      "text": "이 에이전트가 현재 채팅 세션에서 사용할 수 있는 항목입니다."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Control canvases"
+      "text": "캔버스 제어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Control web browser"
+      "text": "브라우저 제어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Create or overwrite files"
+      "text": "파일 생성 및 편집"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Fetch web content"
+      "text": "웹 검색"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Gateway control"
+      "text": "게이트웨이 제어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Image understanding"
+      "text": "이미지 이해"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "List agents"
+      "text": "에이전트 목록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "List sessions"
+      "text": "세션 목록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Make precise edits"
+      "text": "정확한 편집 수행"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Manage background processes"
+      "text": "실행 중인 프로세스 관리"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Nodes + devices"
+      "text": "노드 및 디바이스"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Patch files (OpenAI)"
+      "text": "패치 파일  (OpenAI)"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Read file contents"
+      "text": "파일 내용 읽기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Read memory files"
+      "text": "메모리 파일 읽기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Run shell commands"
+      "text": "명령창 실행"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Schedule tasks"
+      "text": "일정 작업"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Search the web"
+      "text": "웹 검색"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Semantic search"
+      "text": "의미 검색"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Send messages"
+      "text": "메시지 전송"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Send to session"
+      "text": "세션에 전송"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Session history"
+      "text": "세션 기록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Session status"
+      "text": "세션 상태"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Spawn sub-agent"
+      "text": "하위 에이전트 생성"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Agents"
+      "text": "에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "agents_list"
+      "text": "에이전트 목록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "apply_patch"
+      "text": "패치 적용"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Automation"
+      "text": "자동화"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "browser"
+      "text": "브라우저"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "canvas"
+      "text": "캔버스"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Coding"
+      "text": "코딩"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "cron"
+      "text": "반복작업"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "edit"
+      "text": "수정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "exec"
+      "text": "실행"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Files"
+      "text": "파일들"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Full"
+      "text": "가득참"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "gateway"
+      "text": "게이트웽"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "image"
+      "text": "이미지 선택"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Media"
+      "text": "미디어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Memory"
+      "text": "메모리"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "memory_get"
+      "text": "메모리_가져오기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "memory_search"
+      "text": "메모리_검색"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "message"
+      "text": "메시지"
     },
     {
       "count": 2,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Messaging"
+      "text": "메시징"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Minimal"
+      "text": "최소"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "nodes"
+      "text": "노드"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Nodes"
+      "text": "노드들"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "process"
+      "text": "프로세스"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "read"
+      "text": "읽기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Runtime"
+      "text": "런타임"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "session_status"
+      "text": "세션_상태"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Sessions"
+      "text": "세션"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "sessions_history"
+      "text": "세션_기록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "sessions_list"
+      "text": "세션_목록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "sessions_send"
+      "text": "세션_전송"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "sessions_spawn"
+      "text": "세션_생성"
     },
     {
       "count": 1,
@@ -1224,56 +1224,56 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "Web"
+      "text": "웹"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "web_fetch"
+      "text": "웹_가져오기"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "web_search"
+      "text": "웹_검색"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/agents-utils.ts",
-      "text": "write"
+      "text": "쓰기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/channels.config.ts",
-      "text": "Channel config schema unavailable."
+      "text": "채널 구성 스키마를 사용할 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/channels.config.ts",
-      "text": "Loading config schema…"
+      "text": "스키마 설정 로딩중..."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/channels.config.ts",
-      "text": "Schema unavailable. Use Raw."
+      "text": "스키마를 사용할 수 없습니다. Raw 모드를 사용하세요."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.discord.ts",
-      "text": "Bot status and channel configuration."
+      "text": "봇 상태 및 채널 설정."
     },
     {
       "count": 1,
@@ -1287,28 +1287,28 @@
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.googlechat.ts",
-      "text": "Chat API webhook status and channel configuration."
+      "text": "API 웹훅 상태 및 채널 구성."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/views/channels.googlechat.ts",
-      "text": "Google Chat"
+      "text": "구글 챗"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.imessage.ts",
-      "text": "macOS bridge status and channel configuration."
+      "text": "맥OS 연결 상태 및 채널 설정."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "title",
       "path": "ui/src/ui/views/channels.imessage.ts",
-      "text": "iMessage"
+      "text": "아이메시지"
     },
     {
       "count": 1,
@@ -1399,7 +1399,7 @@
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.slack.ts",
-      "text": "Socket mode status and channel configuration."
+      "text": "소켓모드 및 채널 설정."
     },
     {
       "count": 1,
@@ -1413,7 +1413,7 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/channels.telegram.ts",
-      "text": "Bot status and channel configuration."
+      "text": "봇 상태 및 채널 설정."
     },
     {
       "count": 1,
@@ -1427,7 +1427,7 @@
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.telegram.ts",
-      "text": "Bot status and channel configuration."
+      "text": "봇 상태 및 채널 설정."
     },
     {
       "count": 1,
@@ -1441,7 +1441,7 @@
       "kind": "object-property",
       "name": "subtitle",
       "path": "ui/src/ui/views/channels.whatsapp.ts",
-      "text": "Link WhatsApp Web and monitor connection health."
+      "text": "WhatsApp Web 링크 및 연결 상태 모니터링."
     },
     {
       "count": 1,
@@ -1455,98 +1455,98 @@
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Attach file"
+      "text": "파일 첨부"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Close search"
+      "text": "검색 닫기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Command arguments"
+      "text": "명령 인수"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Dismiss error"
+      "text": "오류 무시"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Exit focus mode"
+      "text": "포커스 모드 종료"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Loading chat"
+      "text": "채팅 로드 중"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Remove attachment"
+      "text": "첨부 파일 제거"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Search messages"
+      "text": "메시지 검색"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Slash commands"
+      "text": "슬래시 명령"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Search messages..."
+      "text": "메시지 검색..."
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Attach file"
+      "text": "파일 첨부"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Dismiss error"
+      "text": "오류 무시"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Exit focus mode"
+      "text": "포커스 모드 종료"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "Unpin"
+      "text": "고정 해제"
     },
     {
       "count": 1,
@@ -1560,7 +1560,7 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "close"
+      "text": "닫기"
     },
     {
       "count": 2,
@@ -1581,28 +1581,28 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "fill"
+      "text": "채우기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "instant"
+      "text": "즉시"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "navigate"
+      "text": "탐색"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/chat.ts",
-      "text": "No matching messages"
+      "text": "일치하는 메시지가 없습니다"
     },
     {
       "count": 1,
@@ -1644,315 +1644,315 @@
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Remove entry"
+      "text": "항목 제거"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Remove item"
+      "text": "항목 삭제"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Reset to default"
+      "text": "기본값으로 재설정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Add"
+      "text": "추가"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Add Entry"
+      "text": "항목 추가"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Custom entries"
+      "text": "사용자 정의 항목"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "No custom entries."
+      "text": "사용자 정의 항목이 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "No items yet. Click \"Add\" to create one."
+      "text": "아직 항목이 없습니다. \"추가\"를 클릭하여 하나를 생성하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Select..."
+      "text": "선택..."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Unsupported array schema. Use Raw mode."
+      "text": "지원되지 않는 배열 스키마입니다. 원시 모드를 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.node.ts",
-      "text": "Unsupported schema node. Use Raw mode."
+      "text": "지원되지 않는 스키마 노드입니다. 원시 모드를 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Schema unavailable."
+      "text": "스키마를 사용할 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Unsupported schema. Use Raw."
+      "text": "지원되지 않는 스키마입니다. 원시를 사용하세요."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Agent Communication Protocol runtime and streaming settings"
+      "text": "Agent 통신 프로토콜 런타임 및 스트리밍 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Agent configurations, models, and identities"
+      "text": "에이전트 구성, 모델 및 식별자"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "AI model configurations and providers"
+      "text": "AI 모델 구성 및 제공자"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "API keys and authentication profiles"
+      "text": "API 키 및 인증 프로필"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Audio input/output settings"
+      "text": "오디오 입력/출력 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Auto-update settings and release channel"
+      "text": "자동 업데이트 설정 및 릴리스 채널"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Broadcast and notification settings"
+      "text": "브로드캐스트 및 알림 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Browser automation settings"
+      "text": "브라우저 자동화 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Canvas rendering and display"
+      "text": "캔버스 렌더링 및 표시"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "CLI banner and startup behavior"
+      "text": "CLI 배너 및 시작 동작"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Custom slash commands"
+      "text": "사용자 지정 슬래시 명령어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Environment variables passed to the gateway process"
+      "text": "게이트웨이 프로세스에 전달되는 환경 변수"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Gateway metadata and version information"
+      "text": "게이트웨이 메타데이터 및 버전 정보"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Gateway server settings (port, auth, binding)"
+      "text": "게이트웨이 서버 설정(포트, 인증, 바인딩)"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Instrumentation, OpenTelemetry, and cache-trace settings"
+      "text": "계측, OpenTelemetry 및 캐시/추적 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Key bindings and shortcuts"
+      "text": "키 바인딩 및 단축키"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Log levels and output configuration"
+      "text": "로그 레벨 및 출력 구성"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Message handling and routing settings"
+      "text": "메시지 처리 및 라우팅 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Messaging channels (Telegram, Discord, Slack, etc.)"
+      "text": "메시징 채널(Telegram, Discord, Slack 등)"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Model Context Protocol server definitions"
+      "text": "Model Context Protocol 서버 정의"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Plugin management and extensions"
+      "text": "플러그인 관리 및 확장"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Scheduled tasks and automation"
+      "text": "예약된 작업 및 자동화"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Secret provider configuration"
+      "text": "시크릿 제공자 구성"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Service discovery and networking"
+      "text": "서비스 검색 및 네트워킹"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Session management and persistence"
+      "text": "세션 관리 및 지속성"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Setup wizard state and history"
+      "text": "설정 마법사 상태 및 기록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Skill packs and capabilities"
+      "text": "스킬 팩 및 기능"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Tool configurations (browser, search, etc.)"
+      "text": "도구 구성(브라우저, 검색 등)"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "User interface preferences"
+      "text": "사용자 인터페이스 환경 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Voice and speech settings"
+      "text": "음성 및 발화 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Web server and API settings"
+      "text": "웹 서버 및 API 설정"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Webhooks and event hooks"
+      "text": "웹후크 및 이벤트 훅"
     },
     {
       "count": 1,
@@ -1966,56 +1966,63 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Agents"
+      "text": "에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Audio"
+      "text": "에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Authentication"
+      "text": "오디오"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Bindings"
+      "text": "인증"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Broadcast"
+      "text": "바인딩"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Browser"
+      "text": "브로드캐스트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Canvas Host"
+      "text": "브라우저"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Channels"
+      "text": "캔버스 호스트"
+    },
+    {
+      "count": 1,
+      "kind": "object-property",
+      "name": "label",
+      "path": "ui/src/ui/views/config-form.render.ts",
+      "text": "채널"
     },
     {
       "count": 1,
@@ -2029,56 +2036,56 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Commands"
+      "text": "명령"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Cron"
+      "text": "크론"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Diagnostics"
+      "text": "진단"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Discovery"
+      "text": "탐지"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Environment Variables"
+      "text": "환경 변수"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Gateway"
+      "text": "게이트웨이"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Hooks"
+      "text": "훅"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Logging"
+      "text": "로깅"
     },
     {
       "count": 1,
@@ -2092,70 +2099,70 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Messages"
+      "text": "메시지"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Metadata"
+      "text": "메타데이터"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Models"
+      "text": "모델"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Plugins"
+      "text": "플러그인"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Secrets"
+      "text": "시크릿"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Session"
+      "text": "세션"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Setup Wizard"
+      "text": "설정 마법사"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Skills"
+      "text": "스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Talk"
+      "text": "대화"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Tools"
+      "text": "도구"
     },
     {
       "count": 1,
@@ -2169,350 +2176,350 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Updates"
+      "text": "업데이트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-form.render.ts",
-      "text": "Web"
+      "text": "웹"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Balanced default for daily use."
+      "text": "일상 사용에 적합한 균형형 기본값."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Highest context budget for repo work."
+      "text": "리포 작업을 위한 최대 컨텍스트 예산."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Lean follow-ups for shared bots."
+      "text": "공유 봇을 위한 가벼운 후속 설정."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Smallest context budget and lowest cost."
+      "text": "가장 작은 컨텍스트 예산 및 최저 비용."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Code Agent"
+      "text": "코드 에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Minimal"
+      "text": "최소"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Personal Assistant"
+      "text": "개인 비서"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-presets.ts",
-      "text": "Team Bot"
+      "text": "팀 봇"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Assistant identity"
+      "text": "어시스턴트 식별자"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Your local chat identity"
+      "text": "로컬 채팅 식별자"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "JD or 🦞"
+      "text": "JD 또는 🦞"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Assistant"
+      "text": "어시스턴트"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Avatar is browser-local"
+      "text": "아바타는 브라우저 로컬입니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Avatar text / emoji"
+      "text": "아바타 텍스트 / 이모지"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Bootstrap Context"
+      "text": "부트스트랩 컨텍스트"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Browse →"
+      "text": "찾아보기 →"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Choose a built-in profile to replace the current custom values."
+      "text": "기본 제공 프로필을 선택하여 현재 사용자 정의 값을 대체하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Choose how much workspace context OpenClaw injects into each run. These profiles do not change your model, tools, channels, or theme."
+      "text": "OpenClaw이 각 실행에 주입하는 작업공간 컨텍스트의 양을 선택하세요. 이 프로필은 모델, 도구, 채널 또는 테마를 변경하지 않습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Choose image"
+      "text": "이미지 선택"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Clear avatar"
+      "text": "아바타 지우기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Clear override"
+      "text": "오버라이드 지우기"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Configure →"
+      "text": "구성 →"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Connect →"
+      "text": "연결 →"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Current"
+      "text": "현재"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Custom"
+      "text": "사용자 정의"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Custom bootstrap settings are active."
+      "text": "사용자 정의 부트스트랩 설정이 활성화되어 있습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Device auth"
+      "text": "디바이스 인증"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Discard"
+      "text": "삭제"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Exec policy"
+      "text": "실행 정책"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Fast mode"
+      "text": "빠른 모드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Gateway auth"
+      "text": "게이트웨이 인증"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Manage →"
+      "text": "관리 →"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Mode"
+      "text": "모드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Model"
+      "text": "모델"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "No channels configured"
+      "text": "설정된 채널이 없습니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Pending"
+      "text": "대기 중"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Profiles only change bootstrap size and follow-up reinjection behavior."
+      "text": "프로필은 부트스트랩 크기와 후속 재주입 동작만 변경합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Roundness"
+      "text": "모서리 둥글기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Save Profile writes it as the default. Apply Now writes it and reloads the current session."
+      "text": "프로필 저장은 기본값으로 기록합니다. 지금 적용하면 저장 후 현재 세션을 다시 로드합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Saved"
+      "text": "저장됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Selected"
+      "text": "선택됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Stored in this browser only."
+      "text": "이 브라우저에만 저장됩니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Stores a Control UI override. Clear it to return to IDENTITY.md."
+      "text": "Control UI 오버라이드를 저장합니다. 지우면 IDENTITY.md로 돌아갑니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Theme"
+      "text": "테마"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Thinking"
+      "text": "생각 중"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "User"
+      "text": "사용자"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Bootstrap Per File"
+      "text": "파일별 부트스트랩"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Bootstrap Total"
+      "text": "총 부트스트랩"
     },
     {
       "count": 1,
@@ -2533,21 +2540,21 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Default"
+      "text": "기본값"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Follow-up Turns"
+      "text": "후속 턴"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Full"
+      "text": "전체"
     },
     {
       "count": 1,
@@ -2561,21 +2568,21 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "None"
+      "text": "없음"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Round"
+      "text": "둥글게"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config-quick.ts",
-      "text": "Slight"
+      "text": "약간"
     },
     {
       "count": 1,
@@ -2596,7 +2603,7 @@
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Toggle raw config redaction"
+      "text": "원시 구성 숨김 전환"
     },
     {
       "count": 1,
@@ -2610,21 +2617,21 @@
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Raw config (JSON/JSON5)"
+      "text": "원시 구성 (JSON/JSON5)"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Search settings..."
+      "text": "검색 설정..."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Adjust corner radius across the UI."
+      "text": "UI 전반의 모서리 반경을 조정합니다."
     },
     {
       "count": 1,
@@ -2638,259 +2645,259 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Browser support"
+      "text": "브라우저 지원"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Changes detected (JSON diff not available)"
+      "text": "변화 감지됨. (JSON 차이는 무시됨)"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Choose a theme family."
+      "text": "테마 계열을 선택하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Clear"
+      "text": "정리"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Click"
+      "text": "클릭"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Connection"
+      "text": "연결"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Don't remind again"
+      "text": "다시 알리지 않음"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Form"
+      "text": "폼"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Gateway"
+      "text": "게이트웨이"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Import"
+      "text": "가져오기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Import from tweakcn"
+      "text": "tweakcn에서 가져오기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Loaded"
+      "text": "로드됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Loading schema…"
+      "text": "스키마 로드 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "No changes"
+      "text": "변경 없음"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Not available in this browser."
+      "text": "이 브라우저에서는 사용할 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Notifications are blocked. Update your browser site permissions to allow notifications."
+      "text": "알림이 차단되었습니다. 알림을 허용하려면 브라우저 사이트 권한을 업데이트하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Open tweakcn.com, choose or create a theme, click Share, then paste the copied theme link here. Share links, editor URLs, registry URLs, theme IDs, and default theme names like amethyst-haze are accepted."
+      "text": "tweakcn.com을 열고 테마를 선택하거나 생성한 후 Share를 클릭하고 복사한 테마 링크를 여기에 붙여넣으세요. 공유 링크, 에디터 URL, 레지스트리 URL, 테마 ID 및 amethyst-haze와 같은 기본 테마 이름을 허용합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Peek"
+      "text": "미리보기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Permission"
+      "text": "권한"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Push Notifications"
+      "text": "푸시 알림"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Quick Settings"
+      "text": "빠른 설정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Raw"
+      "text": "원시"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Raw mode disabled (snapshot cannot safely round-trip raw text)."
+      "text": "원시 모드 비활성화(스냅샷이 원시 텍스트를 안전하게 재사용할 수 없음)."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Roundness"
+      "text": "모서리 둥글기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Send test"
+      "text": "테스트 전송"
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Status"
+      "text": "상태"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Subscribe to receive browser push notifications from your gateway."
+      "text": "게이트웨이에서 브라우저 푸시 알림을 받으려면 구독하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Theme"
+      "text": "테마"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Theme link or ID"
+      "text": "테마 링크 또는 ID"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "to add one browser-local tweakcn theme. In tweakcn, use Share and paste the copied link here."
+      "text": "브라우저 로컬 tweakcn 테마를 추가하려면 tweakcn에서 공유(Share)를 사용해 복사한 링크를 여기에 붙여넣으세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Unsubscribe"
+      "text": "구독 취소"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "View pending changes"
+      "text": "보류 중인 변경 사항 보기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Your config contains fields the form editor can't safely represent. Use Raw mode to edit those entries."
+      "text": "구성에 폼 편집기가 안전하게 표현할 수 없는 필드가 포함되어 있습니다. 해당 항목을 편집하려면 원시 모드를 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Your configuration is invalid. Some settings may not work as expected."
+      "text": "구성이 유효하지 않습니다. 일부 설정이 예상대로 작동하지 않을 수 있습니다."
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Black & red"
+      "text": "블랙 & 레드"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Chocolate blueprint"
+      "text": "초콜릿 블루프린트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "description",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Chroma family"
+      "text": "크로마 계열"
     },
     {
       "count": 1,
@@ -2904,77 +2911,77 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Agents"
+      "text": "에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "AI & Agents"
+      "text": "AI 및 에이전트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Approvals"
+      "text": "승인"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Audio"
+      "text": "오디오"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Authentication"
+      "text": "인증"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Automation"
+      "text": "자동화"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Bindings"
+      "text": "바인딩"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Broadcast"
+      "text": "브로드캐스트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Browser"
+      "text": "브라우저"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "CanvasHost"
+      "text": "캔버스 호스트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Channels"
+      "text": "채널"
     },
     {
       "count": 1,
@@ -2988,35 +2995,35 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Cli"
+      "text": "CLI"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Commands"
+      "text": "명령"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Communication"
+      "text": "통신"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Core"
+      "text": "코어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Cron"
+      "text": "크론"
     },
     {
       "count": 1,
@@ -3030,42 +3037,42 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Diagnostics"
+      "text": "진단"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Discovery"
+      "text": "탐지"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Environment"
+      "text": "환경"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Gateway"
+      "text": "게이트웨이"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Hooks"
+      "text": "훅"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Infrastructure"
+      "text": "인프라"
     },
     {
       "count": 1,
@@ -3079,7 +3086,7 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Logging"
+      "text": "로깅"
     },
     {
       "count": 1,
@@ -3093,105 +3100,105 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Media"
+      "text": "미디어"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Memory"
+      "text": "메모리"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Messages"
+      "text": "메시지"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Meta"
+      "text": "메타"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Models"
+      "text": "모델"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "NodeHost"
+      "text": "노드 호스트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Other"
+      "text": "기타"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Plugins"
+      "text": "플러그인"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Secrets"
+      "text": "시크릿"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Session"
+      "text": "세션"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Setup Wizard"
+      "text": "설정 마법사"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Skills"
+      "text": "스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Talk"
+      "text": "대화"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Theme"
+      "text": "테마"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Tools"
+      "text": "도구"
     },
     {
       "count": 1,
@@ -3205,28 +3212,28 @@
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Updates"
+      "text": "업데이트"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/config.ts",
-      "text": "Web"
+      "text": "웹"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "+1555... or chat id"
+      "text": "+1555... 또는 채팅 ID"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Account ID for multi-account setups"
+      "text": "다중 계정 설정용 계정 ID"
     },
     {
       "count": 1,
@@ -3240,112 +3247,112 @@
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "default"
+      "text": "기본값"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "+ New"
+      "text": "+ 새로 만들기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Announce (via channel)"
+      "text": "공지(채널 통해)"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Consecutive errors before alerting."
+      "text": "알림 전 연속 오류 수."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Control when this job sends repeated-failure alerts."
+      "text": "이 작업이 반복 실패 알림을 보낼 시점을 제어합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Custom per-job settings"
+      "text": "작업별 사용자 설정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Disable for this job"
+      "text": "이 작업 비활성화"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Inherit global setting"
+      "text": "전역 설정 상속"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Light context"
+      "text": "경량 컨텍스트"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Minimum seconds between alerts."
+      "text": "알림 간 최소 초 수."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Optional channel account ID for multi-account setups."
+      "text": "다중 계정 설정용 선택적 채널 계정 ID."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Optional recipient override for failure alerts."
+      "text": "실패 알림 수신자 재정의(선택 사항)."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Optional routing key for job delivery and wake routing."
+      "text": "작업 전달 및 웨이크 라우팅용 선택적 라우팅 키."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Run if due"
+      "text": "예정 시 실행"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Use lightweight bootstrap context for this agent job."
+      "text": "이 에이전트 작업에 대해 경량 부트스트랩 컨텍스트를 사용합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/cron.ts",
-      "text": "Webhook (HTTP POST)"
+      "text": "웹후크(HTTP POST)"
     },
     {
       "count": 1,
@@ -3359,140 +3366,140 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": ", then reload this tab."
+      "text": ", 그런 다음 이 탭을 다시 로드하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Claims"
+      "text": "클레임"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Close"
+      "text": "닫기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Contradictions"
+      "text": "모순"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Copy archive path"
+      "text": "아카이브 경로 복사"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Corrections or revisions"
+      "text": "수정 또는 개정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Dreams"
+      "text": "꿈"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Enable"
+      "text": "활성화"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Ended on:"
+      "text": "종료됨:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Id:"
+      "text": "ID:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Import details"
+      "text": "가져오기 세부정보"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Imported Insights"
+      "text": "가져온 인사이트"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Imported Insights and Memory Palace are provided by the bundled"
+      "text": "가져온 인사이트와 메모리 팰리스는 번들로 제공됩니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Labels:"
+      "text": "라벨:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Loading imported insights…"
+      "text": "가져온 인사이트 로드 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Loading memory palace…"
+      "text": "메모리 팰리스 로드 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Loading wiki page…"
+      "text": "위키 페이지 로드 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Memory Palace"
+      "text": "메모리 팰리스"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Memory palace is not populated yet"
+      "text": "메모리 팰리스가 아직 채워지지 않았습니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Memory Wiki is not enabled"
+      "text": "메모리 위키가 활성화되어 있지 않습니다"
     },
     {
       "count": 1,
@@ -3506,56 +3513,56 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Messages:"
+      "text": "메시지:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "No imported insights yet"
+      "text": "가져온 인사이트가 아직 없습니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Open Config"
+      "text": "설정 열기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Open questions"
+      "text": "열린 질문"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Open source page"
+      "text": "소스 페이지 열기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Open wiki page"
+      "text": "위키 페이지 열기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Page details"
+      "text": "페이지 세부정보"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "plugin."
+      "text": "플러그인."
     },
     {
       "count": 1,
@@ -3569,63 +3576,63 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Potentially useful signals"
+      "text": "잠재적으로 유용한 신호"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Right now the wiki mostly has raw source imports and operational reports. This tab becomes useful once syntheses, entities, or concepts start getting written."
+      "text": "현재 위키는 주로 원시 소스 가져오기와 운영 보고서를 포함합니다. 합성(syntheses), 엔티티 또는 개념이 작성되기 시작하면 이 탭이 유용해집니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Risk reasons:"
+      "text": "위험 이유:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Run a ChatGPT import with apply to surface clustered imported insights here."
+      "text": "apply와 함께 ChatGPT 가져오기를 실행하여 클러스터된 가져온 인사이트를 여기에 표시하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Started with:"
+      "text": "시작 항목:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "These are imported insights clustered from external history; use them to review what imports surfaced before any of it graduates into durable memory."
+      "text": "이들은 외부 이력에서 클러스터된 가져온 인사이트입니다. 어떤 항목이 영구적인 메모리로 전환되기 전에 무엇이 표면화되었는지 검토하는 데 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "This is the compiled memory wiki surface the system can search and reason over; use it to inspect actual memory pages, claims, open questions, and contradictions rather than raw imported source chats."
+      "text": "이것은 시스템이 검색하고 추론할 수 있는 컴파일된 메모리 위키 표면입니다. 원시로 가져온 채팅 대신 실제 메모리 페이지, 주장, 열려있는 질문 및 모순을 검사하는 데 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "This is the raw dream diary the system writes while replaying and consolidating memory; use it to inspect what the memory system is noticing, and where it still looks noisy or thin."
+      "text": "이것은 시스템이 메모리를 재생하고 통합하는 동안 작성하는 원시 드림 일지입니다. 메모리 시스템이 무엇을 인지하고 있는지, 그리고 여전히 잡음이 많거나 빈약해 보이는 부분이 어디인지 검사하는 데 사용하세요."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/dreaming.ts",
-      "text": "Wiki page:"
+      "text": "위키 페이지:"
     },
     {
       "count": 2,
@@ -3660,161 +3667,161 @@
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Search logs"
+      "text": "로그 검색"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Auto-follow"
+      "text": "자동 팔로우"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Filter"
+      "text": "필터"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Gateway file logs (JSONL)."
+      "text": "게이트웨이 파일 로그(JSONL)."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Log output truncated; showing latest chunk."
+      "text": "로그 출력이 잘렸습니다; 최신 부분을 표시합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "Logs"
+      "text": "로그"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/logs.ts",
-      "text": "No log entries."
+      "text": "로그 항목이 없습니다."
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "Close sidebar"
+      "text": "사이드바 닫기"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "title",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "Close sidebar"
+      "text": "사이드바 닫기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "No content available"
+      "text": "사용 가능한 콘텐츠가 없습니다"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "Rendered Markdown"
+      "text": "렌더된 마크다운"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "Sanitized rich-text preview for quick reading."
+      "text": "빠른 읽기를 위한 정제된 리치 텍스트 미리보기."
     },
     {
       "count": 3,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/markdown-sidebar.ts",
-      "text": "View Raw Text"
+      "text": "원시 텍스트 보기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Add pattern"
+      "text": "패턴 추가"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Allowlist"
+      "text": "허용 목록"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Allowlist and approval policy for"
+      "text": "에 대한 허용 목록 및 승인 정책"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Ask"
+      "text": "묻기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Ask fallback"
+      "text": "대체 묻기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Auto-allow skill CLIs"
+      "text": "스킬 CLI 자동 허용"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Case-insensitive glob patterns."
+      "text": "대소문자 구분 없는 Glob 패턴입니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Defaults"
+      "text": "기본값"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Enabled"
+      "text": "활성화됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Exec approvals"
+      "text": "실행 승인"
     },
     {
       "count": 1,
@@ -3828,287 +3835,287 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Fallback"
+      "text": "대체"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Gateway"
+      "text": "게이트웨이"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Gateway edits local approvals; node edits the selected node."
+      "text": "게이트웨이는 로컬 승인을 편집합니다; 노드는 선택한 노드를 편집합니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Host"
+      "text": "호스트"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Load exec approvals to edit allowlists."
+      "text": "허용 목록을 편집하려면 실행 승인을 불러오세요."
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Mode"
+      "text": "모드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "No allowlist entries yet."
+      "text": "허용 목록 항목이 아직 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "No nodes advertise exec approvals yet."
+      "text": "실행 승인을 광고하는 노드가 아직 없습니다."
     },
     {
       "count": 2,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Node"
+      "text": "노드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Pattern"
+      "text": "패턴"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Remove"
+      "text": "제거"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Scope"
+      "text": "범위"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Security"
+      "text": "보안"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Select node"
+      "text": "노드 선택"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Target"
+      "text": "대상"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Use default"
+      "text": "기본값 사용"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Allowlist"
+      "text": "허용 목록"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Always"
+      "text": "항상"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Deny"
+      "text": "거부"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Full"
+      "text": "전체"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "Off"
+      "text": "끔"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/nodes-exec-approvals.ts",
-      "text": "On miss"
+      "text": "누락 시"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Any node"
+      "text": "임의의 노드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Approve"
+      "text": "승인"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Binding"
+      "text": "바인딩"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Devices"
+      "text": "디바이스"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "No agents found."
+      "text": "에이전트를 찾을 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "No nodes found."
+      "text": "노드를 찾을 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "No nodes with system.run available."
+      "text": "system.run을 사용할 수 있는 노드가 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "No paired devices."
+      "text": "연결된 디바이스가 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Nodes"
+      "text": "노드"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Paired"
+      "text": "연결됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Paired devices and live links."
+      "text": "연결된 디바이스 및 라이브 링크."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Pairing requests + role tokens."
+      "text": "페어링 요청 + 역할 토큰."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Pending"
+      "text": "대기 중"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Reject"
+      "text": "거부"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Revoke"
+      "text": "취소"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Rotate"
+      "text": "갱신"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Tokens"
+      "text": "토큰"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Tokens: none"
+      "text": "토큰: 없음"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/nodes.ts",
-      "text": "Use default"
+      "text": "기본값 사용"
     },
     {
       "count": 1,
@@ -4136,14 +4143,14 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/overview.ts",
-      "text": ". Query parameters ("
+      "text": ". 쿼리 매개변수 ("
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/overview.ts",
-      "text": ") may appear in server logs."
+      "text": ")이 서버 로그에 나타날 수 있습니다."
     },
     {
       "count": 1,
@@ -4157,21 +4164,21 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/overview.ts",
-      "text": "→ set token"
+      "text": "→ 토큰 설정"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/overview.ts",
-      "text": "→ tokenized URL"
+      "text": "→ 토큰화된 URL"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/overview.ts",
-      "text": "Auth token must be passed as a URL fragment:"
+      "text": "인증 토큰은 URL 프래그먼트로 전달되어야 합니다:"
     },
     {
       "count": 1,
@@ -4199,84 +4206,84 @@
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/sessions.ts",
-      "text": "Session filters"
+      "text": "세션 필터"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/sessions.ts",
-      "text": "Previous"
+      "text": "이전"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills-grouping.ts",
-      "text": "Built-in Skills"
+      "text": "내장 스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills-grouping.ts",
-      "text": "Extra Skills"
+      "text": "추가 스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills-grouping.ts",
-      "text": "Installed Skills"
+      "text": "설치된 스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills-grouping.ts",
-      "text": "Other Skills"
+      "text": "기타 스킬"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills-grouping.ts",
-      "text": "Workspace Skills"
+      "text": "작업공간 스킬"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills-shared.ts",
-      "text": "bundled"
+      "text": "번들됨"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills-shared.ts",
-      "text": "disabled"
+      "text": "비활성화됨"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Filter installed skills"
+      "text": "섩치된 스킬들 필터"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "placeholder",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Search ClawHub skills…"
+      "text": "ClawHub 스킬 검색…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "API key"
+      "text": "API 키"
     },
     {
       "count": 1,
@@ -4290,105 +4297,105 @@
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Close"
+      "text": "닫기"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Get your key:"
+      "text": "키 받기:"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Installed skills and their status."
+      "text": "설치된 스킬 및 상태."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Missing requirements"
+      "text": "요구 사항 누락"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "No skills found on ClawHub."
+      "text": "ClawHub에서 스킬을 찾을 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Save key"
+      "text": "키 저장"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Search and install skills from the registry"
+      "text": "레지스트리에서 스킬 검색 및 설치"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Searching…"
+      "text": "검색 중…"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Skill not found."
+      "text": "스킬을 찾을 수 없습니다."
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Skills"
+      "text": "스킬"
     },
     {
       "count": 1,
       "kind": "html-text",
       "name": "text",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Source:"
+      "text": "출처:"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "All"
+      "text": "모두"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Disabled"
+      "text": "비활성화됨"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Needs Setup"
+      "text": "설정 필요"
     },
     {
       "count": 1,
       "kind": "object-property",
       "name": "label",
       "path": "ui/src/ui/views/skills.ts",
-      "text": "Ready"
+      "text": "준비됨"
     },
     {
       "count": 1,
@@ -4458,35 +4465,35 @@
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/usage-render-details.ts",
-      "text": "Filter by role"
+      "text": "역할별 필터"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/usage-render-details.ts",
-      "text": "Filter by tool"
+      "text": "도구별 필터"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/usage-render-overview.ts",
-      "text": "Remove days filter"
+      "text": "일 필터 제거"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/usage-render-overview.ts",
-      "text": "Remove hours filter"
+      "text": "시간 필터 제거"
     },
     {
       "count": 1,
       "kind": "html-attribute",
       "name": "aria-label",
       "path": "ui/src/ui/views/usage-render-overview.ts",
-      "text": "Remove session filter"
+      "text": "세션 필터 제거"
     }
   ]
 }

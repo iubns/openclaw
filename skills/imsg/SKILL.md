@@ -1,6 +1,6 @@
 ---
 name: imsg
-description: iMessage/SMS CLI for listing chats, history, and sending messages via Messages.app.
+description: Messages.app을 통해 채팅 목록, 기록 조회, 메시지 전송을 지원하는 iMessage/SMS CLI입니다.
 homepage: https://imsg.to
 metadata:
   {

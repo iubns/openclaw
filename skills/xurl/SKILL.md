@@ -1,6 +1,6 @@
 ---
 name: xurl
-description: Use xurl for authenticated X API posts, replies, search, DMs, media upload, followers, or raw v2 calls.
+description: 인증된 X API 게시, 답글, 검색, DM, 미디어 업로드, 팔로워 조회, raw v2 호출에 xurl을 사용합니다.
 metadata:
   {
     "openclaw":

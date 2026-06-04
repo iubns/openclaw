@@ -1,6 +1,6 @@
 ---
 name: oracle
-description: Use oracle CLI to bundle prompts and files for second-model debugging, refactor, design, or review checks.
+description: oracle CLI로 프롬프트와 파일을 묶어 두 번째 모델로 디버깅, 리팩터링, 설계, 리뷰 검사를 수행합니다.
 homepage: https://askoracle.dev
 metadata:
   {

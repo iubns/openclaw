@@ -1,6 +1,6 @@
 ---
 name: trello
-description: Manage Trello boards, lists, and cards via the Trello REST API.
+description: Trello REST API로 보드, 리스트, 카드를 관리합니다.
 homepage: https://developer.atlassian.com/cloud/trello/rest/
 metadata:
   {

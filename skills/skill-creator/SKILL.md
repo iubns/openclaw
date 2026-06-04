@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: Create, edit, improve, tidy, review, audit, or restructure AgentSkills and SKILL.md files.
+description: AgentSkills와 SKILL.md 파일을 생성, 편집, 개선, 정리, 검토, 감사, 재구성합니다.
 ---
 
 # Skill Creator

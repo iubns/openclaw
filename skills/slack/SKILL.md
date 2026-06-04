@@ -1,6 +1,6 @@
 ---
 name: slack
-description: Use the Slack tool to react, pin/unpin, send, edit, delete messages, or fetch Slack member info.
+description: Slack 도구로 반응, 고정/고정 해제, 메시지 전송/편집/삭제, Slack 멤버 정보 조회를 수행합니다.
 metadata: { "openclaw": { "emoji": "💬", "requires": { "config": ["channels.slack"] } } }
 ---
 

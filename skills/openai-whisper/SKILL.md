@@ -1,6 +1,6 @@
 ---
 name: openai-whisper
-description: Local speech-to-text with the Whisper CLI (no API key).
+description: Whisper CLI로 로컬 음성-텍스트 변환을 수행합니다(API 키 없음).
 homepage: https://openai.com/research/whisper
 metadata:
   {

@@ -1,6 +1,6 @@
 ---
 name: sag
-description: ElevenLabs text-to-speech with mac-style say UX.
+description: mac 스타일 say UX를 제공하는 ElevenLabs 텍스트 음성 변환입니다.
 homepage: https://sag.sh
 metadata:
   {

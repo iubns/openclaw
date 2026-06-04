@@ -1,6 +1,6 @@
 ---
 name: summarize
-description: Summarize or transcribe URLs, YouTube/videos, podcasts, articles, transcripts, PDFs, and local files.
+description: URL, YouTube/비디오, 팟캐스트, 기사, 전사본, PDF, 로컬 파일을 요약하거나 전사합니다.
 homepage: https://summarize.sh
 metadata:
   {

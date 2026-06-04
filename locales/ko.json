@@ -1,0 +1,142 @@
+{
+  "schema.uiHints.wizard.label": "설정 마법사 상태",
+  "schema.uiHints.wizard.help": "마지막 가이드 설정 실행 세부 정보를 기록하는 설정 마법사 상태 필드입니다. 업그레이드 전후의 설정 흐름 관찰 및 문제 해결을 위해 이 필드를 유지하세요.",
+
+  "schema.uiHints.update.label": "업데이트",
+  "schema.uiHints.update.help": "OpenClaw 런타임 버전을 최신 상태로 유지하기 위한 업데이트 채널 및 시작 시 검사 동작입니다. 운영 환경에서는 보수적인 채널을 사용하고 제어된 환경에서만 실험적 채널을 사용하세요.",
+
+  "schema.uiHints.cli.label": "CLI",
+  "schema.uiHints.cli.help": "배너 및 태그라인 스타일과 같은 로컬 명령 출력 동작을 위한 CLI 표시 제어입니다. 런타임 동작을 변경하지 않고 시작 출력만 연산자 선호에 맞게 조정하려면 이 섹션을 사용하세요.",
+
+  "schema.uiHints.diagnostics.label": "진단",
+  "schema.uiHints.diagnostics.help": "추적, 텔레메트리 내보내기 및 캐시 검사에 대한 진단 제어입니다. 운영 환경에서는 기본 진단을 최소화하고 문제 조사 시에만 더 깊은 신호를 활성화하세요.",
+
+  "schema.uiHints.logging.label": "로깅",
+  "schema.uiHints.logging.help": "심각도, 출력 대상, 포맷 및 민감 데이터 마스킹에 대한 로깅 동작 제어입니다. 운영 환경에서는 유용한 진단을 유지하면서도 레벨과 마스킹을 엄격하게 설정하세요.",
+
+  "schema.uiHints.gateway.label": "게이트웨이",
+  "schema.uiHints.gateway.help": "바인드 모드, 인증, 제어 UI, 원격 전송 및 운영 안전 제어를 위한 게이트웨이 런타임 표면입니다. 신뢰되는 로컬 인터페이스를 벗어나게 게이트웨이를 노출하지 않도록 기본값을 보수적으로 유지하세요.",
+
+  "schema.uiHints.nodeHost.label": "노드 호스트",
+  "schema.uiHints.nodeHost.help": "이 게이트웨이 노드에서 다른 노드나 클라이언트로 노출되는 기능에 대한 제어입니다. 로컬 기능을 노드 네트워크를 통해 프록시로 노출하려는 경우가 아니라면 기본값을 유지하세요.",
+
+  "schema.uiHints.agents.label": "에이전트",
+  "schema.uiHints.agents.help": "라우팅 및 실행 컨텍스트에 사용되는 기본값 및 명시적 에이전트 항목을 포함하는 에이전트 런타임 구성 루트입니다. 멀티 에이전트 워크플로에서 모델/도구 동작이 예측 가능하도록 이 섹션을 명시적으로 유지하세요.",
+
+  "schema.uiHints.tools.label": "도구",
+  "schema.uiHints.tools.help": "웹, exec, 미디어, 메시징 및 권한 상승 표면 전반에 걸친 전역 도구 접근 정책 및 기능 구성입니다. 광범위한 배포 이전에 위험한 기능을 제한하려면 이 섹션을 사용하세요.",
+
+  "schema.uiHints.bindings.label": "바인딩",
+  "schema.uiHints.bindings.help": "라우팅 및 지속적 ACP 대화 소유권을 위한 최상위 바인딩 규칙입니다. 일반 라우팅에는 type=route를, 지속적 ACP 하니스 바인딩에는 type=acp를 사용하세요.",
+
+  "schema.uiHints.audio.label": "오디오",
+  "schema.uiHints.audio.help": "상위 레벨 도구가 음성 또는 미디어 콘텐츠를 처리하기 전에 사용되는 전역 오디오 입력 설정입니다. 음성 메모와 클립에 대해 결정론적 전사 동작이 필요하면 이 설정을 구성하세요.",
+
+  "schema.uiHints.models.label": "모델",
+  "schema.uiHints.models.help": "공급자 정의, 병합/대체 동작 및 선택적 Bedrock 검색 통합을 위한 모델 카탈로그 루트입니다. 프로덕션 장애 조치를 신뢰하기 전에 공급자 정의를 명시적이고 검증된 상태로 유지하세요.",
+
+  "schema.uiHints.messages.label": "메시지",
+  "schema.uiHints.messages.help": "인바운드/아웃바운드 채팅 흐름을 위한 메시지 포맷, 수신 확인, 큐잉, 디바운스 및 상태 반응 동작입니다. 채널 응답성이나 메시지 UX를 조정해야 할 때 이 섹션을 사용하세요.",
+
+  "schema.uiHints.commands.label": "명령",
+  "schema.uiHints.commands.help": "채팅 명령 표면, 소유자 게이팅 및 제공자 전반의 권한 상승 명령 접근 동작을 제어합니다. 더 엄격한 연산자 제어가 필요하지 않으면 기본값을 유지하세요.",
+
+  "schema.uiHints.session.label": "세션",
+  "schema.uiHints.session.help": "대화 기록 동작을 위한 글로벌 세션 라우팅, 재설정, 전달 정책 및 유지 관리 제어입니다. 더 엄격한 격리, 보존 또는 전달 제약이 필요하지 않으면 기본값을 유지하세요.",
+
+  "schema.uiHints.cron.label": "크론",
+  "schema.uiHints.cron.help": "저장된 크론 작업, 실행 동시성, 전달 폴백 및 실행 세션 보존을 위한 전역 스케줄러 설정입니다. 작업량을 확장하거나 외부 웹훅 수신기를 통합하는 경우에만 기본값을 조정하세요.",
+
+  "schema.uiHints.hooks.label": "훅",
+  "schema.uiHints.hooks.help": "외부 이벤트를 OpenClaw의 웨이크 또는 에이전트 동작으로 매핑하는 인바운드 웹훅 자동화 표면입니다. 신뢰되는 네트워크 외부에 노출하기 전에 토큰/세션/에이전트를 명시적으로 제한하세요.",
+
+  "schema.uiHints.ui.label": "UI",
+  "schema.uiHints.ui.help": "제어 표면에 표시되는 강조 및 어시스턴트 식별을 위한 UI 표시 설정입니다. 런타임 동작을 변경하지 않고 브랜딩 및 가독성 사용자화를 위해 사용하세요.",
+
+  "schema.uiHints.browser.label": "브라우저",
+  "schema.uiHints.browser.help": "로컬 또는 원격 CDP 연결, 프로필 라우팅 및 스크린샷/스냅샷 동작을 위한 브라우저 런타임 제어입니다. 자동화 워크플로가 맞춤형 브라우저 전송 설정을 필요로 하지 않으면 기본값을 유지하세요.",
+
+  "schema.uiHints.talk.label": "Talk",
+  "schema.uiHints.talk.help": "음성 정체성, 모델 선택, 출력 형식 및 중단 동작을 위한 Talk 모드 음성 합성 설정입니다. 대기 시간과 비용을 제어하면서 사람 대상 음성 UX를 조정하려면 이 섹션을 사용하세요.",
+
+  "schema.uiHints.channels.label": "채널",
+  "schema.uiHints.channels.help": "접근 정책, 하트비트 가시성 및 표면별 동작을 제어하는 채널 제공자 구성 및 공통 기본값입니다. 기본값을 중앙에서 관리하고 필요한 경우에만 제공자별로 오버라이드하세요.",
+
+  "schema.uiHints.skills.label": "스킬",
+
+  "schema.uiHints.plugins.label": "플러그인",
+  "schema.uiHints.plugins.help": "확장 활성화, 로드 범위 제한, 항목 구성 및 설치 추적을 위한 플러그인 시스템 제어입니다. 운영 환경에서는 플러그인 정책을 명시적이고 최소 권한으로 유지하세요.",
+
+  "schema.uiHints.discovery.label": "검색",
+  "schema.uiHints.discovery.help": "지역 mDNS 광고 및 선택적 광역 존재 신호를 위한 서비스 검색 설정입니다. 서비스 메타데이터 유출을 피하려면 검색을 예상 네트워크로 범위를 제한하세요."
+  ,
+  "Discord Retry Attempts": "Discord 재시도 횟수",
+  "Discord Retry Min Delay (ms)": "Discord 재시도 최소 지연(ms)",
+  "Discord Retry Max Delay (ms)": "Discord 재시도 최대 지연(ms)",
+  "Discord Retry Jitter": "Discord 재시도 지터",
+  "Discord Max Lines Per Message": "Discord 메시지당 최대 줄 수",
+  "Discord Thread Parent Inheritance": "Discord 쓰레드 부모 상속",
+  "Discord EventQueue Listener Timeout (ms)": "Discord 이벤트큐 리스너 타임아웃(ms)",
+  "Discord EventQueue Max Queue Size": "Discord 이벤트큐 최대 대기열 크기",
+  "Discord EventQueue Max Concurrency": "Discord 이벤트큐 최대 동시성",
+  "Discord Thread Binding Enabled": "Discord 쓰레드 바인딩 사용",
+  "Discord Thread Binding Idle Timeout (hours)": "Discord 쓰레드 바인딩 유휴 타임아웃(시간)",
+  "Discord Thread Binding Max Age (hours)": "Discord 쓰레드 바인딩 최대 연령(시간)",
+  "Discord Thread-Bound Session Spawn": "Discord 쓰레드 바운드 세션 생성",
+  "Discord Thread Spawn Context": "Discord 쓰레드 생성 컨텍스트",
+  "Discord Component Accent Color": "Discord 컴포넌트 강조 색상",
+  "Discord Presence Intent": "Discord Presence 인텐트",
+  "Discord Guild Members Intent": "Discord 길드 멤버 인텐트",
+  "Discord Voice States Intent": "Discord 음성 상태 인텐트",
+  "Discord Gateway Metadata Timeout (ms)": "Discord 게이트웨이 메타데이터 타임아웃(ms)",
+  "Discord Gateway READY Timeout (ms)": "Discord 게이트웨이 READY 타임아웃(ms)",
+  "Discord Gateway Runtime READY Timeout (ms)": "Discord 게이트웨이 런타임 READY 타임아웃(ms)",
+  "Discord Voice Enabled": "Discord 음성 사용",
+  "Discord Voice Model": "Discord 음성 모델",
+  "Discord Voice Auto-Join": "Discord 음성 자동 참여",
+  "Discord Voice DAVE Encryption": "Discord 음성 DAVE 암호화",
+  "Discord Voice Decrypt Failure Tolerance": "Discord 음성 복호화 실패 허용도",
+  "Discord Voice Connect Timeout (ms)": "Discord 음성 연결 타임아웃(ms)",
+  "Discord Voice Reconnect Grace (ms)": "Discord 음성 재연결 유예(ms)",
+  "Discord Voice Text-to-Speech": "Discord 음성 TTS",
+  "Discord PluralKit Enabled": "Discord PluralKit 사용",
+  "Discord PluralKit Token": "Discord PluralKit 토큰",
+  "Discord Presence Activity": "Discord Presence 활동",
+  "Discord Presence Status": "Discord Presence 상태",
+  "Discord Auto Presence Enabled": "Discord 자동 Presence 사용",
+  "Discord Auto Presence Check Interval (ms)": "Discord 자동 Presence 확인 간격(ms)",
+  "Discord Auto Presence Min Update Interval (ms)": "Discord 자동 Presence 최소 업데이트 간격(ms)",
+  "Discord Auto Presence Healthy Text": "Discord 자동 Presence 정상 텍스트",
+  "Discord Auto Presence Degraded Text": "Discord 자동 Presence 저하 텍스트",
+  "Discord Auto Presence Exhausted Text": "Discord 자동 Presence 소진 텍스트",
+  "Discord Presence Activity Type": "Discord Presence 활동 유형",
+  "Discord Presence Activity URL": "Discord Presence 활동 URL",
+  "Discord Allow Bot Messages": "Discord 봇 메시지 허용",
+  "Discord Mention Aliases": "Discord 멘션 별칭",
+  "Discord Bot Token": "Discord 봇 토큰",
+  "Discord Application ID": "Discord 애플리케이션 ID",
+
+  "Slack Socket Mode Pong Timeout": "Slack Socket Mode Pong 타임아웃",
+  "Slack Socket Mode Server Ping Timeout": "Slack Socket Mode 서버 핑 타임아웃",
+  "Slack Socket Mode Ping/Pong Logging": "Slack Socket Mode 핑/퐁 로깅",
+  "Slack Bot Token": "Slack 봇 토큰",
+  "Slack App Token": "Slack 앱 토큰",
+  "Slack User Token": "Slack 사용자 토큰",
+  "Slack User Token Read Only": "Slack 사용자 토큰(읽기 전용)",
+  "Slack Interactive Replies": "Slack 인터랙티브 회신",
+  "Slack Exec Approvals": "Slack 실행 승인",
+  "Slack Exec Approvals Enabled": "Slack 실행 승인 사용",
+  "Slack Exec Approval Approvers": "Slack 실행 승인 승인자",
+  "Slack Exec Approval Agent Filter": "Slack 실행 승인 에이전트 필터",
+  "Slack Exec Approval Session Filter": "Slack 실행 승인 세션 필터",
+  "Slack Exec Approval Target": "Slack 실행 승인 대상",
+  "Slack Thread History Scope": "Slack 쓰레드 히스토리 범위",
+  "Slack Thread Parent Inheritance": "Slack 쓰레드 부모 상속",
+  "Slack Thread Initial History Limit": "Slack 쓰레드 초기 히스토리 제한",
+  "Slack Thread Require Explicit Mention": "Slack 쓰레드 명시적 멘션 필요",
+
+  "Telegram Retry Attempts": "Telegram 재시도 횟수",
+  "Telegram Retry Min Delay (ms)": "Telegram 재시도 최소 지연(ms)",
+  "Telegram Retry Max Delay (ms)": "Telegram 재시도 최대 지연(ms)",
+  "Telegram Retry Jitter": "Telegram 재시도 지터"
+}

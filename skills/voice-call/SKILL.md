@@ -1,6 +1,6 @@
 ---
 name: voice-call
-description: Start voice calls via the OpenClaw voice-call plugin.
+description: OpenClaw voice-call 플러그인으로 음성 통화를 시작합니다.
 metadata:
   {
     "openclaw":

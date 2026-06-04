@@ -1,6 +1,6 @@
 ---
 name: healthcheck
-description: Audit and harden hosts running OpenClaw for SSH, firewall, updates, exposure, cron checks, and risk posture.
+description: OpenClaw를 실행하는 호스트의 SSH, 방화벽, 업데이트, 노출, cron 점검, 위험 상태를 감사하고 강화합니다.
 ---
 
 # OpenClaw Host Hardening

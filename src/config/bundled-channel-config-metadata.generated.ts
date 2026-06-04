@@ -658,12 +658,12 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "BlueBubbles",
-        help: "BlueBubbles channel provider configuration used for Apple messaging bridge integrations. Keep DM policy aligned with your trusted sender model in shared deployments.",
+        label: "BlueBubbles 채널",
+        help: "BlueBubbles 채널 제공자 설정 — Apple 메시징 브리지 통합에 사용됩니다. 공유 배포에서는 신뢰된 발신자 모델에 맞춰 DM 정책을 유지하세요.",
       },
       dmPolicy: {
-        label: "BlueBubbles DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.bluebubbles.allowFrom=["*"].',
+        label: "BlueBubbles DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.bluebubbles.allowFrom=["*"]가 필요합니다.',
       },
     },
   },
@@ -1073,16 +1073,15 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
             },
             pins: {
               type: "boolean",
+              label: "iMessage 채널",
+              help: "CLI 통합 및 DM 접근 정책 처리를 위한 iMessage 채널 제공자 설정입니다. 런타임 환경에 비표준 바이너리 위치가 있는 경우 명시적 CLI 경로를 사용하세요.",
             },
-            search: {
-              type: "boolean",
-            },
-            memberInfo: {
-              type: "boolean",
-            },
-            roleInfo: {
-              type: "boolean",
-            },
+            label: "iMessage DM 정책",
+            help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.imessage.allowFrom=["*"]가 필요합니다.',
+          },
+          roleInfo: {
+            label: "iMessage 설정 쓰기 허용",
+            help: "채널 이벤트/명령에 응답하여 iMessage가 설정을 수정하도록 허용합니다(기본값: true).",
             roles: {
               type: "boolean",
             },
@@ -3136,14 +3135,20 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
                                               },
                                               provider: {
                                                 type: "string",
-                                                pattern: "^[a-z][a-z0-9_-]{0,63}$",
+                                                pattern:
+                                                  "^[a-z][a-z0-9_-]{0,63}$",
                                               },
                                               id: {
                                                 type: "string",
-                                                pattern: "^[A-Z][A-Z0-9_]{0,127}$",
+                                                pattern:
+                                                  "^[A-Z][A-Z0-9_]{0,127}$",
                                               },
                                             },
-                                            required: ["source", "provider", "id"],
+                                            required: [
+                                              "source",
+                                              "provider",
+                                              "id",
+                                            ],
                                             additionalProperties: false,
                                           },
                                           {
@@ -3155,13 +3160,18 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
                                               },
                                               provider: {
                                                 type: "string",
-                                                pattern: "^[a-z][a-z0-9_-]{0,63}$",
+                                                pattern:
+                                                  "^[a-z][a-z0-9_-]{0,63}$",
                                               },
                                               id: {
                                                 type: "string",
                                               },
                                             },
-                                            required: ["source", "provider", "id"],
+                                            required: [
+                                              "source",
+                                              "provider",
+                                              "id",
+                                            ],
                                             additionalProperties: false,
                                           },
                                           {
@@ -3173,13 +3183,18 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
                                               },
                                               provider: {
                                                 type: "string",
-                                                pattern: "^[a-z][a-z0-9_-]{0,63}$",
+                                                pattern:
+                                                  "^[a-z][a-z0-9_-]{0,63}$",
                                               },
                                               id: {
                                                 type: "string",
                                               },
                                             },
-                                            required: ["source", "provider", "id"],
+                                            required: [
+                                              "source",
+                                              "provider",
+                                              "id",
+                                            ],
                                             additionalProperties: false,
                                           },
                                         ],
@@ -3459,7 +3474,14 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
               },
               ackReactionScope: {
                 type: "string",
-                enum: ["group-mentions", "group-all", "direct", "all", "off", "none"],
+                enum: [
+                  "group-mentions",
+                  "group-all",
+                  "direct",
+                  "all",
+                  "off",
+                  "none",
+                ],
               },
               activity: {
                 type: "string",
@@ -3574,92 +3596,92 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "Discord",
-        help: "Discord channel provider configuration for bot auth, retry policy, streaming, thread bindings, and optional voice capabilities. Keep privileged intents and advanced features disabled unless needed.",
+        label: "Discord 채널",
+        help: "봇 인증, 재시도 정책, 스트리밍, 스레드 바인딩 및 선택적 음성 기능을 위한 Discord 채널 제공자 설정입니다. 필요하지 않으면 권한이 높은 인텐트와 고급 기능을 비활성화하세요.",
       },
       dmPolicy: {
-        label: "Discord DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.discord.allowFrom=["*"].',
+        label: "Discord DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.discord.allowFrom=["*"]가 필요합니다.',
       },
       "dm.policy": {
-        label: "Discord DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.discord.allowFrom=["*"] (legacy: channels.discord.dm.allowFrom).',
+        label: "Discord DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.discord.allowFrom=["*"]가 필요합니다 (레거시: channels.discord.dm.allowFrom).',
       },
       configWrites: {
-        label: "Discord Config Writes",
-        help: "Allow Discord to write config in response to channel events/commands (default: true).",
+        label: "Discord 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 Discord가 설정을 수정하도록 허용합니다(기본값: true).",
       },
       proxy: {
-        label: "Discord Proxy URL",
-        help: "Proxy URL for Discord gateway + API requests (app-id lookup and allowlist resolution). Set per account via channels.discord.accounts.<id>.proxy.",
+        label: "Discord 프록시 URL",
+        help: "Discord 게이트웨이 및 API 요청에 사용할 프록시 URL입니다(앱 ID 조회 및 허용 목록 해석용). 계정별로 channels.discord.accounts.<id>.proxy에 설정하세요.",
       },
       "commands.native": {
-        label: "Discord Native Commands",
-        help: 'Override native commands for Discord (bool or "auto").',
+        label: "Discord 네이티브 명령",
+        help: 'Discord의 네이티브 명령을 재정의합니다(불리언 또는 "auto").',
       },
       "commands.nativeSkills": {
-        label: "Discord Native Skill Commands",
-        help: 'Override native skill commands for Discord (bool or "auto").',
+        label: "Discord 네이티브 스킬 명령",
+        help: 'Discord의 네이티브 스킬 명령을 재정의합니다(불리언 또는 "auto").',
       },
       streaming: {
-        label: "Discord Streaming Mode",
-        help: 'Unified Discord stream preview mode: "off" | "partial" | "block" | "progress". "progress" keeps a single editable progress draft until final delivery. Legacy boolean/streamMode keys are auto-mapped.',
+        label: "Discord 스트리밍 모드",
+        help: '통합 Discord 스트림 미리보기 모드: "off" | "partial" | "block" | "progress". "progress"는 최종 전달까지 편집 가능한 단일 진행 초안을 유지합니다. 레거시 불리언/streamMode 키는 자동 매핑됩니다.',
       },
       "streaming.mode": {
-        label: "Discord Streaming Mode",
-        help: 'Canonical Discord preview mode: "off" | "partial" | "block" | "progress".',
+        label: "Discord 스트리밍 모드",
+        help: 'Discord 미리보기의 표준 모드: "off" | "partial" | "block" | "progress".',
       },
       "streaming.chunkMode": {
-        label: "Discord Chunk Mode",
-        help: 'Chunking mode for outbound Discord text delivery: "length" (default) or "newline".',
+        label: "Discord 청크 모드",
+        help: 'Discord 텍스트 전송 시 청크 분할 모드: "length"(기본) 또는 "newline".',
       },
       "streaming.block.enabled": {
-        label: "Discord Block Streaming Enabled",
-        help: 'Enable chunked block-style Discord preview delivery when channels.discord.streaming.mode="block".',
+        label: "Discord 블록 스트리밍 사용",
+        help: 'channels.discord.streaming.mode="block"일 때 청크 블록 형식의 Discord 미리보기 전달을 활성화합니다.',
       },
       "streaming.block.coalesce": {
-        label: "Discord Block Streaming Coalesce",
-        help: "Merge streamed Discord block replies before final delivery.",
+        label: "Discord 블록 스트리밍 병합",
+        help: "최종 전달 전에 스트리밍된 Discord 블록 응답을 병합합니다.",
       },
       "streaming.preview.chunk.minChars": {
-        label: "Discord Draft Chunk Min Chars",
-        help: 'Minimum chars before emitting a Discord stream preview update when channels.discord.streaming.mode="block" (default: 200).',
+        label: "Discord 초안 청크 최소 문자",
+        help: 'channels.discord.streaming.mode="block"일 때 Discord 스트림 미리보기 업데이트를 내보내기 전의 최소 문자 수(기본값: 200).',
       },
       "streaming.preview.chunk.maxChars": {
-        label: "Discord Draft Chunk Max Chars",
-        help: 'Target max size for a Discord stream preview chunk when channels.discord.streaming.mode="block" (default: 800; clamped to channels.discord.textChunkLimit).',
+        label: "Discord 초안 청크 최대 문자",
+        help: 'channels.discord.streaming.mode="block"일 때 Discord 스트림 미리보기 청크의 목표 최대 크기(기본값: 800; channels.discord.textChunkLimit에 의해 제한됨).',
       },
       "streaming.preview.chunk.breakPreference": {
-        label: "Discord Draft Chunk Break Preference",
-        help: "Preferred breakpoints for Discord draft chunks (paragraph | newline | sentence). Default: paragraph.",
+        label: "Discord 초안 청크 분할 우선순위",
+        help: "Discord 초안 청크의 선호 분할 지점(paragraph | newline | sentence). 기본값: paragraph.",
       },
       "streaming.preview.toolProgress": {
-        label: "Discord Draft Tool Progress",
-        help: "Show tool/progress activity in the live draft preview message (default: true). Set false to hide interim tool updates while the draft preview stays active.",
+        label: "Discord 초안 도구 진행",
+        help: "라이브 초안 미리보기 메시지에 도구/진행 활동을 표시합니다(기본값: true). 초안 미리보기가 활성인 동안 중간 도구 업데이트를 숨기려면 false로 설정하세요.",
       },
       "streaming.preview.commandText": {
-        label: "Discord Draft Command Text",
-        help: 'Command/exec detail in preview tool-progress lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Discord 초안 명령 텍스트",
+        help: '미리보기 도구 진행 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "streaming.progress.label": {
-        label: "Discord Progress Label",
-        help: 'Initial progress draft title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "Discord 진행 라벨",
+        help: '초기 진행 초안 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "Discord Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "Discord 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "Discord Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the draft label (default: 8).",
+        label: "Discord 진행 최대 줄 수",
+        help: "초안 라벨 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.toolProgress": {
-        label: "Discord Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress draft mode (default: true). Set false to keep only the label until final delivery.",
+        label: "Discord 진행 도구 라인",
+        help: "진행 초안 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 라벨만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "Discord Progress Command Text",
-        help: 'Command/exec detail in progress draft lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Discord 진행 명령 텍스트",
+        help: '진행 초안 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "retry.attempts": {
         label: "Discord Retry Attempts",
@@ -4231,7 +4253,12 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
               },
               groupSessionScope: {
                 type: "string",
-                enum: ["group", "group_sender", "group_topic", "group_topic_sender"],
+                enum: [
+                  "group",
+                  "group_sender",
+                  "group_topic",
+                  "group_topic_sender",
+                ],
               },
               topicSessionMode: {
                 type: "string",
@@ -4862,7 +4889,12 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
                     },
                     groupSessionScope: {
                       type: "string",
-                      enum: ["group", "group_sender", "group_topic", "group_topic_sender"],
+                      enum: [
+                        "group",
+                        "group_sender",
+                        "group_topic",
+                        "group_topic_sender",
+                      ],
                     },
                     topicSessionMode: {
                       type: "string",
@@ -5087,7 +5119,12 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
               },
               groupSessionScope: {
                 type: "string",
-                enum: ["group", "group_sender", "group_topic", "group_topic_sender"],
+                enum: [
+                  "group",
+                  "group_sender",
+                  "group_topic",
+                  "group_topic_sender",
+                ],
               },
               topicSessionMode: {
                 type: "string",
@@ -6456,20 +6493,20 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "iMessage",
-        help: "iMessage channel provider configuration for CLI integration and DM access policy handling. Use explicit CLI paths when runtime environments have non-standard binary locations.",
+        label: "iMessage 채널",
+        help: "CLI 통합 및 DM 접근 정책 처리를 위한 iMessage 채널 제공자 설정입니다. 런타임 환경에 비표준 바이너리 위치가 있는 경우 명시적 CLI 경로를 사용하세요.",
       },
       dmPolicy: {
-        label: "iMessage DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.imessage.allowFrom=["*"].',
+        label: "iMessage DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.imessage.allowFrom=["*"]가 필요합니다.',
       },
       configWrites: {
-        label: "iMessage Config Writes",
-        help: "Allow iMessage to write config in response to channel events/commands (default: true).",
+        label: "iMessage 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 iMessage가 설정을 수정하도록 허용합니다(기본값: true).",
       },
       cliPath: {
-        label: "iMessage CLI Path",
-        help: "Filesystem path to the iMessage bridge CLI binary used for send/receive operations. Set explicitly when the binary is not on PATH in service runtime environments.",
+        label: "iMessage CLI 경로",
+        help: "전송/수신 작업에 사용하는 iMessage 브리지 CLI 바이너리의 파일 시스템 경로입니다. 서비스 런타임에서 바이너리가 PATH에 없을 때 명시적으로 설정하세요.",
       },
     },
   },
@@ -6477,7 +6514,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "irc",
     channelId: "irc",
     label: "IRC",
-    description: "classic IRC networks with DM/channel routing and pairing controls.",
+    description:
+      "classic IRC networks with DM/channel routing and pairing controls.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -7068,24 +7106,24 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "IRC",
-        help: "IRC channel provider configuration and compatibility settings for classic IRC transport workflows. Use this section when bridging legacy chat infrastructure into OpenClaw.",
+        label: "IRC 채널",
+        help: "고전 IRC 전송 워크플로용 호환성 및 설정을 위한 IRC 채널 제공자 설정입니다. 레거시 채팅 인프라를 OpenClaw로 브리지할 때 이 섹션을 사용하세요.",
       },
       dmPolicy: {
-        label: "IRC DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.irc.allowFrom=["*"].',
+        label: "IRC DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.irc.allowFrom=["*"]가 필요합니다.',
       },
       "nickserv.enabled": {
-        label: "IRC NickServ Enabled",
-        help: "Enable NickServ identify/register after connect (defaults to enabled when password is configured).",
+        label: "IRC NickServ 사용",
+        help: "연결 후 NickServ 식별/등록을 활성화합니다(비밀번호가 구성된 경우 기본값: 활성).",
       },
       "nickserv.service": {
-        label: "IRC NickServ Service",
-        help: "NickServ service nick (default: NickServ).",
+        label: "IRC NickServ 서비스",
+        help: "NickServ 서비스 닉(기본값: NickServ).",
       },
       "nickserv.password": {
-        label: "IRC NickServ Password",
-        help: "NickServ password used for IDENTIFY/REGISTER (sensitive).",
+        label: "IRC NickServ 비밀번호",
+        help: "IDENTIFY/REGISTER에 사용하는 NickServ 비밀번호(민감 정보).",
       },
       "nickserv.passwordFile": {
         label: "IRC NickServ Password File",
@@ -7100,8 +7138,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
         help: "Email used with NickServ REGISTER (required when register=true).",
       },
       configWrites: {
-        label: "IRC Config Writes",
-        help: "Allow IRC to write config in response to channel events/commands (default: true).",
+        label: "IRC 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 IRC가 설정을 수정하도록 허용합니다(기본값: true).",
       },
     },
   },
@@ -8049,24 +8087,24 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "streaming.progress.label": {
-        label: "Matrix Progress Label",
-        help: 'Initial progress draft title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "Matrix 진행 라벨",
+        help: '초기 진행 초안 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "Matrix Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "Matrix 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "Matrix Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the draft label (default: 8).",
+        label: "Matrix 진행 최대 줄 수",
+        help: "초안 라벨 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.toolProgress": {
-        label: "Matrix Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress draft mode (default: true). Set false to keep only the label until final delivery.",
+        label: "Matrix 진행 도구 라인",
+        help: "진행 초안 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 라벨만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "Matrix Progress Command Text",
-        help: 'Command/exec detail in progress draft lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Matrix 진행 명령 텍스트",
+        help: '진행 초안 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
     },
   },
@@ -8879,56 +8917,56 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "Mattermost",
-        help: "Mattermost channel provider configuration for bot auth, access policy, slash commands, and preview streaming.",
+        label: "Mattermost 채널",
+        help: "봇 인증, 접근 정책, 슬래시 명령 및 미리보기 스트리밍을 위한 Mattermost 채널 제공자 설정입니다.",
       },
       dmPolicy: {
-        label: "Mattermost DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.mattermost.allowFrom=["*"].',
+        label: "Mattermost DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.mattermost.allowFrom=["*"]가 필요합니다.',
       },
       streaming: {
-        label: "Mattermost Streaming Mode",
-        help: 'Unified Mattermost stream preview mode: "off" | "partial" | "block" | "progress". "progress" keeps a single editable progress draft until final delivery.',
+        label: "Mattermost 스트리밍 모드",
+        help: '통합 Mattermost 스트림 미리보기 모드: "off" | "partial" | "block" | "progress". "progress"는 최종 전달까지 편집 가능한 단일 진행 초안을 유지합니다.',
       },
       "streaming.mode": {
-        label: "Mattermost Streaming Mode",
-        help: 'Canonical Mattermost preview mode: "off" | "partial" | "block" | "progress".',
+        label: "Mattermost 스트리밍 모드",
+        help: 'Mattermost 미리보기의 표준 모드: "off" | "partial" | "block" | "progress".',
       },
       "streaming.progress.label": {
-        label: "Mattermost Progress Label",
-        help: 'Initial progress draft title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "Mattermost 진행 라벨",
+        help: '초기 진행 초안 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "Mattermost Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "Mattermost 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "Mattermost Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the draft label (default: 8).",
+        label: "Mattermost 진행 최대 줄 수",
+        help: "초안 라벨 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.toolProgress": {
-        label: "Mattermost Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress draft mode (default: true). Set false to keep only the label until final delivery.",
+        label: "Mattermost 진행 도구 라인",
+        help: "진행 초안 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 라벨만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "Mattermost Progress Command Text",
-        help: 'Command/exec detail in progress draft lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Mattermost 진행 명령 텍스트",
+        help: '진행 초안 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "streaming.preview.toolProgress": {
-        label: "Mattermost Draft Tool Progress",
-        help: "Show tool/progress activity in the live draft preview post (default: true). Set false to hide interim tool updates while the draft preview stays active.",
+        label: "Mattermost 초안 도구 진행",
+        help: "라이브 초안 미리보기 게시물에 도구/진행 활동을 표시합니다(기본값: true). 초안 미리보기가 활성인 동안 중간 도구 업데이트를 숨기려면 false로 설정하세요.",
       },
       "streaming.preview.commandText": {
-        label: "Mattermost Draft Command Text",
-        help: 'Command/exec detail in preview tool-progress lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Mattermost 초안 명령 텍스트",
+        help: '미리보기 도구 진행 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "streaming.block.enabled": {
-        label: "Mattermost Block Streaming Enabled",
-        help: 'Enable chunked block-style Mattermost preview delivery when channels.mattermost.streaming.mode="block".',
+        label: "Mattermost 블록 스트리밍 사용",
+        help: 'channels.mattermost.streaming.mode="block"일 때 청크 블록 형식의 Mattermost 미리보기 전달을 활성화합니다.',
       },
       "streaming.block.coalesce": {
-        label: "Mattermost Block Streaming Coalesce",
-        help: "Merge streamed Mattermost block replies before final delivery.",
+        label: "Mattermost 블록 스트리밍 병합",
+        help: "최종 전달 전에 스트리밍된 Mattermost 블록 응답을 병합합니다.",
       },
     },
   },
@@ -9543,36 +9581,36 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "MS Teams",
-        help: "Microsoft Teams channel provider configuration and provider-specific policy toggles. Use this section to isolate Teams behavior from other enterprise chat providers.",
+        label: "Microsoft Teams 채널",
+        help: "Microsoft Teams 채널 제공자 설정 및 공급자별 정책 토글입니다. 다른 엔터프라이즈 채팅 제공자와 Teams 동작을 분리하려면 이 섹션을 사용하세요.",
       },
       configWrites: {
-        label: "MS Teams Config Writes",
-        help: "Allow Microsoft Teams to write config in response to channel events/commands (default: true).",
+        label: "MS Teams 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 Microsoft Teams가 설정을 수정하도록 허용합니다(기본값: true).",
       },
       streaming: {
-        label: "MS Teams Streaming",
-        help: 'Microsoft Teams preview/progress streaming mode: "off" | "partial" | "block" | "progress". Personal chats use Teams native streaminfo progress when available.',
+        label: "MS Teams 스트리밍",
+        help: 'Microsoft Teams 미리보기/진행 스트리밍 모드: "off" | "partial" | "block" | "progress". 개인 채팅은 가능하면 Teams 네이티브 streaminfo 진행을 사용합니다.',
       },
       "streaming.progress.label": {
-        label: "MS Teams Progress Label",
-        help: 'Initial progress title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "MS Teams 진행 라벨",
+        help: '초기 진행 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "MS Teams Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "MS Teams 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "MS Teams Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the progress title (default: 8).",
+        label: "MS Teams 진행 최대 줄 수",
+        help: "진행 제목 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.toolProgress": {
-        label: "MS Teams Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress mode (default: true). Set false to keep only the title until final delivery.",
+        label: "MS Teams 진행 도구 라인",
+        help: "진행 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 제목만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "MS Teams Progress Command Text",
-        help: 'Command/exec detail in progress lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "MS Teams 진행 명령 텍스트",
+        help: '진행 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
     },
   },
@@ -10433,7 +10471,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "qa-channel",
     channelId: "qa-channel",
     label: "QA Channel",
-    description: "Synthetic Slack-class transport for automated OpenClaw QA scenarios.",
+    description:
+      "Synthetic Slack-class transport for automated OpenClaw QA scenarios.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -11223,7 +11262,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "signal",
     channelId: "signal",
     label: "Signal",
-    description: 'signal-cli linked device; more setup (David Reagans: "Hop on Discord.").',
+    description:
+      'signal-cli linked device; more setup (David Reagans: "Hop on Discord.").',
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -11872,20 +11912,20 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "Signal",
-        help: "Signal channel provider configuration including account identity and DM policy behavior. Keep account mapping explicit so routing remains stable across multi-device setups.",
+        label: "Signal 채널",
+        help: "계정 식별 및 DM 정책 동작을 포함한 Signal 채널 제공자 설정입니다. 멀티 디바이스 환경에서 라우팅이 안정적으로 유지되도록 계정 매핑을 명시적으로 유지하세요.",
       },
       dmPolicy: {
-        label: "Signal DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.signal.allowFrom=["*"].',
+        label: "Signal DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.signal.allowFrom=["*"]가 필요합니다.',
       },
       configWrites: {
-        label: "Signal Config Writes",
-        help: "Allow Signal to write config in response to channel events/commands (default: true).",
+        label: "Signal 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 Signal이 설정을 수정하도록 허용합니다(기본값: true).",
       },
       account: {
-        label: "Signal Account",
-        help: "Signal account identifier (phone/number handle) used to bind this channel config to a specific Signal identity. Keep this aligned with your linked device/session state.",
+        label: "Signal 계정",
+        help: "이 채널 구성을 특정 Signal 식별자에 바인딩하는 데 사용되는 Signal 계정 식별자(전화번호/핸들)입니다. 연결된 디바이스/세션 상태와 일치하도록 유지하세요.",
       },
     },
   },
@@ -13855,36 +13895,36 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "Slack",
-        help: "Slack channel provider configuration for bot/app tokens, streaming behavior, and DM policy controls. Keep token handling and thread behavior explicit to avoid noisy workspace interactions.",
+        label: "Slack 채널",
+        help: "봇/앱 토큰, 스트리밍 동작 및 DM 정책 제어를 위한 Slack 채널 제공자 설정입니다. 시끄러운 워크스페이스 상호작용을 피하려면 토큰 처리와 스레드 동작을 명확히 하세요.",
       },
       "dm.policy": {
-        label: "Slack DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.slack.allowFrom=["*"] (legacy: channels.slack.dm.allowFrom).',
+        label: "Slack DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.slack.allowFrom=["*"]가 필요합니다 (레거시: channels.slack.dm.allowFrom).',
       },
       dmPolicy: {
-        label: "Slack DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.slack.allowFrom=["*"].',
+        label: "Slack DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.slack.allowFrom=["*"]가 필요합니다.',
       },
       configWrites: {
-        label: "Slack Config Writes",
-        help: "Allow Slack to write config in response to channel events/commands (default: true).",
+        label: "Slack 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 Slack이 설정을 수정하도록 허용합니다(기본값: true).",
       },
       "commands.native": {
-        label: "Slack Native Commands",
-        help: 'Override native commands for Slack (bool or "auto").',
+        label: "Slack 네이티브 명령",
+        help: 'Slack의 네이티브 명령을 재정의합니다(불리언 또는 "auto").',
       },
       "commands.nativeSkills": {
-        label: "Slack Native Skill Commands",
-        help: 'Override native skill commands for Slack (bool or "auto").',
+        label: "Slack 네이티브 스킬 명령",
+        help: 'Slack의 네이티브 스킬 명령을 재정의합니다(불리언 또는 "auto").',
       },
       allowBots: {
-        label: "Slack Allow Bot Messages",
-        help: "Allow bot-authored messages to trigger Slack replies (default: false).",
+        label: "Slack 봇 메시지 허용",
+        help: "봇이 작성한 메시지가 Slack 응답을 트리거하도록 허용합니다(기본값: false).",
       },
       socketMode: {
-        label: "Slack Socket Mode Transport",
-        help: "Slack Socket Mode transport tuning passed to the Slack SDK. Use only when investigating ping/pong timeout or stale websocket behavior.",
+        label: "Slack Socket Mode 전송",
+        help: "Slack SDK에 전달되는 Socket Mode 전송 튜닝입니다. ping/pong 타임아웃이나 오래된 웹소켓 동작을 조사할 때만 사용하세요.",
       },
       "socketMode.clientPingTimeout": {
         label: "Slack Socket Mode Pong Timeout",
@@ -13951,52 +13991,52 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
         help: 'Canonical Slack preview mode: "off" | "partial" | "block" | "progress".',
       },
       "streaming.chunkMode": {
-        label: "Slack Chunk Mode",
-        help: 'Chunking mode for outbound Slack text delivery: "length" (default) or "newline".',
+        label: "Slack 청크 모드",
+        help: 'Slack 텍스트 전송 시 청크 분할 모드: "length"(기본) 또는 "newline".',
       },
       "streaming.block.enabled": {
-        label: "Slack Block Streaming Enabled",
-        help: 'Enable chunked block-style Slack preview delivery when channels.slack.streaming.mode="block".',
+        label: "Slack 블록 스트리밍 사용",
+        help: 'channels.slack.streaming.mode="block"일 때 청크 블록 형식의 Slack 미리보기 전달을 활성화합니다.',
       },
       "streaming.block.coalesce": {
-        label: "Slack Block Streaming Coalesce",
-        help: "Merge streamed Slack block replies before final delivery.",
+        label: "Slack 블록 스트리밍 병합",
+        help: "최종 전달 전에 스트리밍된 Slack 블록 응답을 병합합니다.",
       },
       "streaming.nativeTransport": {
-        label: "Slack Native Streaming",
-        help: "Enable native Slack text streaming (chat.startStream/chat.appendStream/chat.stopStream) when channels.slack.streaming.mode is partial (default: true). Native streaming and Slack assistant thread status require a reply thread target; top-level DMs can still use draft post-and-edit preview streaming.",
+        label: "Slack 네이티브 스트리밍",
+        help: "channels.slack.streaming.mode가 partial일 때 네이티브 Slack 텍스트 스트리밍(chat.startStream/chat.appendStream/chat.stopStream)을 활성화합니다(기본값: true). 네이티브 스트리밍과 Slack 어시스턴트 쓰레드 상태는 회신 쓰레드 대상이 필요합니다; 최상위 DM은 여전히 초안 게시 후 편집 미리보기를 사용할 수 있습니다.",
       },
       "streaming.preview.toolProgress": {
-        label: "Slack Draft Tool Progress",
-        help: "Show tool/progress activity in the live draft preview message (default: true). Set false to hide interim tool updates while the draft preview stays active.",
+        label: "Slack 초안 도구 진행",
+        help: "라이브 초안 미리보기 메시지에 도구/진행 활동을 표시합니다(기본값: true). 초안 미리보기가 활성인 동안 중간 도구 업데이트를 숨기려면 false로 설정하세요.",
       },
       "streaming.preview.commandText": {
-        label: "Slack Draft Command Text",
-        help: 'Command/exec detail in preview tool-progress lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Slack 초안 명령 텍스트",
+        help: '미리보기 도구 진행 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "streaming.progress.label": {
-        label: "Slack Progress Label",
-        help: 'Initial progress draft title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "Slack 진행 라벨",
+        help: '초기 진행 초안 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "Slack Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "Slack 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "Slack Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the draft label (default: 8).",
+        label: "Slack 진행 최대 줄 수",
+        help: "초안 라벨 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.render": {
-        label: "Slack Progress Renderer",
-        help: 'Progress draft renderer: "text" uses one portable text body; "rich" renders structured Slack Block Kit fields with the same text fallback.',
+        label: "Slack 진행 렌더러",
+        help: '진행 초안 렌더러: "text"는 단일 텍스트 본문을 사용하고, "rich"는 동일한 텍스트 폴백을 가진 구조화된 Slack Block Kit 필드를 렌더링합니다.',
       },
       "streaming.progress.toolProgress": {
-        label: "Slack Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress draft mode (default: true). Set false to keep only the label until final delivery.",
+        label: "Slack 진행 도구 라인",
+        help: "진행 초안 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 라벨만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "Slack Progress Command Text",
-        help: 'Command/exec detail in progress draft lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Slack 진행 명령 텍스트",
+        help: '진행 초안 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "thread.historyScope": {
         label: "Slack Thread History Scope",
@@ -14020,7 +14060,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "synology-chat",
     channelId: "synology-chat",
     label: "Synology Chat",
-    description: "Connect your Synology NAS Chat to OpenClaw with full agent capabilities.",
+    description:
+      "Connect your Synology NAS Chat to OpenClaw with full agent capabilities.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -14039,7 +14080,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "telegram",
     channelId: "telegram",
     label: "Telegram",
-    description: "simplest way to get started — register a bot with @BotFather and get going.",
+    description:
+      "simplest way to get started — register a bot with @BotFather and get going.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -16274,32 +16316,32 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "Telegram",
-        help: "Telegram channel provider configuration including auth tokens, retry behavior, and message rendering controls. Use this section to tune bot behavior for Telegram-specific API semantics.",
+        label: "Telegram 채널",
+        help: "인증 토큰, 재시도 동작 및 메시지 렌더링 제어를 포함한 Telegram 채널 제공자 설정입니다. Telegram 특유의 API 의미론에 맞게 봇 동작을 조정하려면 이 섹션을 사용하세요.",
       },
       customCommands: {
-        label: "Telegram Custom Commands",
-        help: "Additional Telegram bot menu commands (merged with native; conflicts ignored).",
+        label: "Telegram 커스텀 명령",
+        help: "추가 Telegram 봇 메뉴 명령(네이티브와 병합되며 충돌은 무시됨).",
       },
       botToken: {
-        label: "Telegram Bot Token",
-        help: "Telegram bot token used to authenticate Bot API requests for this account/provider config. Use secret/env substitution and rotate tokens if exposure is suspected.",
+        label: "Telegram 봇 토큰",
+        help: "이 계정/제공자 구성의 Bot API 요청을 인증하는 데 사용되는 Telegram 봇 토큰입니다. 노출 의심 시 비밀/환경 변수 치환을 사용하고 토큰을 교체하세요.",
       },
       dmPolicy: {
-        label: "Telegram DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.telegram.allowFrom=["*"].',
+        label: "Telegram DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.telegram.allowFrom=["*"]가 필요합니다.',
       },
       "dm.threadReplies": {
-        label: "Telegram DM Thread Replies",
-        help: 'Controls whether Telegram DMs with message_thread_id use flat sessions ("off", default) or thread-scoped sessions ("inbound" or "always"). Thread IDs are still preserved for replies when sessions stay flat.',
+        label: "Telegram DM 쓰레드 회신",
+        help: 'message_thread_id가 있는 Telegram DM이 플랫 세션("off", 기본값) 또는 쓰레드 범위 세션("inbound" 또는 "always")을 사용하는지 제어합니다. 세션이 플랫으로 유지되는 경우에도 회신 시 쓰레드 ID는 보존됩니다.',
       },
       "direct.*.threadReplies": {
         label: "Telegram Per-DM Thread Replies",
         help: 'Per-DM override for message_thread_id session threading. Use "inbound" only when a specific direct chat intentionally uses Telegram DM topics as separate sessions.',
       },
       configWrites: {
-        label: "Telegram Config Writes",
-        help: "Allow Telegram to write config in response to channel events/commands (default: true).",
+        label: "Telegram 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 Telegram이 설정을 수정하도록 허용합니다(기본값: true).",
       },
       "commands.native": {
         label: "Telegram Native Commands",
@@ -16322,52 +16364,52 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
         help: 'Chunking mode for outbound Telegram text delivery: "length" (default) or "newline".',
       },
       "streaming.block.enabled": {
-        label: "Telegram Block Streaming Enabled",
-        help: 'Enable chunked block-style Telegram preview delivery when channels.telegram.streaming.mode="block".',
+        label: "Telegram 블록 스트리밍 사용",
+        help: 'channels.telegram.streaming.mode="block"일 때 청크 블록 형식의 Telegram 미리보기 전달을 활성화합니다.',
       },
       "streaming.block.coalesce": {
-        label: "Telegram Block Streaming Coalesce",
-        help: "Merge streamed Telegram block replies before sending final delivery.",
+        label: "Telegram 블록 스트리밍 병합",
+        help: "최종 전달 전에 스트리밍된 Telegram 블록 응답을 병합합니다.",
       },
       "streaming.preview.chunk.minChars": {
-        label: "Telegram Draft Chunk Min Chars",
-        help: 'Minimum chars before emitting a Telegram block preview chunk when channels.telegram.streaming.mode="block".',
+        label: "Telegram 초안 청크 최소 문자",
+        help: 'channels.telegram.streaming.mode="block"일 때 Telegram 블록 미리보기 청크를 내보내기 전의 최소 문자 수입니다.',
       },
       "streaming.preview.chunk.maxChars": {
-        label: "Telegram Draft Chunk Max Chars",
-        help: 'Target max size for a Telegram block preview chunk when channels.telegram.streaming.mode="block".',
+        label: "Telegram 초안 청크 최대 문자",
+        help: 'channels.telegram.streaming.mode="block"일 때 Telegram 블록 미리보기 청크의 목표 최대 크기입니다.',
       },
       "streaming.preview.chunk.breakPreference": {
-        label: "Telegram Draft Chunk Break Preference",
-        help: "Preferred breakpoints for Telegram draft chunks (paragraph | newline | sentence).",
+        label: "Telegram 초안 청크 분할 우선순위",
+        help: "Telegram 초안 청크의 선호 분할 지점(paragraph | newline | sentence).",
       },
       "streaming.preview.toolProgress": {
-        label: "Telegram Draft Tool Progress",
-        help: "Show tool/progress activity in the live draft preview message (default: true when preview streaming is active). Set false to keep tool updates out of the edited Telegram preview.",
+        label: "Telegram 초안 도구 진행",
+        help: "라이브 초안 미리보기 메시지에 도구/진행 활동을 표시합니다(미리보기 스트리밍이 활성일 때 기본값: true). 편집된 Telegram 미리보기에서 도구 업데이트를 제외하려면 false로 설정하세요.",
       },
       "streaming.preview.commandText": {
-        label: "Telegram Draft Command Text",
-        help: 'Command/exec detail in preview tool-progress lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Telegram 초안 명령 텍스트",
+        help: '미리보기 도구 진행 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "streaming.progress.label": {
-        label: "Telegram Progress Label",
-        help: 'Initial progress draft title. Use "auto" for built-in single-word labels, a custom string, or false to hide the title.',
+        label: "Telegram 진행 라벨",
+        help: '초기 진행 초안 제목입니다. 내장 단어 라벨을 사용하려면 "auto", 사용자 문자열을 입력하거나 제목을 숨기려면 false를 사용하세요.',
       },
       "streaming.progress.labels": {
-        label: "Telegram Progress Label Pool",
-        help: 'Candidate labels for streaming.progress.label="auto". Leave unset to use OpenClaw built-in progress labels.',
+        label: "Telegram 진행 라벨 풀",
+        help: 'streaming.progress.label="auto"일 때 사용할 후보 라벨들입니다. 비워두면 OpenClaw 내장 라벨을 사용합니다.',
       },
       "streaming.progress.maxLines": {
-        label: "Telegram Progress Max Lines",
-        help: "Maximum number of compact progress lines to keep below the draft label (default: 8).",
+        label: "Telegram 진행 최대 줄 수",
+        help: "초안 라벨 아래에 유지할 컴팩트 진행 줄의 최대 수(기본값: 8).",
       },
       "streaming.progress.toolProgress": {
-        label: "Telegram Progress Tool Lines",
-        help: "Show compact tool/progress lines in progress draft mode (default: true). Set false to keep only the label until final delivery.",
+        label: "Telegram 진행 도구 라인",
+        help: "진행 초안 모드에서 컴팩트한 도구/진행 라인을 표시합니다(기본값: true). 최종 전달까지 라벨만 유지하려면 false로 설정하세요.",
       },
       "streaming.progress.commandText": {
-        label: "Telegram Progress Command Text",
-        help: 'Command/exec detail in progress draft lines: "raw" preserves released behavior; "status" shows only the tool label.',
+        label: "Telegram 진행 명령 텍스트",
+        help: '진행 초안 라인의 명령/실행 상세: "raw"는 기존 동작을 유지하고, "status"는 도구 라벨만 표시합니다.',
       },
       "retry.attempts": {
         label: "Telegram Retry Attempts",
@@ -16483,7 +16525,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "tlon",
     channelId: "tlon",
     label: "Tlon",
-    description: "decentralized messaging on Urbit; install the plugin to enable.",
+    description:
+      "decentralized messaging on Urbit; install the plugin to enable.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -16855,7 +16898,8 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     pluginId: "whatsapp",
     channelId: "whatsapp",
     label: "WhatsApp",
-    description: "works with your own number; recommend a separate phone + eSIM.",
+    description:
+      "works with your own number; recommend a separate phone + eSIM.",
     schema: {
       $schema: "http://json-schema.org/draft-07/schema#",
       type: "object",
@@ -17476,24 +17520,24 @@ export const GENERATED_BUNDLED_CHANNEL_CONFIG_METADATA = [
     },
     uiHints: {
       "": {
-        label: "WhatsApp",
-        help: "WhatsApp channel provider configuration for access policy and message batching behavior. Use this section to tune responsiveness and direct-message routing safety for WhatsApp chats.",
+        label: "WhatsApp 채널",
+        help: "WhatsApp 채널 제공자 설정 — 접근 정책 및 메시지 배칭 동작을 제어합니다. 이 섹션에서 응답성 및 다이렉트(개인) 메시지 라우팅의 안전성을 조정하세요.",
       },
       dmPolicy: {
-        label: "WhatsApp DM Policy",
-        help: 'Direct message access control ("pairing" recommended). "open" requires channels.whatsapp.allowFrom=["*"].',
+        label: "WhatsApp DM 정책",
+        help: '다이렉트 메시지 접근 제어("pairing" 권장). "open" 사용 시 channels.whatsapp.allowFrom=["*"]가 필요합니다.',
       },
       selfChatMode: {
-        label: "WhatsApp Self-Phone Mode",
-        help: "Same-phone setup (bot uses your personal WhatsApp number).",
+        label: "WhatsApp 개인 휴대폰 모드",
+        help: "같은 기기/번호 설정(봇이 사용자의 개인 WhatsApp 번호를 사용합니다).",
       },
       debounceMs: {
-        label: "WhatsApp Message Debounce (ms)",
-        help: "Debounce window (ms) for batching rapid consecutive messages from the same sender (0 to disable).",
+        label: "WhatsApp 메시지 디바운스(밀리초)",
+        help: "같은 발신자의 빠른 연속 메시지를 묶기 위한 디바운스 창(밀리초). 0으로 설정하면 비활성화됩니다.",
       },
       configWrites: {
-        label: "WhatsApp Config Writes",
-        help: "Allow WhatsApp to write config in response to channel events/commands (default: true).",
+        label: "WhatsApp 설정 쓰기 허용",
+        help: "채널 이벤트/명령에 응답하여 WhatsApp이 설정을 수정하도록 허용합니다(기본값: true).",
       },
     },
     unsupportedSecretRefSurfacePatterns: [

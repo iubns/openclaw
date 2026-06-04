@@ -1,6 +1,6 @@
 ---
 name: taskflow
-description: Coordinate multi-step detached tasks as one durable TaskFlow job with owner context, state, waits, and child tasks.
+description: 소유자 컨텍스트, 상태, 대기, 하위 작업을 포함한 하나의 지속형 TaskFlow 작업으로 다단계 분리 작업을 조정합니다.
 metadata: { "openclaw": { "emoji": "🪝" } }
 ---
 

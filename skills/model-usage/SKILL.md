@@ -1,6 +1,6 @@
 ---
 name: model-usage
-description: Summarize CodexBar local cost logs by model for Codex or Claude, including current or full breakdowns.
+description: CodexBar 로컬 비용 로그를 모델별로 요약합니다. Codex 또는 Claude 기준으로 현재 또는 전체 내역을 포함합니다.
 metadata:
   {
     "openclaw":

@@ -1,6 +1,6 @@
 ---
 name: github
-description: "Use gh for GitHub issues, PR status, CI/logs, comments, reviews, releases, and API queries."
+description: "gh로 GitHub 이슈, PR 상태, CI/logs, 댓글, 리뷰, 릴리스, API 쿼리를 수행합니다."
 metadata:
   {
     "openclaw":

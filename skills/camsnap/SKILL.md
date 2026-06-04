@@ -1,6 +1,6 @@
 ---
 name: camsnap
-description: Capture frames or clips from RTSP/ONVIF cameras.
+description: RTSP/ONVIF 카메라에서 프레임 또는 클립을 캡처합니다.
 homepage: https://camsnap.ai
 metadata:
   {

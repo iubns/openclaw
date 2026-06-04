@@ -1,6 +1,6 @@
 ---
 name: gifgrep
-description: Search GIF providers with CLI/TUI, download results, and extract stills/sheets.
+description: CLI/TUI로 GIF 제공자를 검색하고 결과를 다운로드하며 스틸/시트를 추출합니다.
 homepage: https://gifgrep.com
 metadata:
   {

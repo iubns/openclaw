@@ -1,6 +1,6 @@
 ---
 name: sherpa-onnx-tts
-description: Local text-to-speech via sherpa-onnx (offline, no cloud)
+description: sherpa-onnx로 로컬 텍스트 음성 변환을 사용합니다(오프라인, 클라우드 없음).
 metadata:
   {
     "openclaw":

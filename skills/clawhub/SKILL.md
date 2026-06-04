@@ -1,6 +1,6 @@
 ---
 name: clawhub
-description: Search, install, update, sync, or publish agent skills with the ClawHub CLI and registry.
+description: ClawHub CLI와 레지스트리로 에이전트 스킬을 검색, 설치, 업데이트, 동기화, 게시합니다.
 metadata:
   {
     "openclaw":

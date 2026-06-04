@@ -80,10 +80,10 @@ export type SkillsProps = {
 type StatusTabDef = { id: SkillsStatusFilter; label: string };
 
 const STATUS_TABS: StatusTabDef[] = [
-  { id: "all", label: "All" },
-  { id: "ready", label: "Ready" },
-  { id: "needs-setup", label: "Needs Setup" },
-  { id: "disabled", label: "Disabled" },
+  { id: "all", label: "전체" },
+  { id: "ready", label: "준비됨" },
+  { id: "needs-setup", label: "설정 필요" },
+  { id: "disabled", label: "비활성" },
 ];
 
 function skillMatchesStatus(skill: SkillStatusEntry, status: SkillsStatusFilter): boolean {
@@ -149,8 +149,8 @@ export function renderSkills(props: SkillsProps) {
     <section class="card">
       <div class="row" style="justify-content: space-between;">
         <div>
-          <div class="card-title">Skills</div>
-          <div class="card-sub">Installed skills and their status.</div>
+          <div class="card-title">스킬</div>
+          <div class="card-sub">설치된 스킬과 상태입니다.</div>
         </div>
         <button
           class="btn"
@@ -182,19 +182,19 @@ export function renderSkills(props: SkillsProps) {
           <input
             .value=${props.filter}
             @input=${(e: Event) => props.onFilterChange((e.target as HTMLInputElement).value)}
-            placeholder="Filter installed skills"
+            placeholder="설치된 스킬 필터링"
             autocomplete="off"
             name="skills-filter"
           />
         </label>
-        <div class="muted">${filtered.length} shown</div>
+        <div class="muted">${filtered.length}개 표시됨</div>
       </div>
 
       <div style="margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
           <div style="font-weight: 600;">ClawHub</div>
           <div class="muted" style="font-size: 13px;">
-            Search and install skills from the registry
+            레지스트리에서 스킬을 검색하고 설치하세요
           </div>
         </div>
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
@@ -203,12 +203,12 @@ export function renderSkills(props: SkillsProps) {
               .value=${props.clawhubQuery}
               @input=${(e: Event) =>
                 props.onClawHubQueryChange((e.target as HTMLInputElement).value)}
-              placeholder="Search ClawHub skills…"
+              placeholder="ClawHub 스킬 검색…"
               autocomplete="off"
               name="clawhub-search"
             />
           </label>
-          ${props.clawhubSearchLoading ? html`<span class="muted">Searching…</span>` : nothing}
+          ${props.clawhubSearchLoading ? html`<span class="muted">검색 중…</span>` : nothing}
         </div>
         ${props.clawhubSearchError
           ? html`<div class="callout danger" style="margin-top: 8px;">
@@ -267,7 +267,7 @@ function renderClawHubResults(props: SkillsProps) {
     return nothing;
   }
   if (results.length === 0) {
-    return html`<div class="muted" style="margin-top: 8px;">No skills found on ClawHub.</div>`;
+    return html`<div class="muted" style="margin-top: 8px;">ClawHub에서 스킬을 찾을 수 없습니다.</div>`;
   }
   return html`
     <div class="list" style="margin-top: 8px;">
@@ -285,7 +285,7 @@ function renderClawHubResults(props: SkillsProps) {
               ${r.version
                 ? html`<span class="muted" style="font-size: 12px;">v${r.version}</span>`
                 : nothing}
-              <button
+                <button
                 class="btn btn--sm"
                 ?disabled=${props.clawhubInstallSlug !== null}
                 @click=${(e: Event) => {
@@ -293,7 +293,7 @@ function renderClawHubResults(props: SkillsProps) {
                   props.onClawHubInstall(r.slug);
                 }}
               >
-                ${props.clawhubInstallSlug === r.slug ? "Installing\u2026" : "Install"}
+                ${props.clawhubInstallSlug === r.slug ? "설치 중…" : "설치"}
               </button>
             </div>
           </div>
@@ -323,13 +323,13 @@ function renderClawHubDetailDialog(props: SkillsProps) {
           <div class="md-preview-dialog__title">
             ${detail?.skill?.displayName ?? props.clawhubDetailSlug}
           </div>
-          <button
+            <button
             class="btn btn--sm"
             @click=${(e: Event) => {
               (e.currentTarget as HTMLElement).closest("dialog")?.close();
             }}
           >
-            Close
+            닫기
           </button>
         </div>
         <div class="md-preview-dialog__body" style="display: grid; gap: 16px;">
@@ -381,7 +381,7 @@ function renderClawHubDetailDialog(props: SkillsProps) {
                         : `Install ${detail.skill.displayName}`}
                     </button>
                   `
-                : html`<div class="muted">Skill not found.</div>`}
+                : html`<div class="muted">스킬을 찾을 수 없습니다.</div>`}
         </div>
       </div>
     </dialog>
@@ -477,14 +477,14 @@ function renderSkillDetail(skill: SkillStatusEntry, props: SkillsProps) {
                   class="callout"
                   style="border-color: var(--warn-subtle); background: var(--warn-subtle); color: var(--warn);"
                 >
-                  <div style="font-weight: 600; margin-bottom: 4px;">Missing requirements</div>
+                  <div style="font-weight: 600; margin-bottom: 4px;">누락된 요구사항</div>
                   <div>${missing.join(", ")}</div>
                 </div>
               `
             : nothing}
           ${reasons.length > 0
-            ? html`
-                <div class="muted" style="font-size: 13px;">Reason: ${reasons.join(", ")}</div>
+                ? html`
+                <div class="muted" style="font-size: 13px;">사유: ${reasons.join(", ")}</div>
               `
             : nothing}
 
@@ -499,7 +499,7 @@ function renderSkillDetail(skill: SkillStatusEntry, props: SkillsProps) {
               />
             </label>
             <span style="font-size: 13px; font-weight: 500;">
-              ${skill.disabled ? "Disabled" : "Enabled"}
+              ${skill.disabled ? "사용 안 함" : "사용"}
             </span>
             ${canInstall
               ? html`<button
@@ -507,7 +507,7 @@ function renderSkillDetail(skill: SkillStatusEntry, props: SkillsProps) {
                   ?disabled=${busy}
                   @click=${() => props.onInstall(skill.skillKey, skill.name, skill.install[0].id)}
                 >
-                  ${busy ? "Installing\u2026" : skill.install[0].label}
+                  ${busy ? "설치 중…" : skill.install[0].label}
                 </button>`
               : nothing}
           </div>
@@ -538,19 +538,19 @@ function renderSkillDetail(skill: SkillStatusEntry, props: SkillsProps) {
                     const href = safeExternalHref(skill.homepage);
                     return href
                       ? html`<div class="muted" style="font-size: 13px;">
-                          Get your key:
+                          키 받기:
                           <a href="${href}" target="_blank" rel="noopener noreferrer"
                             >${skill.homepage}</a
                           >
                         </div>`
                       : nothing;
                   })()}
-                  <button
+                    <button
                     class="btn primary"
                     ?disabled=${busy}
                     @click=${() => props.onSaveKey(skill.skillKey)}
                   >
-                    Save key
+                    키 저장
                   </button>
                 </div>
               `

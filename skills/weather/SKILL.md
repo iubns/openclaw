@@ -1,6 +1,6 @@
 ---
 name: weather
-description: "Get current weather, rain, temperature, and forecasts for locations or travel planning."
+description: "위치나 여행 계획에 대해 현재 날씨, 비, 기온, 예보를 확인합니다."
 homepage: https://wttr.in/:help
 metadata:
   {

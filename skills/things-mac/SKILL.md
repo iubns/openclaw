@@ -1,6 +1,6 @@
 ---
 name: things-mac
-description: Add, update, list, search, or inspect Things 3 todos, inbox, today, projects, areas, and tags on macOS.
+description: macOS에서 Things 3 할 일, 인박스, 오늘, 프로젝트, 영역, 태그를 추가, 업데이트, 목록, 검색, 검사합니다.
 homepage: https://github.com/ossianhempel/things3-cli
 metadata:
   {

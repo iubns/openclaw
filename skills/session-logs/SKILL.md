@@ -1,6 +1,6 @@
 ---
 name: session-logs
-description: Search and analyze your own session logs (older/parent conversations) using jq.
+description: jq를 사용해 자신의 세션 로그(이전/상위 대화)를 검색하고 분석합니다.
 metadata:
   {
     "openclaw":

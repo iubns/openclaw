@@ -1,6 +1,6 @@
 ---
 name: notion
-description: Notion API for creating and managing pages, databases, and blocks.
+description: Notion API로 페이지, 데이터베이스, 블록을 생성하고 관리합니다.
 homepage: https://developers.notion.com
 metadata:
   {

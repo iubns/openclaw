@@ -1,6 +1,6 @@
 ---
 name: himalaya
-description: "Use himalaya to list, read, search, compose, reply, forward, and organize IMAP/SMTP email."
+description: "himalaya로 IMAP/SMTP 이메일을 목록, 읽기, 검색, 작성, 답장, 전달, 정리합니다."
 homepage: https://github.com/pimalaya/himalaya
 metadata:
   {

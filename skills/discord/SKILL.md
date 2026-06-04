@@ -1,6 +1,6 @@
 ---
 name: discord
-description: "Discord ops via the message tool (channel=discord)."
+description: "message 도구(channel=discord)로 Discord 작업을 수행합니다."
 metadata: { "openclaw": { "emoji": "🎮", "requires": { "config": ["channels.discord.token"] } } }
 allowed-tools: ["message"]
 ---

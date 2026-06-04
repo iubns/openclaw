@@ -1,6 +1,6 @@
 ---
 name: node-connect
-description: Diagnose OpenClaw Android, iOS, or macOS node pairing, QR/setup code, route, auth, and connection failures.
+description: OpenClaw Android, iOS, macOS 노드 페어링, QR/설정 코드, 경로, 인증, 연결 실패를 진단합니다.
 ---
 
 # Node Connect

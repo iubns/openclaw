@@ -1,6 +1,6 @@
 ---
 name: bluebubbles
-description: Send and manage iMessages via BlueBubbles, including attachments, tapbacks, edits, replies, and groups.
+description: BlueBubbles로 iMessage를 보내고 관리합니다. 첨부 파일, 탭백, 수정, 답장, 그룹을 포함합니다.
 metadata: { "openclaw": { "emoji": "🫧", "requires": { "config": ["channels.bluebubbles"] } } }
 ---
 

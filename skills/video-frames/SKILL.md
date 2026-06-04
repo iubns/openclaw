@@ -1,6 +1,6 @@
 ---
 name: video-frames
-description: Extract frames or short clips from videos using ffmpeg.
+description: ffmpeg로 비디오에서 프레임 또는 짧은 클립을 추출합니다.
 homepage: https://ffmpeg.org
 metadata:
   {

@@ -1,6 +1,6 @@
 ---
 name: goplaces
-description: Query Google Places for text search, place details, resolve, reviews, or scriptable JSON via goplaces.
+description: goplaces로 Google Places의 텍스트 검색, 장소 상세, resolve, 리뷰, 스크립트 가능한 JSON을 조회합니다.
 homepage: https://github.com/steipete/goplaces
 metadata:
   {

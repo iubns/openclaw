@@ -1,6 +1,6 @@
 ---
 name: obsidian
-description: Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.
+description: Obsidian vault(평문 Markdown 노트)를 다루고 obsidian-cli로 자동화합니다.
 homepage: https://help.obsidian.md
 metadata:
   {

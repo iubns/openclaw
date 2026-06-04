@@ -1,6 +1,6 @@
 ---
 name: spotify-player
-description: Terminal Spotify playback/search via spogo (preferred) or spotify_player.
+description: spogo(권장) 또는 spotify_player로 터미널에서 Spotify 재생/검색을 수행합니다.
 homepage: https://www.spotify.com
 metadata:
   {

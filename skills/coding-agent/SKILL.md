@@ -1,6 +1,6 @@
 ---
 name: coding-agent
-description: 'Delegate coding tasks to Codex, Claude Code, OpenCode, or Pi agents via immediate background processes. Use when: (1) building or creating features/apps, (2) reviewing PRs in a temp clone/worktree, (3) refactoring large codebases, (4) iterative coding that needs file exploration. NOT for: simple one-line fixes (just edit), reading code (use read tool), thread-bound ACP harness requests in chat (use sessions_spawn with runtime:"acp"), or any work in ~/clawd workspace (never spawn agents here). All coding-agent runs start with background:true immediately. Claude Code: use --print --permission-mode bypassPermissions (no PTY). Codex/Pi/OpenCode: pty:true required. Completion notification must use openclaw message send, not system event/heartbeat.'
+description: 'Codex, Claude Code, OpenCode, Pi 에이전트에 즉시 백그라운드 프로세스로 코딩 작업을 위임합니다. 기능/앱 생성, 임시 clone/worktree에서 PR 리뷰, 대규모 리팩터링, 파일 탐색이 필요한 반복 코딩에 사용합니다. 단순 한 줄 수정에는 사용하지 않습니다. 코드 읽기는 read 도구를 사용하고, 스레드 바운드 ACP 하니스 요청은 채팅에서 sessions_spawn runtime:"acp"를 사용하며, ~/clawd 워크스페이스에서는 에이전트를 실행하지 않습니다. 모든 coding-agent 실행은 즉시 background:true로 시작합니다. Claude Code는 --print --permission-mode bypassPermissions (PTY 없음)을 사용하고, Codex/Pi/OpenCode은 pty:true가 필요합니다. 완료 알림은 system event/heartbeat가 아니라 openclaw message send를 사용해야 합니다.'
 metadata:
   {
     "openclaw":

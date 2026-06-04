@@ -1,6 +1,6 @@
 ---
 name: tmux
-description: Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.
+description: 키 입력 전송과 pane 출력 수집으로 대화형 CLI용 tmux 세션을 원격 제어합니다.
 metadata:
   {
     "openclaw":
